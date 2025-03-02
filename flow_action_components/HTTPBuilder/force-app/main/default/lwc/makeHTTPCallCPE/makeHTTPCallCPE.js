@@ -182,7 +182,9 @@ export default class MakeHTTPCallCPE extends LightningElement {
         return validity;
 
     }
-    dispatchFlowValueChangeEvent(id, newValue, newValueDataType) {
+    dispatchFlowValueChangeEvent(event) {
+        if (event && event.detail) {
+            const newValue = event.detail.value;
         const valueChangedEvent = new CustomEvent('configuration_editor_input_value_changed', {
             bubbles: true,
             cancelable: false,
@@ -194,7 +196,7 @@ export default class MakeHTTPCallCPE extends LightningElement {
             }
         });
         this.dispatchEvent(valueChangedEvent);
-    }
+    }}
 
     changeURL(event) {
         //this.inputValues['Endpoint'] = event.target.value;
@@ -266,15 +268,6 @@ export default class MakeHTTPCallCPE extends LightningElement {
         
     }
 
-    getFLowBooleanValue(value) {
-        if(value === '$GlobalConstant.True') {
-            return true;
-        } else if('$GlobalConstant.False') {
-            return false;
-        }
-
-        return value;
-    }
 
     makeRESTCall(request) {
         makeTestRESTCall( {

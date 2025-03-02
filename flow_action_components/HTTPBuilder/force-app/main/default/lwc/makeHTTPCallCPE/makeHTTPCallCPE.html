@@ -55,7 +55,7 @@
         label={labels.Body_Label} 
         builder-context={_builderContext} 
         name="Body"  
-        onvaluechanged={handleFlowComboboxValueChange} 
+        onvaluechanged={changeBody} 
         value={body} 
         value-type={bodyType} 
         class="slds-m-around_medium"
@@ -84,7 +84,7 @@
         </div>
     </template>
 
-    <template if:true={isShowMergeFeildReplacer}>
+    <template if:false={isShowMergeFeildReplacer}>
         <c-merge-field-replacer merge-field-list={mergeFieldList} onclosemodal={closeMergeFieldReplacer}>
 
         </c-merge-field-replacer>
