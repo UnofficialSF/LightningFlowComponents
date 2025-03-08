@@ -1,0 +1,37 @@
+<template>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <!-- Field Level Help -->
+            <template if:true={fieldLevelHelp}>
+                <lightning-helptext content={fieldLevelHelp}
+                ></lightning-helptext>
+            </template>
+            <template if:true={required}>
+                <abbr class="slds-required" title="required">*</abbr>
+                <lightning-radio-group 
+                    class="slds-p-top_xxx-small"
+                    name={name}
+                    label={label}
+                    options={options}
+                    value={value}
+                    type={type}
+                    onchange={handleValueChange}
+                    disabled={disabled}
+                    required>
+                </lightning-radio-group>
+            </template>
+            <template if:false={required}>
+                <lightning-radio-group 
+                    class="slds-p-top_xxx-small"
+                    name={name}
+                    label={label}
+                    options={options}
+                    value={value}
+                    type={type}
+                    disabled={disabled}
+                    onchange={handleValueChange}>
+                </lightning-radio-group>
+            </template>
+        </div>
+    </div>
+</template>
