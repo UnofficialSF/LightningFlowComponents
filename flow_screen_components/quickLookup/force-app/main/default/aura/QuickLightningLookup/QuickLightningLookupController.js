@@ -33,7 +33,13 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 helper.hideDropDown(component);
             }
         }, false));
-
+    },
+    handleInvokeLookup : function(component, event, helper) {
+        const { searchString } = event.getParam("arguments");
+        if(searchString) {
+            document.getElementById(component.getGlobalId() + "_myinput").value = searchString;
+            helper.hlpPerformLookup(component);
+        }
     },
     performLookup : function(component, event, helper) {
         helper.hlpPerformLookup(component);

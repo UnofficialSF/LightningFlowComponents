@@ -1,0 +1,7 @@
+<template>
+  <template if:false={scannerDisabled}>
+    <lightning-button-icon icon-name="utility:cases" variant="brand" class="slds-m-left_xx-small" size="medium"
+      disabled={scannerDisabled} title="Open a camera view and look for a barcode to scan"
+      onclick={handleBeginScanClick}></lightning-button-icon>
+  </template>
+</template>

@@ -113,6 +113,10 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	</aura:method>
 	<aura:method name="doInit" />
 
+	<aura:method name="invokeLookup" action="{!c.handleInvokeLookup}" description="Invoke lookup with parameter">
+		<aura:attribute name="searchString" type="String" />
+	</aura:method>
+
 	<!-- Parent: {!v.parentId} ID: {!v.cmpId} -->
 	<div aura:id="dropDown" class="slds-scope slds-form-element slds-lookup" data-select="single">
 		<div class="{!v.class + ' ' + v.errorClass}">
