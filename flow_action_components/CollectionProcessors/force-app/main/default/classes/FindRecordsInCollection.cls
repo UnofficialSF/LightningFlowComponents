@@ -52,7 +52,14 @@ global with sharing class FindRecordsInCollection {
     global static Schema.SobjectField getFieldByName(String objectName, String fieldName) {
 
         // get the SObjectType
-        Schema.SObjectType objectType = Schema.getGlobalDescribe().get(objectName);
+        Schema.SObjectType objectType;
+        if(objectName == 'KnowledgeArticleVersion'){
+            // KnowledgeArticleVersion is a special case, it needs to be handled differently
+            objectType = KnowledgeArticleVersion.getSObjectType();
+        }
+        else{
+            objectType = Schema.getGlobalDescribe().get(objectName);
+        }
 
         // get the fields on the object
         Map<String, SObjectField> fieldMap = objectType.getDescribe().fields.getMap();
