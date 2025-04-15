@@ -11,6 +11,18 @@
 .overflowEnabled c-ers_custom-lightning-datatable .slds-scrollable_y {
     overflow: visible;
 }
+
+/* expands combox height within row to display more picklist values when overflow is disabled */
+.overflowDisabled .sdls-combobox, 
+.overflowDisabled .slds-combobox_container,
+.overflowDisabled .slds-dropdown {
+    position: relative !important;
+    z-index: 99 !important;
+    max-height: 200px;
+    overflow-y: scroll;
+    width: 200% !important;
+}
+
 /* stretch cell width of combobox to 100% */
 c-ers_custom-lightning-datatable lightning-primitive-cell-factory .slds-hyphenate {
     width: 100%;

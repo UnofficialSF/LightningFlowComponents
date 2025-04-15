@@ -1221,7 +1221,7 @@ export default class Datatable extends LightningElement {
         this.borderClass = (this.tableBorder == true) ? 'datatable-border' : '';
 
         // Add overflow if max height is not set so the combobox will spill outside the table
-        this.borderClass += (this.allowOverflow) ? ' overflowEnabled' : '';
+        this.borderClass += (this.allowOverflow) ? ' overflowEnabled' : ' overflowDisabled ';
         
         // Generate datatable
         if (this._tableData) {
