@@ -25,11 +25,11 @@ export default class ers_comboboxColumnType extends LightningElement {
 
     //bump left/right depending on alignment. For center, we will align the grids on a the cell level
     get valueClass() {
-        let _valueClass = "slds-col_bump-right slds-align-middle slds-truncate";
+        let _valueClass = "slds-col_bump-right slds-align-middle";
         if(this.alignment.includes("right")) {
-            _valueClass = "slds-col_bump-left slds-align-middle slds-truncate";
+            _valueClass = "slds-col_bump-left slds-align-middle";
         } else if(this.alignment.includes("center")) {
-            _valueClass = "slds-align-middle slds-truncate";
+            _valueClass = "slds-align-middle";
         }
         return _valueClass;
     }

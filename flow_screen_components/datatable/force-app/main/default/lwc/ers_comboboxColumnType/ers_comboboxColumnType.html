@@ -14,7 +14,7 @@
 
     <template if:false={editMode}>
         <div class={cellClass}>
-            <div class={valueClass}>
+            <div class={valueClass} style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">
                 {value}
             </div>
             <div class="slds-align-middle slds-m-left_x-small">

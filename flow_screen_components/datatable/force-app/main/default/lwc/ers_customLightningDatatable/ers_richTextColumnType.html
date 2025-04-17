@@ -1,7 +1,7 @@
 <template>
     <!-- a template for cell. File in the myCustomDatatable directory -->
     <template if:true={wrapText}>
-        <lightning-formatted-rich-text value={value} class="slds-truncate" style="white-space: normal">
+        <lightning-formatted-rich-text value={value} style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">
         </lightning-formatted-rich-text>
     </template>
     <template if:false={wrapText}>

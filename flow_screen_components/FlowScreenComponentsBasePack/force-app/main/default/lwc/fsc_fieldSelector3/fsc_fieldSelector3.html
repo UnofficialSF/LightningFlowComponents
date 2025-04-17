@@ -13,7 +13,7 @@
                                 <button type="button"
                                     class="slds-input_faux slds-combobox__input slds-combobox__input-value"                                
                                     aria-expanded="false" aria-haspopup="listbox">
-                                    <span class="slds-truncate">{selectedField.label}</span>
+                                    <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; max-width: 100%;">{selectedField.label}</span>
                                 </button>
                                 <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
                                     title="Clear the text input" onclick={handleClearClick}>
@@ -54,9 +54,9 @@
                                                     </template>
                                                 </span>
                                                 <span class="slds-media__body">
-                                                    <span class="slds-truncate" title={field.label}>{field.label}</span>
+                                                    <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; max-width: 100%;" title={field.label}>{field.label}</span>
                                                     <span class="slds-listbox__option-meta" title={field.name}><span
-                                                            class="slds-truncate">{field.name}</span></span>
+                                                            style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; max-width: 100%;">{field.name}</span></span>
                                                 </span>
                                                 <template if:true={field.isLookup}>
                                                     <span
@@ -76,7 +76,7 @@
                                                 class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
                                                 role="option">
                                                 <span class="slds-media__body">
-                                                    <span class="slds-truncate">
+                                                    <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; max-width: 100%;">
                                                         {noMatchString}
                                                     </span>
                                                 </span>
