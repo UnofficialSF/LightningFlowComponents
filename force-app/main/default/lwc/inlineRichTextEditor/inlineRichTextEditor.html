@@ -1,0 +1,29 @@
+<template>
+    <div class="slds-form-element slds-form-element_edit slds-grow">
+        <div class="slds-form-element__control slds-grid">
+            <template if:false={isEditing}>
+                <div class="slds-form-element__static" onclick={handleEdit}>
+                    <lightning-formatted-rich-text value={displayValue}></lightning-formatted-rich-text>
+                </div>
+                <lightning-button-icon
+                    icon-name="utility:edit"
+                    variant="bare"
+                    alternative-text="Edit"
+                    class="slds-m-left_x-small"
+                    onclick={handleEdit}
+                ></lightning-button-icon>
+            </template>
+            <template if:true={isEditing}>
+                <div class="slds-rich-text-editor slds-form-element__control slds-grow">
+                    <lightning-input-rich-text
+                        value={_value}
+                        onchange={handleChange}
+                        onblur={handleSave}
+                        formats="[]"
+                    >
+                    </lightning-input-rich-text>
+                </div>
+            </template>
+        </div>
+    </div>
+</template> 
