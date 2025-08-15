@@ -166,6 +166,17 @@
                 onvaluechanged={handleFlowComboboxValueChange}
                 automatic-output-variables={automaticOutputVariables}
         ></c-fsc_flow-combobox>
+        <c-fsc_flow-combobox
+                name="select_fieldLevelHelp"
+                label={inputValues.fieldLevelHelp.label}
+                value={inputValues.fieldLevelHelp.value}
+                value-type={inputValues.fieldLevelHelp.valueDataType}
+                builder-context-filter-type="String"
+                builder-context-filter-collection-boolean={inputValues.fieldLevelHelp.isCollection}
+                builder-context={_builderContext}
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
     </div>
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_1-of-1 slds-panel__header-title slds-text-heading_small slds-p-top_small">
