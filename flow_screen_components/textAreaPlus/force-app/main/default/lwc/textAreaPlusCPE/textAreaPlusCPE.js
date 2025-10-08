@@ -219,6 +219,13 @@ export default class textAreaPlusCPE extends LightningElement {
       label: "Text Area Height",
       helpText: "Set the minimum height of the text input area i.e. 800"
     },
+    displayTextHeight: {
+      value: null,
+      valueDataType: DATA_TYPE.NUMBER,
+      isCollection: false,
+      label: "Display Text Height",
+      helpText: "Set the height of the display text container in pixels (e.g., 200). Leave empty for auto height."
+    },
     fieldLevelHelp: {
       value: null,
       valueDataType: null,

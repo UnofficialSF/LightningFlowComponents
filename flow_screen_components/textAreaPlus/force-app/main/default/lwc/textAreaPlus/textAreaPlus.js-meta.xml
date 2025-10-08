@@ -29,6 +29,7 @@
             <property name="cb_showCharCounter" type="String" role="inputOnly" />
             <property name="slackOutput" label="Slack Formatted Output" type="String"/>
             <property name="textAreaHeight" label="Text Area Height" type="String"/>
+            <property name="displayTextHeight" label="Display Text Height" type="String" role="inputOnly" description="Set the height of the display text container in pixels (e.g., 200). Leave empty for auto height."/>
             <property name="fieldLevelHelp" label="Help Text" type="String"/>
         </targetConfig>
     </targetConfigs>
