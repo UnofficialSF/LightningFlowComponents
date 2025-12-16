@@ -20,22 +20,22 @@
         // Get current URL 
         // If URL contains flexipageEditor do nothing
         var currentUrl = window.location.href;
-        this.debugLog(component, 'currentUrl is: ' + currentUrl);
+        this.debugLog(component, `currentUrl is: ${currentUrl}`);
         if (currentUrl.includes('flexipageEditor')) {
             this.debugLog(component, 'currentUrl includes flexipageEditor');
             return;
         } else {
             if(eventParams.changeType === "CHANGED") {
-                this.debugLog(component, 'changeType is: ' + eventParams.changeType);
+                this.debugLog(component, `changeType is: ${eventParams.changeType}`);
                 this.callFlow(component, eventParams);
             }  else if(eventParams.changeType === "REMOVED") {
                 this.debugLog(component, 'record is being deleted');
                 //the other launch paths don't work well when the underlying page is deleted
-                var targetUrl = '/flow/' + component.get("v.targetFlowName") + '?recordId=' + component.get("v.recordId"); //added input variable
-                this.debugLog(component, 'targetURL is: ' + targetUrl);
+                var targetUrl = `/flow/${component.get("v.targetFlowName")}?recordId=${component.get("v.recordId")}`;
+                this.debugLog(component, `targetURL is: ${targetUrl}`);
                 window.open(targetUrl);
             } else if(eventParams.changeType === "LOADED") {
-                this.debugLog(component, 'changeType is: ' + eventParams.changeType);
+                this.debugLog(component, `changeType is: ${eventParams.changeType}`);
                 this.callFlow(component, eventParams);
             }
         }
@@ -43,7 +43,7 @@
 
     callFlow : function(component, eventParams) {
         this.debugLog(component, 'entering callFlow');
-        this.debugLog(component, 'changeType is: ' + eventParams.changeType);
+        this.debugLog(component, `changeType is: ${eventParams.changeType}`);
         var flowApiName = component.get("v.targetFlowName");
         if (!flowApiName) {
             this.debugLog(component, 'flowApiName is null or undefined');
@@ -91,12 +91,12 @@
                 var workspaceAPI = component.find("workspace");
                 var self = this;
                 workspaceAPI.isConsoleNavigation().then(function(response) {
-                    self.debugLog(component, 'current workspace is console? : ' + response);
+                    self.debugLog(component, `current workspace is console? : ${response}`);
                     if (response) {
                         //we are in console mode
                         workspaceAPI.getFocusedTabInfo()
                         .then(function(response) {
-                            var targetUrl = '/flow/' + component.get("v.targetFlowName") + '?recordId=' + component.get("v.recordId"); //added input variable;
+                            var targetUrl = `/flow/${component.get("v.targetFlowName")}?recordId=${component.get("v.recordId")}`;
                             workspaceAPI.openSubtab({
                                 parentTabId: response.tabId,
                                 url:  targetUrl,
@@ -110,8 +110,8 @@
                         });
                     } else {
                         self.debugLog(component, 'need to launch flow a different way');
-                        var targetUrl = '/flow/' + component.get("v.targetFlowName") + '?recordId=' + component.get("v.recordId"); //added input variable;
-                        self.debugLog(component, 'targetURL is: ' + targetUrl);
+                        var targetUrl = `/flow/${component.get("v.targetFlowName")}?recordId=${component.get("v.recordId")}`;
+                        self.debugLog(component, `targetURL is: ${targetUrl}`);
                         window.open(targetUrl);
                     }
                 })
