@@ -44,12 +44,14 @@
             if ( eventParams.changedFields && eventParams.changeType === "CHANGED") {
                 console.log('eventParams.changedFields', eventParams.changedFields);
                 var changed = JSON.parse(JSON.stringify(eventParams.changedFields));
-                //console.log('changed', changed);
-                //console.log('changed.dynamic', changed[component.get("v.fieldCompare")]);
-                if (changed[component.get("v.fieldCompare")]) {
-                    console.log('changed.dynamic.value', changed[component.get("v.fieldCompare")].value);
-                    if ( changed[component.get("v.fieldCompare")].value.toString() === component.get("v.fieldValue") ) {
-                        //console.log('hit');
+                var fieldKey = component.get("v.fieldCompare");
+                var fieldData = changed[fieldKey];
+                
+                // Check if field exists and has a non-null value before calling toString()
+                if (fieldData && fieldData.value != null) {
+                    var newValue = fieldData.value.toString();
+                    console.log('changed.dynamic.value', newValue);
+                    if (newValue === component.get("v.fieldValue")) {
                         component.set("v.targetFlowName", component.get("v.editFlowName"));
                         helper.processChangeEvent(component, eventParams);
                     }

@@ -10,6 +10,7 @@
     <aura:attribute name="fieldValue" type="String" description="Launch this flow when the record is edited and this field equals this"/>
     <aura:attribute name="targetFlowName" type="String"  />
     <aura:attribute name="launchMode" type="String" default="Modeless" description="Launch this flow when the record changes"/>
+    <aura:attribute name="debugMode" type="Boolean" default="false" description="Enable debug logging to console. Disabled by default for performance."/>
 
     <force:recordData aura:id="recordLoader"
     fields="{!v.fieldNameList}"
