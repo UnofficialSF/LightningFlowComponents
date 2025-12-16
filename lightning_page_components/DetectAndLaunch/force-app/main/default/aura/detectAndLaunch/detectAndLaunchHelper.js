@@ -66,8 +66,8 @@
         var fieldKey = component.get("v.fieldCompare");
         var fieldData = changed[fieldKey];
 
-        // Check if field exists and has a non-null value
-        if (!fieldData || fieldData.value === null) {
+        // Check if field exists and has a non-null, non-undefined value
+        if (!fieldData || fieldData.value === null || fieldData.value === undefined) {
             return false;
         }
 
