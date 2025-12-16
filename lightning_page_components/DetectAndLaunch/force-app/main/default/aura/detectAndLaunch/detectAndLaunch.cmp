@@ -1,4 +1,4 @@
-<aura:component label="Detect and Launch Flow" implements="flexipage:availableForAllPageTypes, force:hasRecordId,lightning:isUrlAddressable"> <!--inherit recordId attribute-->
+<aura:component implements="flexipage:availableForAllPageTypes, force:hasRecordId,lightning:isUrlAddressable"> <!--inherit recordId attribute-->
     <lightning:workspaceAPI aura:id="workspace" />
     <lightning:notificationsLibrary aura:id="notifLib"/>
    
