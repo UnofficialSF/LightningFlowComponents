@@ -58,6 +58,13 @@
         return newValue === fieldValue;
     },
 
+    /**
+     * Processes record change events and launches appropriate flows
+     * Prevents execution in page builder mode and routes to appropriate launch method
+     * @param {Component} component - The component instance
+     * @param {Object} eventParams - Event parameters from force:recordData
+     * @param {String} eventParams.changeType - Type of change: CHANGED, REMOVED, or LOADED
+     */
     processChangeEvent : function(component, eventParams) {
         this.debugLog(component, 'entering processChangeEvent');
         // Get current URL 
@@ -84,6 +91,13 @@
         }
     },
 
+    /**
+     * Launches a flow in either modal or modeless mode based on launchMode setting
+     * Handles both console and standard UI navigation
+     * @param {Component} component - The component instance
+     * @param {Object} eventParams - Event parameters from force:recordData
+     * @param {String} eventParams.changeType - Type of change: CHANGED, REMOVED, or LOADED
+     */
     callFlow : function(component, eventParams) {
         this.debugLog(component, 'entering callFlow');
         this.debugLog(component, `changeType is: ${eventParams.changeType}`);

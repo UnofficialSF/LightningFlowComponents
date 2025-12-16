@@ -1,4 +1,10 @@
 ({
+    /**
+     * Initializes the component by setting up the field list for recordData to watch
+     * @param {Component} component - The component instance
+     * @param {Object} event - The init event
+     * @param {Object} helper - The component helper
+     */
     doInit: function(component, event, helper) {
         // By Default set the Id field as this is required
         var tempFieldList = ['Id'];
@@ -13,16 +19,34 @@
         component.set("v.fieldNameList", tempFieldList);
     },
 
+    /**
+     * Opens the modal dialog for flow execution
+     * @param {Component} component - The component instance
+     * @param {Object} event - The event that triggered this action
+     * @param {Object} helper - The component helper
+     */
     openModal : function(component, event, helper) {
 		component.set('v.openModal',true);
 	},
  
+    /**
+     * Closes the modal dialog
+     * @param {Component} component - The component instance
+     * @param {Object} event - The event that triggered this action
+     * @param {Object} helper - The component helper
+     */
 	closeModal : function(component, event, helper) {
 		component.set('v.openModal',false);
 	},
  
 
 
+    /**
+     * Handles flow status change events and closes modal when flow finishes
+     * @param {Component} component - The component instance
+     * @param {Object} event - The flow status change event
+     * @param {Object} helper - The component helper
+     */
     flowStatusChange : function( component, event, helper ) {
         if ( event.getParam( "status" ).indexOf( "FINISHED" ) !== -1 ) {
             component.set( "v.openModal", false );
@@ -30,6 +54,13 @@
         }
     },
     
+    /**
+     * Handles record update events from force:recordData
+     * Determines which flow to launch based on change type and field conditions
+     * @param {Component} component - The component instance
+     * @param {Object} event - The record update event from force:recordData
+     * @param {Object} helper - The component helper
+     */
     recordUpdated: function(component, event, helper) {
         helper.debugLog(component, 'entering recordUpdate');
         var eventParams = event.getParams();
