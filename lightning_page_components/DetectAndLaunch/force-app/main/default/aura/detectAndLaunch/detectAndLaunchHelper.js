@@ -61,12 +61,29 @@
                 ];
 
                 var flow = component.find("flow");
-                // Check to see if flow is not null before calling startFlow
-                if (flowApiName) {
-                    this.debugLog(component, 'flow is not null', flowApiName);
-                    flow.startFlow(flowApiName, inputVariable); //added input variable
+                // Check to see if flow component exists and flowApiName is valid before calling startFlow
+                if (flow && flowApiName) {
+                    this.debugLog(component, 'Starting flow:', flowApiName);
+                    try {
+                        flow.startFlow(flowApiName, inputVariable);
+                    } catch (error) {
+                        // Critical error - always log for troubleshooting
+                        console.error('Error starting flow:', error);
+                        console.error('Flow API Name:', flowApiName);
+                        console.error('Error details:', error.message || error);
+                        // Close modal if flow fails to start
+                        component.set('v.openModal', false);
+                    }
                 } else {
-                    this.debugLog(component, 'flow is null', flow);
+                    // Critical error - always log for troubleshooting
+                    if (!flow) {
+                        console.error('Flow component not found. Ensure lightning:flow is present in component markup.');
+                    }
+                    if (!flowApiName) {
+                        console.error('Flow API name is missing or invalid.');
+                    }
+                    // Close modal if we can't start the flow
+                    component.set('v.openModal', false);
                 }
 
             } else {
