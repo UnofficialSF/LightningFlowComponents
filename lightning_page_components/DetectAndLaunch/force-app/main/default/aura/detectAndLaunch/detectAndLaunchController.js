@@ -71,8 +71,10 @@
         var fieldConditionsConfigured = (fieldChange !== null && fieldChange !== undefined && 
                                          fieldValue !== null && fieldValue !== undefined);
 
-        // If field conditions are configured, only launch if value matches
-        if (fieldConditionsConfigured) {
+        // Field conditions only apply to CHANGED events
+        // For REMOVED and LOADED events, proceed with normal flow launching logic
+        if (fieldConditionsConfigured && eventParams.changeType === "CHANGED") {
+            // Field conditions are configured and this is a CHANGED event - check if value matches
             if (helper.checkFieldValueMatch(component, eventParams)) {
                 component.set("v.isChangedRecord", true);
                 helper.debugLog(component, 'fieldChange', fieldChange);
@@ -88,7 +90,7 @@
                 return;
             }
         } else {
-            // No field conditions configured - proceed with normal flow launching logic
+            // No field conditions configured OR this is REMOVED/LOADED event - proceed with normal flow launching logic
             helper.debugLog(component, `changeType: ${eventParams.changeType}`);
             // Get Flow To Use
             if(eventParams.changeType === "CHANGED") {
