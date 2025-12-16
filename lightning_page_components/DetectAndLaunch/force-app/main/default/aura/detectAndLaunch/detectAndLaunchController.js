@@ -65,17 +65,30 @@
         helper.debugLog(component, 'entering recordUpdate');
         var eventParams = event.getParams();
 
-        // Check if field value matches configured criteria
-        if (helper.checkFieldValueMatch(component, eventParams)) {
-            component.set("v.isChangedRecord", true);
-            helper.debugLog(component, 'fieldChange', component.get("v.fieldChange"));
-            helper.debugLog(component, 'fieldValue', component.get("v.fieldValue"));
-            helper.debugLog(component, 'eventParams.changedFields', eventParams.changedFields);
-            
-            // Field value matches, launch the edit flow
-            component.set("v.targetFlowName", component.get("v.editFlowName"));
-            helper.processChangeEvent(component, eventParams);
+        // Check if field conditions are configured
+        var fieldChange = component.get("v.fieldChange");
+        var fieldValue = component.get("v.fieldValue");
+        var fieldConditionsConfigured = (fieldChange !== null && fieldChange !== undefined && 
+                                         fieldValue !== null && fieldValue !== undefined);
+
+        // If field conditions are configured, only launch if value matches
+        if (fieldConditionsConfigured) {
+            if (helper.checkFieldValueMatch(component, eventParams)) {
+                component.set("v.isChangedRecord", true);
+                helper.debugLog(component, 'fieldChange', fieldChange);
+                helper.debugLog(component, 'fieldValue', fieldValue);
+                helper.debugLog(component, 'eventParams.changedFields', eventParams.changedFields);
+                
+                // Field value matches, launch the edit flow
+                component.set("v.targetFlowName", component.get("v.editFlowName"));
+                helper.processChangeEvent(component, eventParams);
+            } else {
+                // Field conditions are configured but value doesn't match - don't launch any flow
+                helper.debugLog(component, 'Field conditions configured but value does not match - skipping flow launch');
+                return;
+            }
         } else {
+            // No field conditions configured - proceed with normal flow launching logic
             helper.debugLog(component, `changeType: ${eventParams.changeType}`);
             // Get Flow To Use
             if(eventParams.changeType === "CHANGED") {
@@ -85,7 +98,6 @@
             } else if(eventParams.changeType === "LOADED") {
                 component.set("v.targetFlowName", component.get("v.loadFlowName"));
             }
-
 
             // Launch Flow
             if(eventParams.changeType === "CHANGED" || eventParams.changeType === "REMOVED") {
