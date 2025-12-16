@@ -93,9 +93,9 @@
             } else if( eventParams.changeType === "LOADED")  {
                 helper.processChangeEvent(component, eventParams);
             } else if(eventParams.changeType === "ERROR") {
-                // Critical error - always log for troubleshooting
-                console.error('Update event received Error:', eventParams);
-                console.error('Error message: ' + component.get("v.error"));
+                // Show error toast to user
+                var errorMessage = component.get("v.error") || component.get("v.recordError") || 'An error occurred while loading the record.';
+                helper.showErrorToast(component, 'Record Error', errorMessage);
             }
         }
     }

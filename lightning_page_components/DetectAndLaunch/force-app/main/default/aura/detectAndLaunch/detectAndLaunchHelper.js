@@ -16,6 +16,26 @@
     },
 
     /**
+     * Shows an error toast notification to the user
+     * @param {Component} component - The component instance
+     * @param {String} title - Title of the error toast
+     * @param {String} message - Error message to display
+     */
+    showErrorToast: function(component, title, message) {
+        var notifLib = component.find("notifLib");
+        if (notifLib) {
+            notifLib.showToast({
+                "title": title || "Error",
+                "message": message,
+                "variant": "error",
+                "mode": "sticky"
+            });
+        }
+        // Also log to console for debugging
+        console.error(title + ":", message);
+    },
+
+    /**
      * Checks if a field value matches the expected value when a record is changed
      * @param {Component} component - The component instance
      * @param {Object} eventParams - Event parameters from force:recordData
@@ -124,20 +144,22 @@
                     try {
                         flow.startFlow(flowApiName, inputVariable);
                     } catch (error) {
-                        // Critical error - always log for troubleshooting
-                        console.error('Error starting flow:', error);
-                        console.error('Flow API Name:', flowApiName);
-                        console.error('Error details:', error.message || error);
+                        // Show error toast to user
+                        var errorMessage = error.message || 'An error occurred while starting the flow.';
+                        this.showErrorToast(component, 'Flow Error', 
+                            `Unable to start flow "${flowApiName}". ${errorMessage}`);
                         // Close modal if flow fails to start
                         component.set('v.openModal', false);
                     }
                 } else {
-                    // Critical error - always log for troubleshooting
+                    // Show error toast to user
                     if (!flow) {
-                        console.error('Flow component not found. Ensure lightning:flow is present in component markup.');
+                        this.showErrorToast(component, 'Configuration Error', 
+                            'Flow component not found. Please contact your administrator.');
                     }
                     if (!flowApiName) {
-                        console.error('Flow API name is missing or invalid.');
+                        this.showErrorToast(component, 'Configuration Error', 
+                            'Flow name is missing or invalid. Please check the component configuration.');
                     }
                     // Close modal if we can't start the flow
                     component.set('v.openModal', false);
@@ -162,8 +184,9 @@
             
                         })
                         .catch(function(error) {
-                            // Critical error - always log for troubleshooting
-                            console.error('Error opening subtab:', error);
+                            // Show error toast to user
+                            self.showErrorToast(component, 'Navigation Error', 
+                                'Unable to open flow in console. Please try again.');
                         });
                     } else {
                         self.debugLog(component, 'need to launch flow a different way');

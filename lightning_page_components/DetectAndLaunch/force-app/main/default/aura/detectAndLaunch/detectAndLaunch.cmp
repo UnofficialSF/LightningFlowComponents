@@ -1,5 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes, force:hasRecordId,lightning:isUrlAddressable"> <!--inherit recordId attribute-->
     <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:notificationsLibrary aura:id="notifLib"/>
    
 
     <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
