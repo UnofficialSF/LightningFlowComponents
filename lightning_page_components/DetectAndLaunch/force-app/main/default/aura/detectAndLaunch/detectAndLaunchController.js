@@ -36,7 +36,8 @@
 
         // If both Field Change and Field Value are not null then set to isChangedRecord to true
         // This will then populate the users field value within the fields list
-        if(component.get("v.fieldChange") != null && component.get("v.fieldValue") != null ){
+        if(component.get("v.fieldChange") !== null && component.get("v.fieldChange") !== undefined && 
+           component.get("v.fieldValue") !== null && component.get("v.fieldValue") !== undefined ){
             component.set("v.isChangedRecord", true);
             helper.debugLog(component, 'fieldChange', component.get("v.fieldChange"));
             helper.debugLog(component, 'fieldValue', component.get("v.fieldValue"));
@@ -48,7 +49,7 @@
                 var fieldData = changed[fieldKey];
                 
                 // Check if field exists and has a non-null value before calling toString()
-                if (fieldData && fieldData.value != null) {
+                if (fieldData && fieldData.value !== null) {
                     var newValue = fieldData.value.toString();
                     helper.debugLog(component, 'changed.dynamic.value', newValue);
                     if (newValue === component.get("v.fieldValue")) {

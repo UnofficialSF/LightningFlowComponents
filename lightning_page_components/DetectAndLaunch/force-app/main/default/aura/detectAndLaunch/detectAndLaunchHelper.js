@@ -45,10 +45,10 @@
         this.debugLog(component, 'entering callFlow');
         this.debugLog(component, 'changeType is: ' + eventParams.changeType);
         var flowApiName = component.get("v.targetFlowName");
-        if (flowApiName == null || flowApiName == undefined) {
+        if (!flowApiName) {
             this.debugLog(component, 'flowApiName is null or undefined');
         } else {
-            if(component.get("v.launchMode") == 'Modal') {
+            if(component.get("v.launchMode") === 'Modal') {
                 component.set('v.openModal',true);
 
                 //Set input variable
@@ -62,7 +62,7 @@
 
                 var flow = component.find("flow");
                 // Check to see if flow is not null before calling startFlow
-                if (flowApiName != null && flowApiName != undefined) {
+                if (flowApiName) {
                     this.debugLog(component, 'flow is not null', flowApiName);
                     flow.startFlow(flowApiName, inputVariable); //added input variable
                 } else {
