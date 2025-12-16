@@ -34,32 +34,18 @@
         helper.debugLog(component, 'entering recordUpdate');
         var eventParams = event.getParams();
 
-        // If both Field Change and Field Value are not null then set to isChangedRecord to true
-        // This will then populate the users field value within the fields list
-        if(component.get("v.fieldChange") !== null && component.get("v.fieldChange") !== undefined && 
-           component.get("v.fieldValue") !== null && component.get("v.fieldValue") !== undefined ){
+        // Check if field value matches configured criteria
+        if (helper.checkFieldValueMatch(component, eventParams)) {
             component.set("v.isChangedRecord", true);
             helper.debugLog(component, 'fieldChange', component.get("v.fieldChange"));
             helper.debugLog(component, 'fieldValue', component.get("v.fieldValue"));
-            // Make sure there was an edited field and we just edited a record
-            if ( eventParams.changedFields && eventParams.changeType === "CHANGED") {
-                helper.debugLog(component, 'eventParams.changedFields', eventParams.changedFields);
-                var changed = JSON.parse(JSON.stringify(eventParams.changedFields));
-                var fieldKey = component.get("v.fieldCompare");
-                var fieldData = changed[fieldKey];
-                
-                // Check if field exists and has a non-null value before calling toString()
-                if (fieldData && fieldData.value !== null) {
-                    var newValue = fieldData.value.toString();
-                    helper.debugLog(component, 'changed.dynamic.value', newValue);
-                    if (newValue === component.get("v.fieldValue")) {
-                        component.set("v.targetFlowName", component.get("v.editFlowName"));
-                        helper.processChangeEvent(component, eventParams);
-                    }
-                }
-            }
+            helper.debugLog(component, 'eventParams.changedFields', eventParams.changedFields);
+            
+            // Field value matches, launch the edit flow
+            component.set("v.targetFlowName", component.get("v.editFlowName"));
+            helper.processChangeEvent(component, eventParams);
         } else {
-            helper.debugLog(component, 'changeType: ' + eventParams.changeType);
+            helper.debugLog(component, `changeType: ${eventParams.changeType}`);
             // Get Flow To Use
             if(eventParams.changeType === "CHANGED") {
                 component.set("v.targetFlowName", component.get("v.editFlowName"));

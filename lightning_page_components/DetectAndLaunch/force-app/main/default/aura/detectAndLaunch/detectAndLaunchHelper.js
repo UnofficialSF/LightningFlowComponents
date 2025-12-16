@@ -15,6 +15,49 @@
         }
     },
 
+    /**
+     * Checks if a field value matches the expected value when a record is changed
+     * @param {Component} component - The component instance
+     * @param {Object} eventParams - Event parameters from force:recordData
+     * @returns {Boolean} - True if field value matches, false otherwise
+     */
+    checkFieldValueMatch: function(component, eventParams) {
+        var fieldChange = component.get("v.fieldChange");
+        var fieldValue = component.get("v.fieldValue");
+        
+        // Check if both fieldChange and fieldValue are configured
+        if (fieldChange === null || fieldChange === undefined || 
+            fieldValue === null || fieldValue === undefined) {
+            return false;
+        }
+
+        // Only check field values on CHANGED events
+        if (eventParams.changeType !== "CHANGED") {
+            return false;
+        }
+
+        // Check if changedFields exists
+        if (!eventParams.changedFields) {
+            return false;
+        }
+
+        // Get the field data from changed fields
+        var changed = JSON.parse(JSON.stringify(eventParams.changedFields));
+        var fieldKey = component.get("v.fieldCompare");
+        var fieldData = changed[fieldKey];
+
+        // Check if field exists and has a non-null value
+        if (!fieldData || fieldData.value === null) {
+            return false;
+        }
+
+        // Compare the field value
+        var newValue = fieldData.value.toString();
+        this.debugLog(component, 'changed.dynamic.value', newValue);
+        
+        return newValue === fieldValue;
+    },
+
     processChangeEvent : function(component, eventParams) {
         this.debugLog(component, 'entering processChangeEvent');
         // Get current URL 
