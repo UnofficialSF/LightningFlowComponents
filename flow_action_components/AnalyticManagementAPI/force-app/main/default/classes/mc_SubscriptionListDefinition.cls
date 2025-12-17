@@ -1,3 +1,12 @@
+/**
+ * Subscription List Definition wrapper class
+ * 
+ * Represents the full structure of an analytics notification subscription
+ * as returned by the Analytics Notification API. This class maps directly
+ * to the JSON response from the API.
+ * 
+ * @author Andy Haas
+ */
 global with sharing class mc_SubscriptionListDefinition {
     @AuraEnabled
     public boolean active;

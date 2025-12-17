@@ -1,14 +1,31 @@
+/**
+ * Mock HTTP Callout class for testing mc_SubscriptionData
+ * 
+ * Implements HttpCalloutMock to provide mock responses for HTTP callouts
+ * during test execution. This allows testing of the subscription data
+ * retrieval without making actual API calls.
+ * 
+ * @author Andy Haas
+ */
 @isTest
-global with sharing class SubscriptionData_MockHTTP  implements HttpCalloutMock {
-    // Implement this interface method
+global with sharing class SubscriptionData_MockHTTP implements HttpCalloutMock {
+    // API version constant for REST API calls (matches main class)
+    private static final String API_VERSION = 'v65.0';
+    
+    /**
+     * Implement this interface method to provide mock HTTP responses
+     * 
+     * @param req HTTPRequest object from the callout
+     * @return HTTPResponse Mock response with subscription data
+     */
     global HTTPResponse respond(HTTPRequest req) {
-        // Optionally, only send a mock response for a specific endpoint
-        // and method.
+        // Optionally, only send a mock response for a specific endpoint and method.
+        String expectedEndpoint = 'https://salesforce.com/services/data/' + API_VERSION + '/analytics/notifications?source=lightningReportSubscribe';
         req.setEndpoint('https://salesforce.com/' + 
-                        'services/data/v55.0/analytics/' + 
+                        'services/data/' + API_VERSION + '/analytics/' + 
                         'notifications?source=lightningReportSubscribe');
         req.setMethod('GET');
-        System.assertEquals('https://salesforce.com/services/data/v55.0/analytics/notifications?source=lightningReportSubscribe', req.getEndpoint());
+        System.assertEquals(expectedEndpoint, req.getEndpoint());
         System.assertEquals('GET', req.getMethod());
         
         // Create a fake response

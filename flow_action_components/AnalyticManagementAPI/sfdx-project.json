@@ -16,7 +16,7 @@
     "name": "AnalyticsManagementActions",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "55.0",
+    "sourceApiVersion": "65.0",
     "packageAliases": {
         "FlowActionsBasePack@3.6.0-0": "04t8b000000mKnoAAE",
         "AnalyticsManagementActions": "0Ho5G0000008OceSAE",
