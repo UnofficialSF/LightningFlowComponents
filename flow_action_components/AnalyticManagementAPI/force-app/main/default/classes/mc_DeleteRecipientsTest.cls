@@ -1,5 +1,21 @@
+/**
+ * Test class for mc_DeleteRecipients
+ * 
+ * Provides test coverage for the Delete Selected Recipients invocable action.
+ * Tests both scenarios: deleting all recipients (which deletes the notification)
+ * and deleting some recipients (which updates the notification).
+ * 
+ * @author Andy Haas
+ */
 @isTest
 public class mc_DeleteRecipientsTest {
+	/**
+	 * Test method for mc_DeleteRecipients
+	 * 
+	 * Tests the recipient deletion functionality with mock HTTP callouts.
+	 * Verifies that the method processes requests correctly for both
+	 * full deletion and partial deletion scenarios.
+	 */
 	@isTest
     private static void mc_DeleteRecipients_test(){
         list<mc_DeleteRecipients.request> rqLst = new list<mc_DeleteRecipients.request>();
@@ -25,7 +41,19 @@ public class mc_DeleteRecipientsTest {
         mc_DeleteRecipients.mc_DeleteRecipients(rqlst1);
         test.stopTest();
     }
+    /**
+     * Mock HTTP Callout class for testing mc_DeleteRecipients
+     * 
+     * Implements HttpCalloutMock to provide mock responses for HTTP callouts
+     * during test execution.
+     */
     public class mock implements httpCalloutMock {
+        /**
+         * Provides mock HTTP response for testing
+         * 
+         * @param req HTTPRequest object from the callout
+         * @return HTTPResponse Mock response with subscription definition data
+         */
         public system.HttpResponse respond(system.HttpRequest req){
             httpResponse resp = new system.HttpResponse();
             resp.setStatusCode(200);

@@ -1,8 +1,19 @@
+/**
+ * Test class for mc_GetRecipients
+ * 
+ * Provides test coverage for the Parse Recipient Data invocable action.
+ * Tests parsing of subscription definition JSON strings to extract recipient information.
+ * 
+ * @author Andy Haas
+ */
 @isTest
 public with sharing class mc_GetRecipientsTest {
-    public mc_GetRecipientsTest() {
-
-    }
+    /**
+     * Test method for mc_GetRecipients
+     * 
+     * Tests the recipient parsing functionality by deserializing
+     * a subscription definition string and extracting recipients.
+     */
     @isTest
     public static void mc_GetRecipients_test(){
         list<mc_GetRecipients.request> reqs = new list<mc_getRecipients.Request>();
