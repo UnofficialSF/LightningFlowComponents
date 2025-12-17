@@ -290,10 +290,10 @@ export default class lwcConvertCSVToRecords extends LightningElement {
 
     if (event.detail.files.length > 0) {
       const file = event.detail.files[0];
-      
+
       // Display the file name immediately
       this.uploadFileName = file.name;
-      this.uploadFileStatus = "Processing...";
+      this.uploadFileStatus = "Reading file...";
 
       // Ensure PapaParse is loaded before proceeding
       if (!this.parserInitialized || typeof Papa === "undefined") {
@@ -336,7 +336,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
         return;
       }
 
-      this._isLoading = true;
+      this.uploadFileStatus = "Parsing CSV...";
       Papa.parse(file, {
         delimiter: this._delimiter,
         newline: this._newline,
@@ -368,6 +368,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
 
           // get the meta columns
           this.columnHeaders = parsedResults.meta.fields;
+
+          this.uploadFileStatus = "Validating columns...";
 
           // See if there are any empty columns
           let emptyColumns = parsedResults.meta.fields.filter(
@@ -423,6 +425,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               });
             }
           }
+          
+          this.uploadFileStatus = "Retrieving field information...";
           getObjectFields({ objectName: this.objectName })
             .then((fieldList) => {
               // Validate fieldList
@@ -436,8 +440,11 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                   this.objectName;
                 this._isError = true;
                 this._isLoading = false;
+                this.uploadFileStatus = "Error: Field retrieval failed";
                 return;
               }
+
+              this.uploadFileStatus = "Mapping fields...";
 
               // fieldList is an array of objects
               // Each object has a Name and a Type property
@@ -572,6 +579,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                 return;
               }
 
+              this.uploadFileStatus = "Converting data...";
+              
               // New array to store the rows of data
               let newRows = [];
               // Go through the parsedResults.data object and set key based on the fieldList object match on oldField and replace the oldField with the newField
@@ -794,6 +803,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               // Go through the newRows and remove any rows that are empty
               newRows = newRows.filter((x) => Object.keys(x).length > 0);
 
+              this.uploadFileStatus = "Validating payload size...";
+
               /**
                * Estimate final payload size before serialization
                *
@@ -838,6 +849,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                 );
                 // Continue anyway - the actual error will be caught below
               }
+
+              this.uploadFileStatus = "Finalizing...";
 
               // Serialize the data with the objectName
               let serializedData = {};
