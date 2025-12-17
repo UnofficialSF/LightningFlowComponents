@@ -232,8 +232,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
    */
   get isUploadSuccessful() {
     return (
-      this.uploadFileStatus &&
-      this.uploadFileStatus.startsWith("Success:")
+      this.uploadFileStatus && this.uploadFileStatus.startsWith("Success:")
     );
   }
 
