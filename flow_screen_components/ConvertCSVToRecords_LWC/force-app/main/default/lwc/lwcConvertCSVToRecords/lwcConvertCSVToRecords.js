@@ -278,6 +278,10 @@ export default class lwcConvertCSVToRecords extends LightningElement {
    * @returns {void}
    */
   handleInputChange(event) {
+    // Reset error state when a new file is selected
+    this._isError = false;
+    this._errorMessage = null;
+
     // Set Default Values
     this.header = true;
     this.skipEmptyLines = true;
@@ -294,6 +298,35 @@ export default class lwcConvertCSVToRecords extends LightningElement {
 
       this._isLoading = true;
       const file = event.detail.files[0];
+
+      /**
+       * Check raw file size before processing
+       *
+       * Note: CSV files are typically more compact than the resulting JSON payload.
+       * A 3MB CSV might become a 4-5MB JSON payload after processing.
+       * We check at 3MB to provide a safety margin before hitting the ~4MB payload limit.
+       * The actual payload size is validated later after processing.
+       */
+      const maxFileSizeMB = 3;
+      const fileSizeMB = file.size / (1024 * 1024);
+
+      if (fileSizeMB > maxFileSizeMB) {
+        this._errorMessage =
+          `File Too Large: The CSV file is ${fileSizeMB.toFixed(
+            2
+          )}MB, which exceeds the recommended limit of ${maxFileSizeMB}MB. ` +
+          `\n\nNote: CSV files expand when converted to JSON format. A ${fileSizeMB.toFixed(
+            2
+          )}MB CSV file may exceed Salesforce's ~4MB payload limit after processing. ` +
+          `\n\nSolutions:\n` +
+          `• Split your CSV file into smaller files\n` +
+          `• Use Jetstream for large imports (http://getjetstream.app/)\n` +
+          `• The file will be checked again after processing for actual payload size`;
+        this._isError = true;
+        this._isLoading = false;
+        return;
+      }
+
       this.loading = true;
       Papa.parse(file, {
         delimiter: this._delimiter,
@@ -747,6 +780,50 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               // Go through the newRows and remove any rows that are empty
               newRows = newRows.filter((x) => Object.keys(x).length > 0);
 
+              /**
+               * Estimate final payload size before serialization
+               *
+               * This check helps prevent "aura:systemError" errors that occur when
+               * the serialized JSON payload exceeds Salesforce's limits.
+               *
+               * Known limits (from community knowledge, not officially documented):
+               * - Lightning component payload: ~4MB
+               * - Flow variable size: Practical limits exist but not explicitly documented
+               *
+               * We check at 3.5MB to provide a safety margin before hitting the actual limit.
+               *
+               * References:
+               * - StackExchange: https://salesforce.stackexchange.com/questions/219235/what-is-the-limitation-on-size-of-list-attribute-in-lightning-component
+               * - Flow variable size limits are not explicitly documented by Salesforce
+               */
+              try {
+                const testSerialization = JSON.stringify(newRows);
+                const estimatedSizeMB =
+                  testSerialization.length / (1024 * 1024);
+
+                if (estimatedSizeMB > 3.5) {
+                  // Too large - reject before attempting to pass to Flow
+                  this._errorMessage =
+                    `Data Too Large: The processed data is ${estimatedSizeMB.toFixed(
+                      2
+                    )}MB, which exceeds Salesforce's payload limits (~4MB). ` +
+                    `Your CSV file contains ${newRows.length.toLocaleString()} rows. ` +
+                    `\n\nSolutions:\n` +
+                    `• Split your CSV file into smaller files (under 3MB)\n` +
+                    `• Reduce the number of columns in your CSV file\n` +
+                    `• Use Jetstream for large imports (http://getjetstream.app/)`;
+                  this._isError = true;
+                  this._isLoading = false;
+                  return;
+                }
+              } catch (serializationError) {
+                console.error(
+                  "Error estimating payload size:",
+                  serializationError
+                );
+                // Continue anyway - the actual error will be caught below
+              }
+
               // Serialize the data with the objectName
               let serializedData = {};
               serializedData[this.objectName] = newRows;
@@ -754,8 +831,25 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               // Set the outputValue to the serialized data
               this._outputValue = serializedData;
               this._isLoading = false;
-              // Set outputValue to the results
-              this.handleValueChange("outputValue", serializedData);
+
+              // Set outputValue to the results with error handling
+              try {
+                this.handleValueChange("outputValue", serializedData);
+              } catch (error) {
+                // Catch any serialization or payload size errors
+                console.error("Error setting outputValue:", error);
+                this._errorMessage =
+                  `Processing Error: The data is too large for Salesforce to handle. ` +
+                  `Your CSV file contains ${newRows.length.toLocaleString()} rows. ` +
+                  `\n\nSolutions:\n` +
+                  `• Split your CSV file into smaller files (under 3MB)\n` +
+                  `• Reduce the number of columns in your CSV file\n` +
+                  `• Use Jetstream for large imports (http://getjetstream.app/)\n\n` +
+                  `Technical details: ${error.message || error}`;
+                this._isError = true;
+                this._isLoading = false;
+                return;
+              }
 
               // If the autoNavigateNext attribute is true, navigate to the next screen
               if (this._autoNavigateNext) {
@@ -780,15 +874,21 @@ export default class lwcConvertCSVToRecords extends LightningElement {
         },
         error: (error) => {
           console.error("PapaParse parsing error:", error);
-          // Handle different error types
-          let errorMsg = "Failed to parse CSV file. ";
+          // Handle different error types with user-friendly messages
+          let errorMsg = "CSV Parsing Error: ";
           if (error && error.message) {
             errorMsg += error.message;
           } else if (typeof error === "string") {
             errorMsg += error;
           } else {
-            errorMsg += "Please check the file format and try again.";
+            errorMsg += "Unable to parse the CSV file. ";
           }
+          errorMsg +=
+            `\n\nPlease check:\n` +
+            `• The file is a valid CSV format\n` +
+            `• The delimiter matches your data (comma, semicolon, tab, etc.)\n` +
+            `• The file is not corrupted\n` +
+            `• The file encoding is correct (UTF-8 recommended)`;
           this._errorMessage = errorMsg;
           this._isError = true;
           this._isLoading = false;

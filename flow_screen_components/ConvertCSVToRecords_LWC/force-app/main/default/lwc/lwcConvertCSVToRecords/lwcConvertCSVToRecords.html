@@ -16,12 +16,11 @@
         </lightning-layout-item>
         <template if:true={isError}>
             <lightning-layout-item class="slds-form-element__label" size="12">
-                <div class="slds-box slds-theme_shade slds-theme_error">
-                    <p>
-                      <strong>{errorMessage}</strong>
-                    </p>
+                <div class="slds-box slds-theme_shade slds-theme_error slds-m-top_small">
+                    <div class="slds-text-body_regular" style="white-space: pre-line;">
+                      {errorMessage}
+                    </div>
                   </div>
-                <span class="slds-form-element__label is-error"></span>
             </lightning-layout-item>
         </template>
     </template>

@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>65.0</apiVersion>
-    <isExposed>true</isExposed>
-    <masterLabel>Convert CSV to Records</masterLabel>
-    <description>High-volume CSV to Records conversion component that processes CSV files on the client side using PapaParse. Supports large file uploads with automatic field mapping and comprehensive error handling.</description>
-    <targets>
-        <target>lightning__FlowScreen</target>
-    </targets>
-    <targetConfigs>
-		<targetConfig targets="lightning__FlowScreen" configurationEditor="c-lwc-Convert-C-S-V-To-Records-C-P-E">
+	<apiVersion>65.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Convert CSV to Records</masterLabel>
+	<description>High-volume CSV to Records conversion component that processes CSV files on the client side using PapaParse. Supports large file uploads with automatic field mapping and comprehensive error handling.</description>
+	<targets>
+		<target>lightning__FlowScreen</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__FlowScreen"
+			configurationEditor="c-lwc-Convert-C-S-V-To-Records-C-P-E">
 			<!-- PapaParse Inputs -->
-			<property name="delimiter" label="Delimiter" type="String" description="The delimiting character. Leave blank to auto-detect from a list of most common delimiters, or any values passed in through delimitersToGuess" default=","/>
-			<property name="newline" label="Newline" type="String" description="The newline sequence. Leave blank to auto-detect. Must be one of \r, \n, or \r\n." default=""/>
-			<property name="quoteChar" label="Quote Character" type="String" description="The character used to quote fields. The quoting of all fields is not mandatory. Any field which is not quoted will correctly read." default="&quot;"/>
-			<property name="escapeChar" label="Escape Character" type="String" description="The character used to escape the quote character within a field. If not set, this option will default to the value of quoteChar" default="&quot;"/>
-			<property name="transformHeader" label="Transform Header" type="String" description="A function to apply on each header. Requires header to be true. The function receives the header as its first argument and the index as second." default=""/>
-			<property name="dynamicTyping" label="Dynamic Typing" type="Boolean" description="If true, numeric and boolean data will be converted to their type instead of remaining strings." default="false"/>
-			<property name="encoding" label="Encoding" type="String" description="The encoding to use when opening local files. If specified, it must be a value supported by the FileReader API." default="UTF-8"/>
-			<property name="comments" label="Comments" type="Boolean" description="A string that indicates a comment (for example, # or //). When Papa encounters a line starting with this string, it will skip the line." default="false"/>
-			<property name="fastMode" label="Fast Mode" type="Boolean" description='Fast mode speeds up parsing significantly for large inputs. However, it only works when the input has no quoted fields. Fast mode will automatically be enabled if no " characters appear in the input.' default="false"/>
-			<property name="transform" label="Transform" type="String" description="A function to apply on each value. The function receives the value as its first argument and the column number or header name when enabled as its second argument. The return value of the function will replace the value it received. The transform function is applied before dynamicTyping." default=""/>
-			<property name="delimitersToGuess" label="Delimiters To Guess" type="String[]" description="An array of delimiters to guess from if the delimiter option is not set." default=""/>
-			
+			<property name="delimiter" label="Delimiter" type="String"
+				description="The delimiting character. Leave blank to auto-detect from a list of most common delimiters, or any values passed in through delimitersToGuess"
+				default="," />
+			<property name="newline" label="Newline" type="String"
+				description="The newline sequence. Leave blank to auto-detect. Must be one of \r, \n, or \r\n."
+				default="" />
+			<property name="quoteChar" label="Quote Character" type="String"
+				description="The character used to quote fields. The quoting of all fields is not mandatory. Any field which is not quoted will correctly read."
+				default="&quot;" />
+			<property name="escapeChar" label="Escape Character" type="String"
+				description="The character used to escape the quote character within a field. If not set, this option will default to the value of quoteChar"
+				default="&quot;" />
+			<property name="transformHeader" label="Transform Header" type="String"
+				description="A function to apply on each header. Requires header to be true. The function receives the header as its first argument and the index as second."
+				default="" />
+			<property name="dynamicTyping" label="Dynamic Typing" type="Boolean"
+				description="If true, numeric and boolean data will be converted to their type instead of remaining strings."
+				default="false" />
+			<property name="encoding" label="Encoding" type="String"
+				description="The encoding to use when opening local files. If specified, it must be a value supported by the FileReader API."
+				default="UTF-8" />
+			<property name="comments" label="Comments" type="Boolean"
+				description="A string that indicates a comment (for example, # or //). When Papa encounters a line starting with this string, it will skip the line."
+				default="false" />
+			<property name="fastMode" label="Fast Mode" type="Boolean"
+				description='Fast mode speeds up parsing significantly for large inputs. However, it only works when the input has no quoted fields. Fast mode will automatically be enabled if no " characters appear in the input.'
+				default="false" />
+			<property name="transform" label="Transform" type="String"
+				description="A function to apply on each value. The function receives the value as its first argument and the column number or header name when enabled as its second argument. The return value of the function will replace the value it received. The transform function is applied before dynamicTyping."
+				default="" />
+			<property name="delimitersToGuess" label="Delimiters To Guess" type="String[]"
+				description="An array of delimiters to guess from if the delimiter option is not set."
+				default="" />
+
 			<!-- Flow Inputs -->
-			<property name="inputLabel" label="Label" type="String" description="The label for the file input field" default="Upload CSV"/>
-			<property name="autoNavigateNext" type="Boolean" label="Auto Navigate Next" description="If true, the flow will automatically navigate to the next screen after the component has been initialized. Note: Use a Flow Constant variable set to Boolean True rather than typing 'True' directly." required="true" default="false"/>
-			<property name="objectName" label="Object Name" type="String" required="true" default="Account" role="inputOnly"/>
+			<property name="inputLabel" label="Label" type="String"
+				description="The label for the file input field" default="Upload CSV" />
+			<property name="autoNavigateNext" type="Boolean" label="Auto Navigate Next"
+				description="If true, the flow will automatically navigate to the next screen after the component has been initialized. Note: Use a Flow Constant variable set to Boolean True rather than typing 'True' directly."
+				required="true" default="false" />
+			<property name="objectName" label="Object Name" type="String" required="true"
+				default="Account" role="inputOnly" />
 
 
 			<!-- Flow Outputs -->
-			<propertyType name="T" extends="SObject" label="Output Object" description="Generic sObject data type used for output sObject properties" />         
-			<property name="outputValue" type="{T[]}" label="Parsed Results" role="outputOnly" />  
+			<propertyType name="T" extends="SObject" label="Output Object"
+				description="Generic sObject data type used for output sObject properties" />
+			<property name="outputValue" type="{T[]}" label="Parsed Results" role="outputOnly" />
 			<property name="isError" type="Boolean" label="Is Error" role="outputOnly" />
 			<property name="errorMessage" type="String" label="Error Message" role="outputOnly" />
 		</targetConfig>
-</targetConfigs>
+	</targetConfigs>
 </LightningComponentBundle>
