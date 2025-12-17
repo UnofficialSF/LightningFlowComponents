@@ -1,6 +1,12 @@
 <template>
     <template if:true={isLoading}>
         <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        <lightning-layout-item class="slds-form-element__label slds-m-top_small" size="12">
+            <div class="slds-text-body_regular">
+                <div><strong>{uploadFileName}</strong></div>
+                <div>{uploadFileStatus}</div>
+            </div>
+        </lightning-layout-item>
     </template>
     <template if:false={isLoading}>
         <lightning-input
@@ -11,17 +17,19 @@
         >
         </lightning-input>
         <lightning-layout-item class="slds-form-element__label" size="12">
-            <span class="slds-form-element__label">{uploadFileName}</span>
-            <span class="slds-form-element__label">{uploadFileStatus}</span>
+            <div class="slds-text-body_regular">
+                <div><strong>{uploadFileName}</strong></div>
+                <div>{uploadFileStatus}</div>
+            </div>
         </lightning-layout-item>
-        <template if:true={isError}>
-            <lightning-layout-item class="slds-form-element__label" size="12">
-                <div class="slds-box slds-theme_shade slds-theme_error slds-m-top_small">
-                    <div class="slds-text-body_regular" style="white-space: pre-line;">
-                      {errorMessage}
-                    </div>
-                  </div>
-            </lightning-layout-item>
-        </template>
+    </template>
+    <template if:true={isError}>
+        <lightning-layout-item class="slds-form-element__label" size="12">
+            <div class="slds-box slds-theme_shade slds-theme_error slds-m-top_small">
+                <div class="slds-text-body_regular" style="white-space: pre-line;">
+                  {errorMessage}
+                </div>
+              </div>
+        </lightning-layout-item>
     </template>
 </template>
