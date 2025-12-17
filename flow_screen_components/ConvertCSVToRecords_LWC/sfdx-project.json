@@ -20,7 +20,7 @@
   "name": "ConvertCSVToRecords_LWC",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "55.0",
+  "sourceApiVersion": "65.0",
   "packageAliases": {
     "FlowActionsBasePack@3.6.0-0": "04t8b000000mKnoAAE",
     "FlowScreenComponentsBasePack@3.0.6-0": "04t5G000003rUvVQAU",

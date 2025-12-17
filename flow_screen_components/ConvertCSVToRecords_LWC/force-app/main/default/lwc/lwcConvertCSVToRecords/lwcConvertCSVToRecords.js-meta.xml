@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
+    <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Convert CSV to Records - LWC version</masterLabel>
-    <description>This will make the parsing on the client side and not on the APEX side</description>
+    <masterLabel>Convert CSV to Records</masterLabel>
+    <description>High-volume CSV to Records conversion component that processes CSV files on the client side using PapaParse. Supports large file uploads with automatic field mapping and comprehensive error handling.</description>
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
@@ -24,7 +24,7 @@
 			
 			<!-- Flow Inputs -->
 			<property name="inputLabel" label="Label" type="String" description="The label for the file input field" default="Upload CSV"/>
-			<property name="autoNavigateNext" type="Boolean" label="Auto Navigate Next" description="If true, the flow will automatically navigate to the next screen after the component has been initialized." required="true" default="false"/>
+			<property name="autoNavigateNext" type="Boolean" label="Auto Navigate Next" description="If true, the flow will automatically navigate to the next screen after the component has been initialized. Note: Use a Flow Constant variable set to Boolean True rather than typing 'True' directly." required="true" default="false"/>
 			<property name="objectName" label="Object Name" type="String" required="true" default="Account" role="inputOnly"/>
 
 
