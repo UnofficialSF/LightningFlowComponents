@@ -25,8 +25,8 @@ global with sharing class SubscriptionData_MockHTTP implements HttpCalloutMock {
                         'services/data/' + API_VERSION + '/analytics/' + 
                         'notifications?source=lightningReportSubscribe');
         req.setMethod('GET');
-        System.assertEquals(expectedEndpoint, req.getEndpoint());
-        System.assertEquals('GET', req.getMethod());
+        System.assertEquals(expectedEndpoint, req.getEndpoint(), 'Endpoint should match expected value');
+        System.assertEquals('GET', req.getMethod(), 'HTTP method should be GET');
         
         // Create a fake response
         HttpResponse res = new HttpResponse();
