@@ -16,14 +16,16 @@
             </template>
         </template>
         <template if:false={isLoading}>
-            <lightning-input
-                type="file"
-                label={inputLabel}
-                accept=".csv"
-                onchange={handleInputChange}
-                class="slds-m-bottom_small"
-            >
-            </lightning-input>
+            <template if:false={isUploadSuccessful}>
+                <lightning-input
+                    type="file"
+                    label={inputLabel}
+                    accept=".csv"
+                    onchange={handleInputChange}
+                    class="slds-m-bottom_small"
+                >
+                </lightning-input>
+            </template>
             <template if:true={uploadFileName}>
                 <div class="slds-m-top_small">
                     <div class="slds-text-heading_small slds-m-bottom_x-small">

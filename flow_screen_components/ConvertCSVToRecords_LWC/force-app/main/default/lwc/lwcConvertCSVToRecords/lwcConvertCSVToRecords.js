@@ -226,6 +226,17 @@ export default class lwcConvertCSVToRecords extends LightningElement {
   }
   _isLoading = false;
 
+  /**
+   * Determines if the upload was successful
+   * @returns {boolean} True if uploadFileStatus indicates success
+   */
+  get isUploadSuccessful() {
+    return (
+      this.uploadFileStatus &&
+      this.uploadFileStatus.startsWith("Success:")
+    );
+  }
+
   @api get ignoreMissingColumns() {
     return this._ignoreMissingColumns;
   }
@@ -425,7 +436,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               });
             }
           }
-          
+
           this.uploadFileStatus = "Retrieving field information...";
           getObjectFields({ objectName: this.objectName })
             .then((fieldList) => {
@@ -580,7 +591,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               }
 
               this.uploadFileStatus = "Converting data...";
-              
+
               // New array to store the rows of data
               let newRows = [];
               // Go through the parsedResults.data object and set key based on the fieldList object match on oldField and replace the oldField with the newField
