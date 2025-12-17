@@ -327,7 +327,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
         return;
       }
 
-      this.loading = true;
+      this._isLoading = true;
       Papa.parse(file, {
         delimiter: this._delimiter,
         newline: this._newline,
