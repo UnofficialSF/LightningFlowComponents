@@ -281,23 +281,31 @@ export default class lwcConvertCSVToRecords extends LightningElement {
     // Reset error state when a new file is selected
     this._isError = false;
     this._errorMessage = null;
+    this.uploadFileName = "";
+    this.uploadFileStatus = "";
 
     // Set Default Values
     this.header = true;
     this.skipEmptyLines = true;
 
     if (event.detail.files.length > 0) {
+      const file = event.detail.files[0];
+      
+      // Display the file name immediately
+      this.uploadFileName = file.name;
+      this.uploadFileStatus = "Processing...";
+
       // Ensure PapaParse is loaded before proceeding
       if (!this.parserInitialized || typeof Papa === "undefined") {
         this._errorMessage =
           "PapaParse library is not loaded. Please refresh the page and try again.";
         this._isError = true;
         this._isLoading = false;
+        this.uploadFileStatus = "Error: Library not loaded";
         return;
       }
 
       this._isLoading = true;
-      const file = event.detail.files[0];
 
       /**
        * Check raw file size before processing
@@ -324,6 +332,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
           `• The file will be checked again after processing for actual payload size`;
         this._isError = true;
         this._isLoading = false;
+        this.uploadFileStatus = "Error: File too large";
         return;
       }
 
@@ -353,6 +362,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               "Failed to parse CSV file. The file may be empty or invalid.";
             this._isError = true;
             this._isLoading = false;
+            this.uploadFileStatus = "Error: Invalid file";
             return;
           }
 
@@ -371,6 +381,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
             this._errorMessage =
               "There are empty columns in the CSV file. Please remove the empty columns and try again.";
             this._isLoading = false;
+            this.uploadFileStatus = "Error: Empty columns found";
             return;
           } else if (emptyColumns.length > 0 && this._ignoreMissingColumns) {
             // If there are empty columns, but the user wants to ignore them, remove the empty columns
@@ -521,6 +532,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                   ". Please remove them from the CSV file and try again.";
                 this._isError = true;
                 this._isLoading = false;
+                this.uploadFileStatus = "Error: Invalid fields";
                 return;
               } else {
                 this._errorMessage = "";
@@ -547,6 +559,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                   ". Please remove the duplicate headers and try again.";
                 this._isError = true;
                 this._isLoading = false;
+                this.uploadFileStatus = "Error: Duplicate headers";
                 return;
               }
 
@@ -555,6 +568,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                 this._errorMessage = "No data found in CSV file.";
                 this._isError = true;
                 this._isLoading = false;
+                this.uploadFileStatus = "Error: No data found";
                 return;
               }
 
@@ -814,6 +828,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                     `• Use Jetstream for large imports (http://getjetstream.app/)`;
                   this._isError = true;
                   this._isLoading = false;
+                  this.uploadFileStatus = "Error: Data too large";
                   return;
                 }
               } catch (serializationError) {
@@ -835,6 +850,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               // Set outputValue to the results with error handling
               try {
                 this.handleValueChange("outputValue", serializedData);
+                // Update status on successful completion
+                this.uploadFileStatus = `Success: ${newRows.length.toLocaleString()} rows processed`;
               } catch (error) {
                 // Catch any serialization or payload size errors
                 console.error("Error setting outputValue:", error);
@@ -848,6 +865,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
                   `Technical details: ${error.message || error}`;
                 this._isError = true;
                 this._isLoading = false;
+                this.uploadFileStatus = "Error: Processing failed";
                 return;
               }
 
@@ -869,6 +887,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
               this._errorMessage = errorMsg;
               this._isError = true;
               this._isLoading = false;
+              this.uploadFileStatus = "Error: Field retrieval failed";
               return;
             });
         },
@@ -892,6 +911,7 @@ export default class lwcConvertCSVToRecords extends LightningElement {
           this._errorMessage = errorMsg;
           this._isError = true;
           this._isLoading = false;
+          this.uploadFileStatus = "Error: Parsing failed";
           return;
         },
       });
