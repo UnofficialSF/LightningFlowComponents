@@ -1,25 +1,25 @@
 {
-    "packageDirectories": [
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "AnalyticsManagementActions",
+      "versionName": "ver 0.3",
+      "versionNumber": "0.3.0.NEXT",
+      "dependencies": [
         {
-            "path": "force-app",
-            "default": true,
-            "package": "AnalyticsManagementActions",
-            "versionName": "ver 0.3",
-            "versionNumber": "0.3.0.NEXT",
-            "dependencies": [
-                {
-                    "subscriberPackageVersionId": "04t8b000000mKnoAAE"
-                }
-            ]
+          "subscriberPackageVersionId": "04t8b000000mKnoAAE"
         }
-    ],
-    "name": "AnalyticsManagementActions",
-    "namespace": "",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "65.0",
-    "packageAliases": {
-        "FlowActionsBasePack@3.6.0-0": "04t8b000000mKnoAAE",
-        "AnalyticsManagementActions": "0Ho5G0000008OceSAE",
-        "AnalyticsManagementActions@1.0.0-0": "04t5G0000043xrnQAA"
+      ]
     }
+  ],
+  "name": "AnalyticsManagementActions",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "65.0",
+  "packageAliases": {
+    "FlowActionsBasePack@3.6.0-0": "04t8b000000mKnoAAE",
+    "AnalyticsManagementActions": "0Ho5G0000008OceSAE",
+    "AnalyticsManagementActions@1.0.0-0": "04t5G0000043xrnQAA"
+  }
 }

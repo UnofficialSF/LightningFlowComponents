@@ -35,7 +35,7 @@ public with sharing class mc_SubscriptionData {
                 Http h = new Http();
         
                 // Get Domain URL
-                string domainURL = URL.getSalesforceBaseUrl().toExternalForm();
+                string domainURL = System.Url.getOrgDomainUrl().toExternalForm();
                 System.debug('domainURL: ' + domainURL);
                 string baseURL =  '/services/data/' + API_VERSION + '/analytics/notifications?source=' + currRequest.source;
 

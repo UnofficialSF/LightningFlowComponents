@@ -27,7 +27,7 @@ public with sharing class mc_DeleteRecipients {
         Http h = new Http();
             
         // Get Domain URL
-        string domainURL = URL.getSalesforceBaseUrl().toExternalForm();
+        string domainURL = System.Url.getOrgDomainUrl().toExternalForm();
         System.debug('domainURL: ' + domainURL);
 
         // Set Session ID

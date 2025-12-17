@@ -32,7 +32,7 @@ public with sharing class mc_GetUserSubscriptionLimit {
                 Http http = new Http();
 
                 // Get Domain URL
-                string domainURL = URL.getSalesforceBaseUrl().toExternalForm();
+                string domainURL = System.Url.getOrgDomainUrl().toExternalForm();
                 string baseURL = '/services/data/' + API_VERSION + '/analytics/notifications/limits?source=' + currRequest.source;
 
                 // Go through inputs and set parameters
