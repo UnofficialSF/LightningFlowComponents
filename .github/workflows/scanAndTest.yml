@@ -154,18 +154,6 @@ jobs:
             - name: 'Authenticate to Integration Org'
               run: sfdx auth:sfdxurl:store -f ./SFDX_INTEGRATION_URL.txt -s -a integration
 
-            # Run Lightning Flow Scanner
-            - name: Run Flow Scanner
-              id: scanner
-              uses: Flow-Scanner/lightning-flow-scanner-action@v2.1.1
-              with:
-                outputMode: sarif      # optional (default)
-
-            - name: Upload SARIF to Code Scanning
-              uses: github/codeql-action/upload-sarif@v3
-              with:
-                sarif_file: ${{ steps.scanner.outputs.sarifPath }}
-
             # We use SFDX Git Delta to create a directory with only the metadata that has changed.
             # this allows us to deploy only those changes, as opposed to deploying the entire branch. 
             # This helps reducing deployment times

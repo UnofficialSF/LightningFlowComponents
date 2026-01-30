@@ -1,0 +1,31 @@
+name: Scan Flows
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  scan-flows:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read           # Read flow files
+      pull-requests: read      # List changed files in PR
+      security-events: write   # Upload SARIF to Code Scanning
+      actions: read            # Required to gather metadata for telemetry
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Lightning Flow Scan
+        id: flowscanner
+        uses: Flow-Scanner/lightning-flow-scanner@action-v3.5.0
+        with:
+          sarif-only: true
+          
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.flowscanner.outputs.sarifPath }}
