@@ -1,157 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <decisions>
-        <name>Is_RecordId_null</name>
-        <label>Is RecordId Null?</label>
-        <locationX>41</locationX>
-        <locationY>204</locationY>
-        <defaultConnector>
-            <targetReference>Error_RecordId</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>recordId</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>recordId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>&quot;&quot;</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_Sharing_Settings</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <interviewLabel>Sharing Settings Demo {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Sharing Settings Demo</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <decisions>
+    <name>Is_RecordId_null</name>
+    <label>Is RecordId Null?</label>
+    <locationX>41</locationX>
+    <locationY>204</locationY>
+    <defaultConnector>
+      <targetReference>Error_RecordId</targetReference>
+    </defaultConnector>
+    <defaultConnectorLabel>No</defaultConnectorLabel>
+    <rules>
+      <name>Yes</name>
+      <conditionLogic>and</conditionLogic>
+      <conditions>
+        <leftValueReference>recordId</leftValueReference>
+        <operator>IsNull</operator>
+        <rightValue>
+          <booleanValue>false</booleanValue>
+        </rightValue>
+      </conditions>
+      <conditions>
+        <leftValueReference>recordId</leftValueReference>
+        <operator>NotEqualTo</operator>
+        <rightValue>
+          <stringValue>&quot;&quot;</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Set_Sharing_Settings</targetReference>
+      </connector>
+      <label>Yes</label>
+    </rules>
+  </decisions>
+  <interviewLabel>Sharing Settings Demo {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Sharing Settings Demo</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Display</name>
+    <label>Display</label>
+    <locationX>358</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>disp1</name>
+      <fieldText>&lt;p&gt;&lt;b&gt;Sharing Settings Updated.&lt;/b&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <screens>
+    <name>Error_RecordId</name>
+    <label>Error RecordId</label>
+    <locationX>185</locationX>
+    <locationY>393</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>dispError</name>
+      <fieldText>&lt;p&gt;This flow needs a valid recordId and it didn&apos;t get one. Either run it from a record page or use the Flow Debug button and provide a valid id there.&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <screens>
+    <name>Set_Sharing_Settings</name>
+    <label>Set Sharing Settings</label>
+    <locationX>199</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Display</targetReference>
+    </connector>
+    <fields>
+      <name>sharingSettingControl</name>
+      <extensionName>c:setSharingFSC</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>addTabName</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Add Sharing Setting</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>editTabName</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Edit Sharing Setting</stringValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Display</name>
-        <label>Display</label>
-        <locationX>358</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>disp1</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;Sharing Settings Updated.&lt;/b&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Error_RecordId</name>
-        <label>Error RecordId</label>
-        <locationX>185</locationX>
-        <locationY>393</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>dispError</name>
-            <fieldText>&lt;p&gt;This flow needs a valid recordId and it didn&#39;t get one. Either run it from a record page or use the Flow Debug button and provide a valid id there.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Set_Sharing_Settings</name>
-        <label>Set Sharing Settings</label>
-        <locationX>199</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Display</targetReference>
-        </connector>
-        <fields>
-            <name>sharingSettingControl</name>
-            <extensionName>c:setSharingFSC</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>addTabName</name>
-                <value>
-                    <stringValue>Add Sharing Setting</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>editTabName</name>
-                <value>
-                    <stringValue>Edit Sharing Setting</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>availableObjectTypes</name>
-                <value>
-                    <stringValue>Role, User, Group</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>managerName</name>
-                <value>
-                    <stringValue>ManageSharingSettings</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>supportedAddCapabilities</name>
-                <value>
-                    <stringValue>Read/Write, Read, None</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>supportedEditCapabilities</name>
-                <value>
-                    <stringValue>Read/Write, Read, None</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>recordId</name>
-                <value>
-                    <elementReference>recordId</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>recordId</assignToReference>
-                <name>recordId</name>
-            </outputParameters>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <startElementReference>Is_RecordId_null</startElementReference>
-    <status>Active</status>
-    <variables>
+      </inputParameters>
+      <inputParameters>
+        <name>availableObjectTypes</name>
+        <value>
+          <stringValue>Role, User, Group</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>managerName</name>
+        <value>
+          <stringValue>ManageSharingSettings</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>supportedAddCapabilities</name>
+        <value>
+          <stringValue>Read/Write, Read, None</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>supportedEditCapabilities</name>
+        <value>
+          <stringValue>Read/Write, Read, None</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
         <name>recordId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
+        <value>
+          <elementReference>recordId</elementReference>
+        </value>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <outputParameters>
+        <assignToReference>recordId</assignToReference>
+        <name>recordId</name>
+      </outputParameters>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <startElementReference>Is_RecordId_null</startElementReference>
+  <status>Active</status>
+  <variables>
+    <name>recordId</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>true</isOutput>
+  </variables>
 </Flow>

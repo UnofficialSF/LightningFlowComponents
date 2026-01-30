@@ -1,125 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <interviewLabel>Selecte Object And Field Demo {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Select Object And Field Demo</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <interviewLabel>Selecte Object And Field Demo {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Select Object And Field Demo</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Display_Result</name>
+    <label>Display Result</label>
+    <locationX>324</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>Display_Object_Name</name>
+      <fieldText>&lt;p&gt;Selected object is: {!Selected_Object}&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>Display_Field_Name</name>
+      <fieldText>&lt;p&gt;Selected field is: {!Selected_Field}&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>false</showHeader>
+  </screens>
+  <screens>
+    <name>Field_Picker</name>
+    <label>Field Picker</label>
+    <locationX>194</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Display_Result</targetReference>
+    </connector>
+    <fields>
+      <name>Object_Picker</name>
+      <extensionName>c:pickObjectAndFieldFSC</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>fieldLabel</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Select Field</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>hideFieldPicklist</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <booleanValue>false</booleanValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Display_Result</name>
-        <label>Display Result</label>
-        <locationX>324</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>Display_Object_Name</name>
-            <fieldText>&lt;p&gt;Selected object is: {!Selected_Object}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Display_Field_Name</name>
-            <fieldText>&lt;p&gt;Selected field is: {!Selected_Field}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Field_Picker</name>
-        <label>Field Picker</label>
-        <locationX>194</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Display_Result</targetReference>
-        </connector>
-        <fields>
-            <name>Object_Picker</name>
-            <extensionName>c:pickObjectAndFieldFSC</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldLabel</name>
-                <value>
-                    <stringValue>Select Field</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>hideFieldPicklist</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>hideObjectPicklist</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>masterLabel</name>
-                <value>
-                    <stringValue>Field Picker</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>disableObjectPicklist</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>objectLabel</name>
-                <value>
-                    <stringValue>Select Object</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>displayFieldType</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>Selected_Field</assignToReference>
-                <name>field</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>Selected_Object</assignToReference>
-                <name>objectType</name>
-            </outputParameters>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <startElementReference>Field_Picker</startElementReference>
-    <status>Draft</status>
-    <variables>
-        <name>Selected_Field</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Selected_Object</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+      </inputParameters>
+      <inputParameters>
+        <name>hideObjectPicklist</name>
+        <value>
+          <booleanValue>false</booleanValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>masterLabel</name>
+        <value>
+          <stringValue>Field Picker</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>disableObjectPicklist</name>
+        <value>
+          <booleanValue>false</booleanValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>objectLabel</name>
+        <value>
+          <stringValue>Select Object</stringValue>
+        </value>
+      </inputParameters>
+      <inputParameters>
+        <name>displayFieldType</name>
+        <value>
+          <booleanValue>true</booleanValue>
+        </value>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <outputParameters>
+        <assignToReference>Selected_Field</assignToReference>
+        <name>field</name>
+      </outputParameters>
+      <outputParameters>
+        <assignToReference>Selected_Object</assignToReference>
+        <name>objectType</name>
+      </outputParameters>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>false</showHeader>
+  </screens>
+  <startElementReference>Field_Picker</startElementReference>
+  <status>Draft</status>
+  <variables>
+    <name>Selected_Field</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>Selected_Object</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>

@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Post_to_Chatter</name>
-        <label>Post to Chatter</label>
-        <locationX>176</locationX>
-        <locationY>57</locationY>
-        <actionName>chatterPost</actionName>
-        <actionType>chatterPost</actionType>
-        <inputParameters>
-            <name>text</name>
-            <value>
-                <elementReference>chattermessage</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>subjectNameOrId</name>
-            <value>
-                <elementReference>curUsername</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>User</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <formulas>
-        <name>curUsername</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Username}</expression>
-    </formulas>
-    <interviewLabel>AutolauncherTest_ChildFlow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>AutolauncherTest_ChildFlow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Post_to_Chatter</startElementReference>
-    <status>Active</status>
-    <textTemplates>
-        <name>chattermessage</name>
-        <text>Child Flow executing
+  <actionCalls>
+    <name>Post_to_Chatter</name>
+    <label>Post to Chatter</label>
+    <locationX>176</locationX>
+    <locationY>57</locationY>
+    <actionName>chatterPost</actionName>
+    <actionType>chatterPost</actionType>
+    <inputParameters>
+      <name>text</name>
+      <value>
+        <elementReference>chattermessage</elementReference>
+      </value>
+    </inputParameters>
+    <inputParameters>
+      <name>subjectNameOrId</name>
+      <value>
+        <elementReference>curUsername</elementReference>
+      </value>
+    </inputParameters>
+    <inputParameters>
+      <name>type</name>
+      <value>
+        <stringValue>User</stringValue>
+      </value>
+    </inputParameters>
+  </actionCalls>
+  <formulas>
+    <name>curUsername</name>
+    <dataType>String</dataType>
+    <expression>{!$User.Username}</expression>
+  </formulas>
+  <interviewLabel>AutolauncherTest_ChildFlow {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>AutolauncherTest_ChildFlow</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>AutoLaunchedFlow</processType>
+  <startElementReference>Post_to_Chatter</startElementReference>
+  <status>Active</status>
+  <textTemplates>
+    <name>chattermessage</name>
+    <text>Child Flow executing
 
 
 
@@ -58,26 +64,26 @@ The following input params have been passed in:
 inputWeight received: {!inputWeight}
 inputColor received: {!inputColor}
 inputSize received: {!inputSize}</text>
-    </textTemplates>
-    <variables>
-        <name>inputColor</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>inputSize</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>inputWeight</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+  </textTemplates>
+  <variables>
+    <name>inputColor</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>inputSize</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>inputWeight</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>

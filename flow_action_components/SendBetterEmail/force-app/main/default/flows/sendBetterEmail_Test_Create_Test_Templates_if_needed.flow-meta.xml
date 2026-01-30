@@ -1,586 +1,578 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>49.0</apiVersion>
-    <assignments>
-        <description>Create the en_US version of the template</description>
-        <name>Create_en_US_Template</name>
-        <label>Create en_US Template</label>
-        <locationX>722</locationX>
-        <locationY>48</locationY>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailTestName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Description</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailDescription_en_US</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.HtmlValue</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>en_US_Body_Template</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Subject</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>en_US_Subject</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.RelatedEntityType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>RelatedRecordType</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.DeveloperName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>DeveloperName_en_US</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.TemplateType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>custom</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.UiType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>SFX</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.IsActive</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_es_MX_Template</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>Create the es_MS version of the template</description>
-        <name>Create_es_MX_Template</name>
-        <label>Create es_MX Template</label>
-        <locationX>829</locationX>
-        <locationY>48</locationY>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.Name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailTestName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.Description</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailDescription_es_MX</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.HtmlValue</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>es_MX_HTML_Body</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.Subject</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>es_MX_Subject</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.RelatedEntityType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>RelatedRecordType</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.DeveloperName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>DeveloperName_es_MX</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.TemplateType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>custom</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.UiType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>SFX</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>es_MX_TemplateRecord.IsActive</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>CreateCollection</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>Create the en_US version of the template</description>
-        <name>Create_MassEmail_Template</name>
-        <label>Create MassEmail Template</label>
-        <locationX>869</locationX>
-        <locationY>244</locationY>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailTestName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Description</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>sendBetterEmailDescription_en_US</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.HtmlValue</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Mass_Email_Template</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.Subject</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Mass_Email_Subject</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.RelatedEntityType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>RelatedRecordType</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.DeveloperName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>DeveloperName_Mass_Email</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.TemplateType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>custom</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.UiType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>SFX</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>en_US_TemplateRecord.IsActive</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_sendBetterEmail_Templates_0</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>Create a collection of EmailTemplates to be created</description>
-        <name>CreateCollection</name>
-        <label>CreateCollection</label>
-        <locationX>952</locationX>
-        <locationY>48</locationY>
-        <assignmentItems>
-            <assignToReference>Test_Templates_Exist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>en_US_TemplateRecord</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Test_Templates_Exist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>es_MX_TemplateRecord</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_sendBetterEmail_Templates</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>An empty assignment to terminate record</description>
-        <name>Do_Nothing</name>
-        <label>Do Nothing</label>
-        <locationX>293</locationX>
-        <locationY>364</locationY>
-        <assignmentItems>
-            <assignToReference>sendBetterEmailStatus</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Exists</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
-        <description>Send an error message back</description>
-        <name>Error_Message</name>
-        <label>Error Message</label>
-        <locationX>482</locationX>
-        <locationY>377</locationY>
-        <assignmentItems>
-            <assignToReference>sendBetterEmailStatus</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>InvalidTemplateType</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <constants>
-        <description>en_US Description for sendBetterEmail Template</description>
-        <name>sendBetterEmailDescription_en_US</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Test email template for sendBetterEmailTest - Language=&quot;en_US&quot;</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <description>es_MX Description for sendBetterEmail Template</description>
-        <name>sendBetterEmailDescription_es_MX</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Test email template for sendBetterEmailTest - Language=&quot;es_MX&quot;</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <description>Test email template for sendBetterEmailTest - Mass Email</description>
-        <name>sendBetterEmailDescription_Mass_Email</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Test email template for sendBetterEmailTest - Mass Email</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <description>en_US subject line for sendBetterEmail Template</description>
-        <name>sendBetterEmailSubject_en_US</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>This is a test email</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <description>en_MX subject line for sendBetterEmail Template</description>
-        <name>sendBetterEmailSubject_es_MX</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Este es un correo electrónico de prueba</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>sendBetterEmailSubject_MassEmail</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>This is a test mass email message</stringValue>
-        </value>
-    </constants>
-    <decisions>
-        <name>Language_or_Mass_Email</name>
-        <label>Language or Mass Email</label>
-        <locationX>470</locationX>
-        <locationY>169</locationY>
-        <defaultConnector>
-            <targetReference>Error_Message</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Error Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Language_Templates</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>sendBetterEmailTestType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Language</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Modify_Templates</targetReference>
-            </connector>
-            <label>Language Templates</label>
-        </rules>
-        <rules>
-            <name>MassEmailTemplates</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>sendBetterEmailTestType</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>MassEmail</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Modify_Mass_Email_Template</targetReference>
-            </connector>
-            <label>MassEmailTemplates</label>
-        </rules>
-    </decisions>
-    <description>Flow to test if the templates named sendBetterEmaiTest have been created, and if not, create them</description>
-    <formulas>
-        <description>The calculated developer name for the template (en_US)</description>
-        <name>DeveloperName_en_US</name>
-        <dataType>String</dataType>
-        <expression>{!sendBetterEmailTestName}&amp;&quot;_en_US&quot;</expression>
-    </formulas>
-    <formulas>
-        <description>The calculated developer name for the Español version</description>
-        <name>DeveloperName_es_MX</name>
-        <dataType>String</dataType>
-        <expression>{!sendBetterEmailTestName}&amp;&quot;_es_MX&quot;</expression>
-    </formulas>
-    <formulas>
-        <description>Calculated developer name for Mass Email Template</description>
-        <name>DeveloperName_Mass_Email</name>
-        <dataType>String</dataType>
-        <expression>{!sendBetterEmailTestName}&amp;&quot;_Mass_Email&quot;</expression>
-    </formulas>
-    <formulas>
-        <description>Returns an error with they invalid type requested</description>
-        <name>InvalidTemplateType</name>
-        <dataType>String</dataType>
-        <expression>&quot;Error: Invalid Type Requested - &quot; + {!sendBetterEmailTestType}</expression>
-    </formulas>
-    <interviewLabel>sendBetterEmail Test - Create Test Templates if Necessary {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>sendBetterEmail Test - Create Test Templates if Needed</label>
-    <loops>
-        <name>Template_Records_Found</name>
-        <label>Template Records Found</label>
-        <locationX>295</locationX>
-        <locationY>171</locationY>
-        <assignNextValueToReference>en_US_TemplateRecord</assignNextValueToReference>
-        <collectionReference>Test_Templates_Exist</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Do_Nothing</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Language_or_Mass_Email</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <recordCreates>
-        <name>Create_sendBetterEmail_Templates</name>
-        <label>Create sendBetterEmail Templates</label>
-        <locationX>1070</locationX>
-        <locationY>48</locationY>
-        <inputReference>Test_Templates_Exist</inputReference>
-    </recordCreates>
-    <recordCreates>
-        <name>Create_sendBetterEmail_Templates_0</name>
-        <label>Create sendBetterEmail MassEmail Template</label>
-        <locationX>1005</locationX>
-        <locationY>244</locationY>
-        <inputReference>en_US_TemplateRecord</inputReference>
-    </recordCreates>
-    <recordLookups>
-        <description>Do the test templates exist?</description>
-        <name>Test_Templates_Exist</name>
-        <label>Test Templates Exist?</label>
-        <locationX>177</locationX>
-        <locationY>171</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Template_Records_Found</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>sendBetterEmailTestName</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>EmailTemplate</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <screens>
-        <description>Modify the template</description>
-        <name>Modify_Mass_Email_Template</name>
-        <label>Modify Mass Email Template</label>
-        <locationX>724</locationX>
-        <locationY>244</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Create_MassEmail_Template</targetReference>
-        </connector>
-        <fields>
-            <name>Mass_Email_Subject</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>sendBetterEmailSubject_MassEmail</elementReference>
-            </defaultValue>
-            <fieldText>Mass Email  Subject</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Mass_Email_Template</name>
-            <defaultValue>
-                <stringValue>.{!TemplateBodyHTMLMassEmail}</stringValue>
-            </defaultValue>
-            <fieldText>Mass Email Template</fieldText>
-            <fieldType>LargeTextArea</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <description>Modify the template</description>
-        <name>Modify_Templates</name>
-        <label>Modify Language Templates</label>
-        <locationX>478</locationX>
-        <locationY>48</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Create_en_US_Template</targetReference>
-        </connector>
-        <fields>
-            <name>en_US_Subject</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>sendBetterEmailSubject_en_US</elementReference>
-            </defaultValue>
-            <fieldText>en_US Subject</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>en_US_Description</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>sendBetterEmailDescription_en_US</elementReference>
-            </defaultValue>
-            <fieldText>en_US Description</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>en_US_Body_Template</name>
-            <defaultValue>
-                <stringValue>{!TemplateBodyHTML_en_US}</stringValue>
-            </defaultValue>
-            <fieldText>en_US Body Template</fieldText>
-            <fieldType>LargeTextArea</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>BlankLine</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>es_MX_Subject</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>sendBetterEmailSubject_es_MX</elementReference>
-            </defaultValue>
-            <fieldText>es_MX Subject</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>es_MX_Description</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>sendBetterEmailDescription_es_MX</elementReference>
-            </defaultValue>
-            <fieldText>es_MX Description</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>es_MX_HTML_Body</name>
-            <defaultValue>
-                <stringValue>{!TemplateBodyHTML_es_MX}</stringValue>
-            </defaultValue>
-            <fieldText>es_MX HTML Body</fieldText>
-            <fieldType>LargeTextArea</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Test_Templates_Exist</targetReference>
-        </connector>
-    </start>
-    <status>Draft</status>
-    <textTemplates>
-        <description>The body of the en_US version of sendBetterEmailTest</description>
-        <name>TemplateBodyHTML_en_US</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;html style=&quot;overflow-y: hidden;&quot;&gt;
+  <apiVersion>49.0</apiVersion>
+  <assignments>
+    <description>Create the en_US version of the template</description>
+    <name>Create_en_US_Template</name>
+    <label>Create en_US Template</label>
+    <locationX>722</locationX>
+    <locationY>48</locationY>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Name</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailTestName</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Description</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailDescription_en_US</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.HtmlValue</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>en_US_Body_Template</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Subject</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>en_US_Subject</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.RelatedEntityType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>RelatedRecordType</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.DeveloperName</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>DeveloperName_en_US</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.TemplateType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>custom</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.UiType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>SFX</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.IsActive</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <booleanValue>true</booleanValue>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>Create_es_MX_Template</targetReference>
+    </connector>
+  </assignments>
+  <assignments>
+    <description>Create the es_MS version of the template</description>
+    <name>Create_es_MX_Template</name>
+    <label>Create es_MX Template</label>
+    <locationX>829</locationX>
+    <locationY>48</locationY>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.Name</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailTestName</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.Description</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailDescription_es_MX</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.HtmlValue</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>es_MX_HTML_Body</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.Subject</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>es_MX_Subject</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.RelatedEntityType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>RelatedRecordType</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.DeveloperName</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>DeveloperName_es_MX</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.TemplateType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>custom</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.UiType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>SFX</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>es_MX_TemplateRecord.IsActive</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <booleanValue>true</booleanValue>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>CreateCollection</targetReference>
+    </connector>
+  </assignments>
+  <assignments>
+    <description>Create the en_US version of the template</description>
+    <name>Create_MassEmail_Template</name>
+    <label>Create MassEmail Template</label>
+    <locationX>869</locationX>
+    <locationY>244</locationY>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Name</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailTestName</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Description</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>sendBetterEmailDescription_en_US</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.HtmlValue</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>Mass_Email_Template</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.Subject</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>Mass_Email_Subject</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.RelatedEntityType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>RelatedRecordType</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.DeveloperName</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>DeveloperName_Mass_Email</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.TemplateType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>custom</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.UiType</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>SFX</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>en_US_TemplateRecord.IsActive</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <booleanValue>true</booleanValue>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>Create_sendBetterEmail_Templates_0</targetReference>
+    </connector>
+  </assignments>
+  <assignments>
+    <description>Create a collection of EmailTemplates to be created</description>
+    <name>CreateCollection</name>
+    <label>CreateCollection</label>
+    <locationX>952</locationX>
+    <locationY>48</locationY>
+    <assignmentItems>
+      <assignToReference>Test_Templates_Exist</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <elementReference>en_US_TemplateRecord</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>Test_Templates_Exist</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <elementReference>es_MX_TemplateRecord</elementReference>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>Create_sendBetterEmail_Templates</targetReference>
+    </connector>
+  </assignments>
+  <assignments>
+    <description>An empty assignment to terminate record</description>
+    <name>Do_Nothing</name>
+    <label>Do Nothing</label>
+    <locationX>293</locationX>
+    <locationY>364</locationY>
+    <assignmentItems>
+      <assignToReference>sendBetterEmailStatus</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <stringValue>Exists</stringValue>
+      </value>
+    </assignmentItems>
+  </assignments>
+  <assignments>
+    <description>Send an error message back</description>
+    <name>Error_Message</name>
+    <label>Error Message</label>
+    <locationX>482</locationX>
+    <locationY>377</locationY>
+    <assignmentItems>
+      <assignToReference>sendBetterEmailStatus</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>InvalidTemplateType</elementReference>
+      </value>
+    </assignmentItems>
+  </assignments>
+  <constants>
+    <description>en_US Description for sendBetterEmail Template</description>
+    <name>sendBetterEmailDescription_en_US</name>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>Test email template for sendBetterEmailTest - Language=&quot;en_US&quot;</stringValue>
+    </value>
+  </constants>
+  <constants>
+    <description>es_MX Description for sendBetterEmail Template</description>
+    <name>sendBetterEmailDescription_es_MX</name>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>Test email template for sendBetterEmailTest - Language=&quot;es_MX&quot;</stringValue>
+    </value>
+  </constants>
+  <constants>
+    <description>en_US subject line for sendBetterEmail Template</description>
+    <name>sendBetterEmailSubject_en_US</name>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>This is a test email</stringValue>
+    </value>
+  </constants>
+  <constants>
+    <description>en_MX subject line for sendBetterEmail Template</description>
+    <name>sendBetterEmailSubject_es_MX</name>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>Este es un correo electrónico de prueba</stringValue>
+    </value>
+  </constants>
+  <constants>
+    <name>sendBetterEmailSubject_MassEmail</name>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>This is a test mass email message</stringValue>
+    </value>
+  </constants>
+  <decisions>
+    <name>Language_or_Mass_Email</name>
+    <label>Language or Mass Email</label>
+    <locationX>470</locationX>
+    <locationY>169</locationY>
+    <defaultConnector>
+      <targetReference>Error_Message</targetReference>
+    </defaultConnector>
+    <defaultConnectorLabel>Error Outcome</defaultConnectorLabel>
+    <rules>
+      <name>Language_Templates</name>
+      <conditionLogic>or</conditionLogic>
+      <conditions>
+        <leftValueReference>sendBetterEmailTestType</leftValueReference>
+        <operator>EqualTo</operator>
+        <rightValue>
+          <stringValue>Language</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Modify_Templates</targetReference>
+      </connector>
+      <label>Language Templates</label>
+    </rules>
+    <rules>
+      <name>MassEmailTemplates</name>
+      <conditionLogic>and</conditionLogic>
+      <conditions>
+        <leftValueReference>sendBetterEmailTestType</leftValueReference>
+        <operator>EqualTo</operator>
+        <rightValue>
+          <stringValue>MassEmail</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Modify_Mass_Email_Template</targetReference>
+      </connector>
+      <label>MassEmailTemplates</label>
+    </rules>
+  </decisions>
+  <description>Flow to test if the templates named sendBetterEmaiTest have been created, and if not, create them</description>
+  <formulas>
+    <description>The calculated developer name for the template (en_US)</description>
+    <name>DeveloperName_en_US</name>
+    <dataType>String</dataType>
+    <expression>{!sendBetterEmailTestName}&amp;&quot;_en_US&quot;</expression>
+  </formulas>
+  <formulas>
+    <description>The calculated developer name for the Español version</description>
+    <name>DeveloperName_es_MX</name>
+    <dataType>String</dataType>
+    <expression>{!sendBetterEmailTestName}&amp;&quot;_es_MX&quot;</expression>
+  </formulas>
+  <formulas>
+    <description>Calculated developer name for Mass Email Template</description>
+    <name>DeveloperName_Mass_Email</name>
+    <dataType>String</dataType>
+    <expression>{!sendBetterEmailTestName}&amp;&quot;_Mass_Email&quot;</expression>
+  </formulas>
+  <formulas>
+    <description>Returns an error with they invalid type requested</description>
+    <name>InvalidTemplateType</name>
+    <dataType>String</dataType>
+    <expression>&quot;Error: Invalid Type Requested - &quot; + {!sendBetterEmailTestType}</expression>
+  </formulas>
+  <interviewLabel>sendBetterEmail Test - Create Test Templates if Necessary {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>sendBetterEmail Test - Create Test Templates if Needed</label>
+  <loops>
+    <name>Template_Records_Found</name>
+    <label>Template Records Found</label>
+    <locationX>295</locationX>
+    <locationY>171</locationY>
+    <assignNextValueToReference>en_US_TemplateRecord</assignNextValueToReference>
+    <collectionReference>Test_Templates_Exist</collectionReference>
+    <iterationOrder>Asc</iterationOrder>
+    <nextValueConnector>
+      <targetReference>Do_Nothing</targetReference>
+    </nextValueConnector>
+    <noMoreValuesConnector>
+      <targetReference>Language_or_Mass_Email</targetReference>
+    </noMoreValuesConnector>
+  </loops>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <recordCreates>
+    <name>Create_sendBetterEmail_Templates</name>
+    <label>Create sendBetterEmail Templates</label>
+    <locationX>1070</locationX>
+    <locationY>48</locationY>
+    <inputReference>Test_Templates_Exist</inputReference>
+  </recordCreates>
+  <recordCreates>
+    <name>Create_sendBetterEmail_Templates_0</name>
+    <label>Create sendBetterEmail MassEmail Template</label>
+    <locationX>1005</locationX>
+    <locationY>244</locationY>
+    <inputReference>en_US_TemplateRecord</inputReference>
+  </recordCreates>
+  <recordLookups>
+    <description>Do the test templates exist?</description>
+    <name>Test_Templates_Exist</name>
+    <label>Test Templates Exist?</label>
+    <locationX>177</locationX>
+    <locationY>171</locationY>
+    <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+    <connector>
+      <targetReference>Template_Records_Found</targetReference>
+    </connector>
+    <filterLogic>and</filterLogic>
+    <filters>
+      <field>Name</field>
+      <operator>EqualTo</operator>
+      <value>
+        <elementReference>sendBetterEmailTestName</elementReference>
+      </value>
+    </filters>
+    <getFirstRecordOnly>false</getFirstRecordOnly>
+    <object>EmailTemplate</object>
+    <storeOutputAutomatically>true</storeOutputAutomatically>
+  </recordLookups>
+  <screens>
+    <description>Modify the template</description>
+    <name>Modify_Mass_Email_Template</name>
+    <label>Modify Mass Email Template</label>
+    <locationX>724</locationX>
+    <locationY>244</locationY>
+    <allowBack>false</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Create_MassEmail_Template</targetReference>
+    </connector>
+    <fields>
+      <name>Mass_Email_Subject</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>sendBetterEmailSubject_MassEmail</elementReference>
+      </defaultValue>
+      <fieldText>Mass Email  Subject</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <fields>
+      <name>Mass_Email_Template</name>
+      <defaultValue>
+        <stringValue>.{!TemplateBodyHTMLMassEmail}</stringValue>
+      </defaultValue>
+      <fieldText>Mass Email Template</fieldText>
+      <fieldType>LargeTextArea</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <screens>
+    <description>Modify the template</description>
+    <name>Modify_Templates</name>
+    <label>Modify Language Templates</label>
+    <locationX>478</locationX>
+    <locationY>48</locationY>
+    <allowBack>false</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Create_en_US_Template</targetReference>
+    </connector>
+    <fields>
+      <name>en_US_Subject</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>sendBetterEmailSubject_en_US</elementReference>
+      </defaultValue>
+      <fieldText>en_US Subject</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <fields>
+      <name>en_US_Description</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>sendBetterEmailDescription_en_US</elementReference>
+      </defaultValue>
+      <fieldText>en_US Description</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>false</isRequired>
+    </fields>
+    <fields>
+      <name>en_US_Body_Template</name>
+      <defaultValue>
+        <stringValue>{!TemplateBodyHTML_en_US}</stringValue>
+      </defaultValue>
+      <fieldText>en_US Body Template</fieldText>
+      <fieldType>LargeTextArea</fieldType>
+      <isRequired>false</isRequired>
+    </fields>
+    <fields>
+      <name>BlankLine</name>
+      <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>es_MX_Subject</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>sendBetterEmailSubject_es_MX</elementReference>
+      </defaultValue>
+      <fieldText>es_MX Subject</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <fields>
+      <name>es_MX_Description</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>sendBetterEmailDescription_es_MX</elementReference>
+      </defaultValue>
+      <fieldText>es_MX Description</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>false</isRequired>
+    </fields>
+    <fields>
+      <name>es_MX_HTML_Body</name>
+      <defaultValue>
+        <stringValue>{!TemplateBodyHTML_es_MX}</stringValue>
+      </defaultValue>
+      <fieldText>es_MX HTML Body</fieldText>
+      <fieldType>LargeTextArea</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>50</locationX>
+    <locationY>50</locationY>
+    <connector>
+      <targetReference>Test_Templates_Exist</targetReference>
+    </connector>
+  </start>
+  <status>Draft</status>
+  <textTemplates>
+    <description>The body of the en_US version of sendBetterEmailTest</description>
+    <name>TemplateBodyHTML_en_US</name>
+    <isViewedAsPlainText>false</isViewedAsPlainText>
+    <text>&lt;html style=&quot;overflow-y: hidden;&quot;&gt;
 &lt;head&gt;
 	&lt;title&gt;&lt;/title&gt;
 &lt;/head&gt;
@@ -589,12 +581,12 @@
 This is a test email about Account {{{Account.Name}}}&lt;/span&gt;&lt;br /&gt;
 &amp;nbsp;&lt;/body&gt;
 &lt;/html&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <description>The body of the es_MX version of sendBetterEmailTest</description>
-        <name>TemplateBodyHTML_es_MX</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>&lt;html style=&quot;overflow-y: hidden;&quot;&gt;
+  </textTemplates>
+  <textTemplates>
+    <description>The body of the es_MX version of sendBetterEmailTest</description>
+    <name>TemplateBodyHTML_es_MX</name>
+    <isViewedAsPlainText>true</isViewedAsPlainText>
+    <text>&lt;html style=&quot;overflow-y: hidden;&quot;&gt;
 &lt;head&gt;
 	&lt;title&gt;&lt;/title&gt;
 &lt;/head&gt;
@@ -603,33 +595,33 @@ This is a test email about Account {{{Account.Name}}}&lt;/span&gt;&lt;br /&gt;
 Este es un correo electr&amp;oacute;nico de prueba sobre Cuenta {{{Account.Name}}}&lt;/span&gt;&lt;br /&gt;
 &amp;nbsp;&lt;/body&gt;
 &lt;/html&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <description>A template for mass email creation</description>
-        <name>TemplateBodyHTMLMassEmail</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;This is from and automatically generated test template for the sendBetterEmail Flow&lt;/p&gt;</text>
-    </textTemplates>
-    <variables>
-        <description>The EmailTemplate record for the en_US version</description>
-        <name>en_US_TemplateRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>EmailTemplate</objectType>
-    </variables>
-    <variables>
-        <description>The EmailTemplate record for the es_MX version</description>
-        <name>es_MX_TemplateRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>EmailTemplate</objectType>
-    </variables>
-    <variables>
-        <description>The type of related record (if any) to be used for the template merge field.  The value must be one of the following types:
+  </textTemplates>
+  <textTemplates>
+    <description>A template for mass email creation</description>
+    <name>TemplateBodyHTMLMassEmail</name>
+    <isViewedAsPlainText>false</isViewedAsPlainText>
+    <text>&lt;p&gt;This is from and automatically generated test template for the sendBetterEmail Flow&lt;/p&gt;</text>
+  </textTemplates>
+  <variables>
+    <description>The EmailTemplate record for the en_US version</description>
+    <name>en_US_TemplateRecord</name>
+    <dataType>SObject</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+    <objectType>EmailTemplate</objectType>
+  </variables>
+  <variables>
+    <description>The EmailTemplate record for the es_MX version</description>
+    <name>es_MX_TemplateRecord</name>
+    <dataType>SObject</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+    <objectType>EmailTemplate</objectType>
+  </variables>
+  <variables>
+    <description>The type of related record (if any) to be used for the template merge field.  The value must be one of the following types:
 · Account
 · Asset
 · Campaign
@@ -640,43 +632,43 @@ Este es un correo electr&amp;oacute;nico de prueba sobre Cuenta {{{Account.Name}
 · Product
 · Solution
 · Custom</description>
-        <name>RelatedRecordType</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <value>
-            <stringValue>Account</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <description>The action (or error) taken</description>
-        <name>sendBetterEmailStatus</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <description>The name of the Templates to be used/or created</description>
-        <name>sendBetterEmailTestName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <value>
-            <stringValue>sendBetterEmailTest</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <description>Which type of templates do you want created</description>
-        <name>sendBetterEmailTestType</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <value>
-            <stringValue>Language</stringValue>
-        </value>
-    </variables>
+    <name>RelatedRecordType</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>true</isOutput>
+    <value>
+      <stringValue>Account</stringValue>
+    </value>
+  </variables>
+  <variables>
+    <description>The action (or error) taken</description>
+    <name>sendBetterEmailStatus</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>true</isOutput>
+  </variables>
+  <variables>
+    <description>The name of the Templates to be used/or created</description>
+    <name>sendBetterEmailTestName</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>true</isOutput>
+    <value>
+      <stringValue>sendBetterEmailTest</stringValue>
+    </value>
+  </variables>
+  <variables>
+    <description>Which type of templates do you want created</description>
+    <name>sendBetterEmailTestType</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>true</isOutput>
+    <value>
+      <stringValue>Language</stringValue>
+    </value>
+  </variables>
 </Flow>

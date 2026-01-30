@@ -1,93 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>52.0</apiVersion>
-    <description>Designed for use in Slack</description>
-    <interviewLabel>OrchNotification {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Orchestrator</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <apiVersion>52.0</apiVersion>
+  <description>Designed for use in Slack</description>
+  <interviewLabel>OrchNotification {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Orchestrator</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>WorkItem</name>
+    <label>Work Item</label>
+    <locationX>176</locationX>
+    <locationY>158</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>dispWorkItem</name>
+      <fieldText>&lt;p&gt;You have work!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!initialOrchestrationNotificationMessage}&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>navButtonsApproveReject</name>
+      <extensionName>c:flowButtons</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>buttonLabelString</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Approve,Reject</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
+      </inputParameters>
+      <inputParameters>
+        <name>buttonColourString</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+          <stringValue>blue,blue</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>alignment</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>center</stringValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>WorkItem</name>
-        <label>Work Item</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>dispWorkItem</name>
-            <fieldText>&lt;p&gt;You have work!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!initialOrchestrationNotificationMessage}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>navButtonsApproveReject</name>
-            <extensionName>c:flowButtons</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>buttonLabelString</name>
-                <value>
-                    <stringValue>Approve,Reject</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>buttonColourString</name>
-                <value>
-                    <stringValue>blue,blue</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>alignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>WorkItem</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <variables>
-        <name>initialOrchestrationNotificationMessage</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>[replace with input param]</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <name>inputVar1</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+      </inputParameters>
+      <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+      <isRequired>true</isRequired>
+      <storeOutputAutomatically>true</storeOutputAutomatically>
+    </fields>
+    <showFooter>false</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>50</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>WorkItem</targetReference>
+    </connector>
+  </start>
+  <status>Active</status>
+  <variables>
+    <name>initialOrchestrationNotificationMessage</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+    <value>
+      <stringValue>[replace with input param]</stringValue>
+    </value>
+  </variables>
 </Flow>
