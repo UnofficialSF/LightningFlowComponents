@@ -1,244 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>50.0</apiVersion>
-    <assignments>
-        <name>Build_Test_String_Collection</name>
-        <label>Build Test String Collection</label>
-        <locationX>493</locationX>
-        <locationY>200</locationY>
-        <assignmentItems>
-            <assignToReference>testStringCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>Screen 1</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>testStringCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>Screen 2</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>testStringCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>Screen 3</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Screen1</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Navigate_Based_on_Button_Click</name>
-        <label>Navigate Based on Button Click</label>
-        <locationX>1002</locationX>
-        <locationY>208</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Nav_to_Screen_1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>targetLabel</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Screen 1</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Screen1</targetReference>
-            </connector>
-            <label>Nav to Screen 1</label>
-        </rules>
-        <rules>
-            <name>Nav_to_Screen_2</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>targetLabel</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Screen 2</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Screen2</targetReference>
-            </connector>
-            <label>Nav to Screen 2</label>
-        </rules>
-        <rules>
-            <name>Nav_to_Screen_3</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>targetLabel</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Screen 3</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Screen3</targetReference>
-            </connector>
-            <label>Nav to Screen 3</label>
-        </rules>
-    </decisions>
-    <interviewLabel>Direct Access Test Collection {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Direct Access Test Collection</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <apiVersion>50.0</apiVersion>
+  <assignments>
+    <name>Build_Test_String_Collection</name>
+    <label>Build Test String Collection</label>
+    <locationX>493</locationX>
+    <locationY>200</locationY>
+    <assignmentItems>
+      <assignToReference>testStringCollection</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <stringValue>Screen 1</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>testStringCollection</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <stringValue>Screen 2</stringValue>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>testStringCollection</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <stringValue>Screen 3</stringValue>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>Screen1</targetReference>
+    </connector>
+  </assignments>
+  <decisions>
+    <name>Navigate_Based_on_Button_Click</name>
+    <label>Navigate Based on Button Click</label>
+    <locationX>1002</locationX>
+    <locationY>208</locationY>
+    <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+    <rules>
+      <name>Nav_to_Screen_1</name>
+      <conditionLogic>and</conditionLogic>
+      <conditions>
+        <leftValueReference>targetLabel</leftValueReference>
+        <operator>EqualTo</operator>
+        <rightValue>
+          <stringValue>Screen 1</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Screen1</targetReference>
+      </connector>
+      <label>Nav to Screen 1</label>
+    </rules>
+    <rules>
+      <name>Nav_to_Screen_2</name>
+      <conditionLogic>and</conditionLogic>
+      <conditions>
+        <leftValueReference>targetLabel</leftValueReference>
+        <operator>EqualTo</operator>
+        <rightValue>
+          <stringValue>Screen 2</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Screen2</targetReference>
+      </connector>
+      <label>Nav to Screen 2</label>
+    </rules>
+    <rules>
+      <name>Nav_to_Screen_3</name>
+      <conditionLogic>and</conditionLogic>
+      <conditions>
+        <leftValueReference>targetLabel</leftValueReference>
+        <operator>EqualTo</operator>
+        <rightValue>
+          <stringValue>Screen 3</stringValue>
+        </rightValue>
+      </conditions>
+      <connector>
+        <targetReference>Screen3</targetReference>
+      </connector>
+      <label>Nav to Screen 3</label>
+    </rules>
+  </decisions>
+  <interviewLabel>Direct Access Test Collection {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Direct Access Test Collection</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Screen1</name>
+    <label>Screen1</label>
+    <locationX>616</locationX>
+    <locationY>206</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Navigate_Based_on_Button_Click</targetReference>
+    </connector>
+    <fields>
+      <name>navHeader1</name>
+      <extensionName>c:directNavigationHeader</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>targetStringCSV</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <outputParameters>
+        <assignToReference>targetLabel</assignToReference>
+        <name>selectedTarget</name>
+      </outputParameters>
+    </fields>
+    <fields>
+      <name>disp1</name>
+      <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 1!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px; color: rgb(0, 0, 0);&quot;&gt;Screen 1 focuses on Name and Address&lt;/i&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>directnavFooter1</name>
+      <extensionName>c:directNavigationFooter</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>nextTargetName</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+          <stringValue>Screen 2</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <storeOutputAutomatically>true</storeOutputAutomatically>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <screens>
+    <name>Screen2</name>
+    <label>Screen2</label>
+    <locationX>613</locationX>
+    <locationY>449</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Navigate_Based_on_Button_Click</targetReference>
+    </connector>
+    <fields>
+      <name>navPath2</name>
+      <extensionName>c:directNavigationHeader</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>targetStringCSV</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Screen1</name>
-        <label>Screen1</label>
-        <locationX>616</locationX>
-        <locationY>206</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Navigate_Based_on_Button_Click</targetReference>
-        </connector>
-        <fields>
-            <name>navHeader1</name>
-            <extensionName>c:directNavigationHeader</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>targetStringCSV</name>
-                <value>
-                    <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>targetLabel</assignToReference>
-                <name>selectedTarget</name>
-            </outputParameters>
-        </fields>
-        <fields>
-            <name>disp1</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 1!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px; color: rgb(0, 0, 0);&quot;&gt;Screen 1 focuses on Name and Address&lt;/i&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>directnavFooter1</name>
-            <extensionName>c:directNavigationFooter</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>nextTargetName</name>
-                <value>
-                    <stringValue>Screen 2</stringValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Screen2</name>
-        <label>Screen2</label>
-        <locationX>613</locationX>
-        <locationY>449</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Navigate_Based_on_Button_Click</targetReference>
-        </connector>
-        <fields>
-            <name>navPath2</name>
-            <extensionName>c:directNavigationHeader</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>targetStringCSV</name>
-                <value>
-                    <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>targetLabel</assignToReference>
-                <name>selectedTarget</name>
-            </outputParameters>
-        </fields>
-        <fields>
-            <name>disp2</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 2!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px;&quot;&gt;Screen 2 collect financial investment goals&lt;/i&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Screen3</name>
-        <label>Screen3</label>
-        <locationX>837</locationX>
-        <locationY>672</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Navigate_Based_on_Button_Click</targetReference>
-        </connector>
-        <fields>
-            <name>navHeader3</name>
-            <extensionName>c:directNavigationHeader</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>targetStringCSV</name>
-                <value>
-                    <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
-            <name>disp3</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 3!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px;&quot;&gt;Screen 3 has information about our privacy policy&lt;/i&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>490</locationX>
-        <locationY>48</locationY>
-        <connector>
-            <targetReference>Build_Test_String_Collection</targetReference>
-        </connector>
-    </start>
-    <status>Draft</status>
-    <variables>
-        <name>targetLabel</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>testStringCollection</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <outputParameters>
+        <assignToReference>targetLabel</assignToReference>
+        <name>selectedTarget</name>
+      </outputParameters>
+    </fields>
+    <fields>
+      <name>disp2</name>
+      <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 2!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px;&quot;&gt;Screen 2 collect financial investment goals&lt;/i&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <screens>
+    <name>Screen3</name>
+    <label>Screen3</label>
+    <locationX>837</locationX>
+    <locationY>672</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Navigate_Based_on_Button_Click</targetReference>
+    </connector>
+    <fields>
+      <name>navHeader3</name>
+      <extensionName>c:directNavigationHeader</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>targetStringCSV</name>
+        <value>
+          <stringValue>Screen 1,Screen 2,Screen 3</stringValue>
+        </value>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <storeOutputAutomatically>true</storeOutputAutomatically>
+    </fields>
+    <fields>
+      <name>disp3</name>
+      <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 24px;&quot;&gt;Welcome to Screen 3!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i style=&quot;font-size: 48px;&quot;&gt;Screen 3 has information about our privacy policy&lt;/i&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>490</locationX>
+    <locationY>48</locationY>
+    <connector>
+      <targetReference>Build_Test_String_Collection</targetReference>
+    </connector>
+  </start>
+  <status>Draft</status>
+  <variables>
+    <name>targetLabel</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>testStringCollection</name>
+    <dataType>String</dataType>
+    <isCollection>true</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>

@@ -1,198 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <description>Connect invocable action</description>
-        <name>OpenAI_Connect</name>
-        <label>OpenAI Connect</label>
-        <locationX>176</locationX>
-        <locationY>398</locationY>
-        <actionName>OpenAIConnect</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>UserScreen</targetReference>
-        </connector>
-        <flowTransactionModel>Automatic</flowTransactionModel>
-        <inputParameters>
-            <name>settingsEndpoint</name>
-            <value>
-                <stringValue>OpenAICompletions</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>openaiPrompt</name>
-            <value>
-                <elementReference>AskTxtLng</elementReference>
-            </value>
-        </inputParameters>
-        <outputParameters>
-            <assignToReference>finishReason</assignToReference>
-            <name>finishReason</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>aiOutput</assignToReference>
-            <name>openAiTextOutput</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>replyId</assignToReference>
-            <name>replyID</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>tokensUsed</assignToReference>
-            <name>tokensUsed</name>
-        </outputParameters>
-    </actionCalls>
-    <apiVersion>56.0</apiVersion>
-    <assignments>
-        <name>AssignInputToPrompt</name>
-        <label>Assign input to prompt</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
-        <assignmentItems>
-            <assignToReference>openaiPrompt</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>AskTxtLng</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>OpenAI_Connect</targetReference>
-        </connector>
-    </assignments>
-    <description>A template to connect to openAI GPT3 Davinci Model.</description>
-    <environments>Default</environments>
-    <interviewLabel>OpenAI Connect Template {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>OpenAI Connect Template</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>UserScreen</name>
-        <label>User Screen</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>AssignInputToPrompt</targetReference>
-        </connector>
-        <fields>
-            <name>AskTxtLng</name>
-            <defaultValue>
-                <stringValue>{!openaiPrompt}</stringValue>
-            </defaultValue>
-            <fieldText>Ask AI anything</fieldText>
-            <fieldType>LargeTextArea</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>OpenAIOutput</name>
-            <fieldText>&lt;p&gt;Answer of AI:&lt;/p&gt;&lt;p&gt;{!aiOutput}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>UserScreen</targetReference>
-        </connector>
-    </start>
-    <status>Draft</status>
-    <variables>
-        <description>Variable to define the endpoint from named credentials.</description>
-        <name>aiEndpoint</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>OpenAICompletions</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <description>Output of the AI to be further used in flow. Is just text.</description>
-        <name>aiOutput</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Reason the AI has finished answering.</description>
-        <name>finishReason</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Defines the maximum amount of tokens to be used in one request.</description>
-        <name>maxTokens</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-    </variables>
-    <variables>
-        <description>Input text for openAi of user.</description>
-        <name>openaiInput</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Instruction you want to give to openAI.</description>
-        <name>openaiInstruction</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>OpenAi prompt. Consist out of input and instruction. Will be built from instruction and input if not set already.</description>
-        <name>openaiPrompt</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>ID of the reply of the AI.</description>
-        <name>replyId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Number of tokens used for the reply.</description>
-        <name>tokensUsed</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-    </variables>
+  <start>
+    <locationX>50</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>UserScreen</targetReference>
+    </connector>
+  </start>
+  <actionCalls>
+    <description>Connect invocable action</description>
+    <name>OpenAI_Connect</name>
+    <label>OpenAI Connect</label>
+    <locationX>176</locationX>
+    <locationY>398</locationY>
+    <actionName>OpenAIConnect</actionName>
+    <actionType>apex</actionType>
+    <connector>
+      <isGoTo>true</isGoTo>
+      <targetReference>UserScreen</targetReference>
+    </connector>
+    <flowTransactionModel>Automatic</flowTransactionModel>
+    <inputParameters>
+      <name>settingsEndpoint</name>
+      <value>
+        <stringValue>OpenAICompletions</stringValue>
+      </value>
+    </inputParameters>
+    <inputParameters>
+      <name>openaiPrompt</name>
+      <value>
+        <elementReference>AskTxtLng</elementReference>
+      </value>
+    </inputParameters>
+    <outputParameters>
+      <assignToReference>finishReason</assignToReference>
+      <name>finishReason</name>
+    </outputParameters>
+    <outputParameters>
+      <assignToReference>aiOutput</assignToReference>
+      <name>openAiTextOutput</name>
+    </outputParameters>
+    <outputParameters>
+      <assignToReference>replyId</assignToReference>
+      <name>replyID</name>
+    </outputParameters>
+    <outputParameters>
+      <assignToReference>tokensUsed</assignToReference>
+      <name>tokensUsed</name>
+    </outputParameters>
+  </actionCalls>
+  <apiVersion>56.0</apiVersion>
+  <assignments>
+    <name>AssignInputToPrompt</name>
+    <label>Assign input to prompt</label>
+    <locationX>176</locationX>
+    <locationY>278</locationY>
+    <assignmentItems>
+      <assignToReference>openaiPrompt</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>AskTxtLng</elementReference>
+      </value>
+    </assignmentItems>
+    <connector>
+      <targetReference>OpenAI_Connect</targetReference>
+    </connector>
+  </assignments>
+  <description>A template to connect to openAI GPT3 Davinci Model.</description>
+  <environments>Default</environments>
+  <interviewLabel>OpenAI Connect Template {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>OpenAI Connect Template</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>UserScreen</name>
+    <label>User Screen</label>
+    <locationX>176</locationX>
+    <locationY>158</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>AssignInputToPrompt</targetReference>
+    </connector>
+    <fields>
+      <name>AskTxtLng</name>
+      <defaultValue>
+        <stringValue>{!openaiPrompt}</stringValue>
+      </defaultValue>
+      <fieldText>Ask AI anything</fieldText>
+      <fieldType>LargeTextArea</fieldType>
+      <isRequired>false</isRequired>
+    </fields>
+    <fields>
+      <name>OpenAIOutput</name>
+      <fieldText>&lt;p&gt;Answer of AI:&lt;/p&gt;&lt;p&gt;{!aiOutput}&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>false</showHeader>
+  </screens>
+  <status>Draft</status>
+  <variables>
+    <description>Output of the AI to be further used in flow. Is just text.</description>
+    <name>aiOutput</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <description>Reason the AI has finished answering.</description>
+    <name>finishReason</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <description>OpenAi prompt. Consist out of input and instruction. Will be built from instruction and input if not set already.</description>
+    <name>openaiPrompt</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <description>ID of the reply of the AI.</description>
+    <name>replyId</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <description>Number of tokens used for the reply.</description>
+    <name>tokensUsed</name>
+    <dataType>Number</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+    <scale>0</scale>
+  </variables>
 </Flow>

@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <interviewLabel>UpdateFieldsTestFlow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>UpdateFieldsTestFlow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Screen_1</name>
-        <label>Screen 1</label>
-        <locationX>200</locationX>
-        <locationY>236</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Screen_1</targetReference>
-        </connector>
-    </start>
-    <status>Draft</status>
+  <interviewLabel>UpdateFieldsTestFlow {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>UpdateFieldsTestFlow</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Screen_1</name>
+    <label>Screen 1</label>
+    <locationX>200</locationX>
+    <locationY>236</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>50</locationX>
+    <locationY>50</locationY>
+    <connector>
+      <targetReference>Screen_1</targetReference>
+    </connector>
+  </start>
+  <status>Draft</status>
 </Flow>

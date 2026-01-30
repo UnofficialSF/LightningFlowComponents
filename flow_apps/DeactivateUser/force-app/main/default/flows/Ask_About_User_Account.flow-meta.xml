@@ -1,104 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
-    <assignments>
-        <name>Make_Choice_Available_to_Orchestration</name>
-        <label>Make Choice Available to Orchestration</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
-        <assignmentItems>
-            <assignToReference>booleanKeepAccountActive</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Keep_Account_Active</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <choices>
-        <name>choiceKeep_User_Active</name>
-        <choiceText>Keep User Active</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Keep User Active</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>Deactivate_this_account</name>
-        <choiceText>Deactivate this account</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Deactivate this account</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>Keep_user_active</name>
-        <choiceText>Keep user active</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Keep user active</stringValue>
-        </value>
-    </choices>
-    <environments>Default</environments>
-    <interviewLabel>Ask About User Account {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Ask About User Account</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Account_Deactivation_Warning</name>
-        <label>Account Deactivation Warning</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Make_Choice_Available_to_Orchestration</targetReference>
-        </connector>
-        <fields>
-            <name>dispInactive</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Warning: This user account has been inactive for 90 days.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Please confirm that you would like to continue using this account.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Keep_Account_Active</name>
-            <dataType>Boolean</dataType>
-            <fieldText>Keep Account Active</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Account_Deactivation_Warning</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <variables>
-        <name>booleanKeepAccountActive</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
+  <start>
+    <locationX>50</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>Account_Deactivation_Warning</targetReference>
+    </connector>
+  </start>
+  <apiVersion>55.0</apiVersion>
+  <assignments>
+    <name>Make_Choice_Available_to_Orchestration</name>
+    <label>Make Choice Available to Orchestration</label>
+    <locationX>176</locationX>
+    <locationY>278</locationY>
+    <assignmentItems>
+      <assignToReference>booleanKeepAccountActive</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>Keep_Account_Active</elementReference>
+      </value>
+    </assignmentItems>
+  </assignments>
+  <choices>
+    <name>Keep_user_active</name>
+    <choiceText>Keep user active</choiceText>
+    <dataType>String</dataType>
+    <value>
+      <stringValue>Keep user active</stringValue>
+    </value>
+  </choices>
+  <environments>Default</environments>
+  <interviewLabel>Ask About User Account {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Ask About User Account</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Account_Deactivation_Warning</name>
+    <label>Account Deactivation Warning</label>
+    <locationX>176</locationX>
+    <locationY>158</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Make_Choice_Available_to_Orchestration</targetReference>
+    </connector>
+    <fields>
+      <name>dispInactive</name>
+      <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Warning: This user account has been inactive for 90 days.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Please confirm that you would like to continue using this account.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>Keep_Account_Active</name>
+      <dataType>Boolean</dataType>
+      <fieldText>Keep Account Active</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>true</isRequired>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <status>Active</status>
+  <variables>
+    <name>booleanKeepAccountActive</name>
+    <dataType>Boolean</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>true</isOutput>
+  </variables>
 </Flow>

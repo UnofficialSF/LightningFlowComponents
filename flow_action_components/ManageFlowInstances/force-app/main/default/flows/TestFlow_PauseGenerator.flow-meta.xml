@@ -1,86 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Post_to_Chatter</name>
-        <label>Post to Cur User</label>
-        <locationX>355</locationX>
-        <locationY>250</locationY>
-        <actionName>chatterPost</actionName>
-        <actionType>chatterPost</actionType>
-        <inputParameters>
-            <name>text</name>
-            <value>
-                <stringValue>Flow Resumed</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>subjectNameOrId</name>
-            <value>
-                <elementReference>curUser</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>User</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <description>Creates paused flows</description>
-    <formulas>
-        <name>curUser</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Username}</expression>
-    </formulas>
-    <interviewLabel>TestFlow_PauseGenerator {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TestFlow_PauseGenerator</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <description>Creates paused flows</description>
+  <formulas>
+    <name>curUser</name>
+    <dataType>String</dataType>
+    <expression>{!$User.Username}</expression>
+  </formulas>
+  <interviewLabel>TestFlow_PauseGenerator {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>TestFlow_PauseGenerator</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>AutoLaunchedFlow</processType>
+  <startElementReference>Pause_Flow</startElementReference>
+  <status>Active</status>
+  <waits>
+    <name>Pause_Flow</name>
+    <label>Pause Flow</label>
+    <locationX>179</locationX>
+    <locationY>50</locationY>
+    <defaultConnectorLabel>Default Path</defaultConnectorLabel>
+    <waitEvents>
+      <name>PauseConfig1</name>
+      <conditionLogic>and</conditionLogic>
+      <connector>
+        <targetReference>Post_to_Chatter</targetReference>
+      </connector>
+      <eventType>AlarmEvent</eventType>
+      <inputParameters>
+        <name>AlarmTime</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <dateTimeValue>2019-11-01T07:00:00.000Z</dateTimeValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>TimeOffset</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <numberValue>1.0</numberValue>
         </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Pause_Flow</startElementReference>
-    <status>Active</status>
-    <waits>
-        <name>Pause_Flow</name>
-        <label>Pause Flow</label>
-        <locationX>179</locationX>
-        <locationY>50</locationY>
-        <defaultConnectorLabel>Default Path</defaultConnectorLabel>
-        <waitEvents>
-            <name>PauseConfig1</name>
-            <conditionLogic>and</conditionLogic>
-            <connector>
-                <targetReference>Post_to_Chatter</targetReference>
-            </connector>
-            <eventType>AlarmEvent</eventType>
-            <inputParameters>
-                <name>AlarmTime</name>
-                <value>
-                    <dateTimeValue>2019-11-01T07:00:00.000Z</dateTimeValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>TimeOffset</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>TimeOffsetUnit</name>
-                <value>
-                    <stringValue>Days</stringValue>
-                </value>
-            </inputParameters>
-            <label>PauseConfig1</label>
-        </waitEvents>
-    </waits>
+      </inputParameters>
+      <inputParameters>
+        <name>TimeOffsetUnit</name>
+        <value>
+          <stringValue>Days</stringValue>
+        </value>
+      </inputParameters>
+      <label>PauseConfig1</label>
+    </waitEvents>
+  </waits>
 </Flow>

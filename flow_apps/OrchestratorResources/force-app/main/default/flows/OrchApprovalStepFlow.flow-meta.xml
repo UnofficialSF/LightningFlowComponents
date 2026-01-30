@@ -1,130 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>52.0</apiVersion>
-    <assignments>
-        <name>Output_the_User_Decision</name>
-        <label>Output the User Decision</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
-        <assignmentItems>
-            <assignToReference>selectedAction</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>footerButtons.selectedValue</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <description>intended to be used as a step flow in work guide but also work in Slack</description>
-    <interviewLabel>OrchApprovalStepFlow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>OrchApprovalStepFlow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <start>
+    <locationX>50</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>screen1</targetReference>
+    </connector>
+  </start>
+  <apiVersion>52.0</apiVersion>
+  <assignments>
+    <name>Output_the_User_Decision</name>
+    <label>Output the User Decision</label>
+    <locationX>176</locationX>
+    <locationY>278</locationY>
+    <assignmentItems>
+      <assignToReference>selectedAction</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>footerButtons.selectedValue</elementReference>
+      </value>
+    </assignmentItems>
+  </assignments>
+  <description>intended to be used as a step flow in work guide but also work in Slack</description>
+  <interviewLabel>OrchApprovalStepFlow {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>OrchApprovalStepFlow</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>screen1</name>
+    <label>screen1</label>
+    <locationX>176</locationX>
+    <locationY>158</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Output_the_User_Decision</targetReference>
+    </connector>
+    <fields>
+      <name>dispBodyContent</name>
+      <fieldText>&lt;p&gt;{!bodyContent}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;This is some content&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;http://salesforce.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;This is a link&lt;/a&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <fields>
+      <name>input_from_push</name>
+      <dataType>String</dataType>
+      <defaultValue>
+        <elementReference>bodyContent</elementReference>
+      </defaultValue>
+      <fieldText>input from push</fieldText>
+      <fieldType>InputField</fieldType>
+      <isRequired>false</isRequired>
+    </fields>
+    <fields>
+      <name>footerButtons</name>
+      <extensionName>c:flowButtons</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>buttonLabelString</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Approve, Reject</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
+      </inputParameters>
+      <inputParameters>
+        <name>alignment</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+          <stringValue>center</stringValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>buttonColourString</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>green,green</stringValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>screen1</name>
-        <label>screen1</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Output_the_User_Decision</targetReference>
-        </connector>
-        <fields>
-            <name>dispBodyContent</name>
-            <fieldText>&lt;p&gt;{!bodyContent}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;This is some content&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;http://salesforce.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;This is a link&lt;/a&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>input_from_push</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>bodyContent</elementReference>
-            </defaultValue>
-            <fieldText>input from push</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>footerButtons</name>
-            <extensionName>c:flowButtons</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>buttonLabelString</name>
-                <value>
-                    <stringValue>Approve, Reject</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>alignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>buttonColourString</name>
-                <value>
-                    <stringValue>green,green</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>screen1</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <variables>
-        <description>html that should go into a DisplayText component. on the slack side, this will be transformed to markdown.</description>
-        <name>bodyContent</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>defaultbodyContent</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <name>initialOrchestrationNotificationMessage</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>[replace with input param]</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <name>selectedAction</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
+      </inputParameters>
+      <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+      <isRequired>true</isRequired>
+      <storeOutputAutomatically>true</storeOutputAutomatically>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <status>Active</status>
+  <variables>
+    <description>html that should go into a DisplayText component. on the slack side, this will be transformed to markdown.</description>
+    <name>bodyContent</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+    <value>
+      <stringValue>defaultbodyContent</stringValue>
+    </value>
+  </variables>
+  <variables>
+    <name>selectedAction</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>true</isOutput>
+  </variables>
 </Flow>

@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>51.0</apiVersion>
-    <interviewLabel>Well Being Survey Flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Well Being Survey Flow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>console1</name>
-        <label>console1</label>
-        <locationX>179</locationX>
-        <locationY>189</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>contextRecorddisp</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 22px;&quot;&gt;Well Being Survey Reminder&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(15, 15, 15); background-color: rgb(255, 255, 255);&quot;&gt;Our records indicate that you haven&apos;t taken the WellBeing Survey yet. Please navigate to the &lt;/span&gt;&lt;a href=&quot;https://dreamjobcentral.my.salesforce.com/?ec=302&amp;amp;startURL=%2Fsurvey%2FruntimeApp.app%3FinvitationId%3D0Ki0g000000CaWR%26surveyName%3Demployeepulsesurvey2_28160533_7a07_4b36_83fb_2148061ade33%26UUID%3Db4941548-42ca-462d-ac10-6f0632c2b820&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 16px; color: rgb(42, 78, 176); background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;&lt;u&gt;URL&lt;/u&gt;&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 16px; color: rgb(42, 78, 176); background-color: rgb(255, 255, 255);&quot;&gt;&lt;u&gt; &lt;/u&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 16px; color: rgb(15, 15, 15); background-color: rgb(255, 255, 255);&quot;&gt; to take it.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>console1</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
+  <apiVersion>51.0</apiVersion>
+  <interviewLabel>Well Being Survey Flow {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Well Being Survey Flow</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>console1</name>
+    <label>console1</label>
+    <locationX>179</locationX>
+    <locationY>189</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>contextRecorddisp</name>
+      <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 22px;&quot;&gt;Well Being Survey Reminder&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(15, 15, 15); background-color: rgb(255, 255, 255);&quot;&gt;Our records indicate that you haven&apos;t taken the WellBeing Survey yet. Please navigate to the &lt;/span&gt;&lt;a href=&quot;https://dreamjobcentral.my.salesforce.com/?ec=302&amp;amp;startURL=%2Fsurvey%2FruntimeApp.app%3FinvitationId%3D0Ki0g000000CaWR%26surveyName%3Demployeepulsesurvey2_28160533_7a07_4b36_83fb_2148061ade33%26UUID%3Db4941548-42ca-462d-ac10-6f0632c2b820&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 16px; color: rgb(42, 78, 176); background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;&lt;u&gt;URL&lt;/u&gt;&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 16px; color: rgb(42, 78, 176); background-color: rgb(255, 255, 255);&quot;&gt;&lt;u&gt; &lt;/u&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 16px; color: rgb(15, 15, 15); background-color: rgb(255, 255, 255);&quot;&gt; to take it.&lt;/span&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>50</locationX>
+    <locationY>50</locationY>
+    <connector>
+      <targetReference>console1</targetReference>
+    </connector>
+  </start>
+  <status>Active</status>
 </Flow>

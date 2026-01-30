@@ -1,97 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>57.0</apiVersion>
-    <assignments>
-        <name>Start_Input_Table</name>
-        <label>Start Input Table</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
-        <assignmentItems>
-            <assignToReference>vInputTable</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>ttInputTableLegend</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>vInputTable</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ttInputTableHeader</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <description>NOT IN USE</description>
-    <environments>Default</environments>
-    <interviewLabel>Flow OneView - Documentation - Resources {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Flow OneView - Documentation - Resources</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <runInMode>SystemModeWithoutSharing</runInMode>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Start_Input_Table</targetReference>
-        </connector>
-    </start>
-    <status>Draft</status>
-    <textTemplates>
-        <name>ttHeader</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Resource Review for &lt;/span&gt;&lt;strong style=&quot;font-size: 20px;&quot;&gt;{!vFullFlowName}&lt;/strong&gt;&lt;/p&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <name>ttInputTableHeader</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>&lt;table style=&quot;width:30%&quot;&gt;
+  <start>
+    <locationX>50</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>Start_Input_Table</targetReference>
+    </connector>
+  </start>
+  <apiVersion>57.0</apiVersion>
+  <assignments>
+    <name>Start_Input_Table</name>
+    <label>Start Input Table</label>
+    <locationX>176</locationX>
+    <locationY>158</locationY>
+    <assignmentItems>
+      <assignToReference>vInputTable</assignToReference>
+      <operator>Assign</operator>
+      <value>
+        <elementReference>ttInputTableLegend</elementReference>
+      </value>
+    </assignmentItems>
+    <assignmentItems>
+      <assignToReference>vInputTable</assignToReference>
+      <operator>Add</operator>
+      <value>
+        <elementReference>ttInputTableHeader</elementReference>
+      </value>
+    </assignmentItems>
+  </assignments>
+  <description>NOT IN USE</description>
+  <environments>Default</environments>
+  <interviewLabel>Flow OneView - Documentation - Resources {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Flow OneView - Documentation - Resources</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <runInMode>SystemModeWithoutSharing</runInMode>
+  <status>Draft</status>
+  <textTemplates>
+    <name>ttHeader</name>
+    <isViewedAsPlainText>false</isViewedAsPlainText>
+    <text>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Resource Review for &lt;/span&gt;&lt;strong style=&quot;font-size: 20px;&quot;&gt;{!vFullFlowName}&lt;/strong&gt;&lt;/p&gt;</text>
+  </textTemplates>
+  <textTemplates>
+    <name>ttInputTableHeader</name>
+    <isViewedAsPlainText>true</isViewedAsPlainText>
+    <text>&lt;table style=&quot;width:30%&quot;&gt;
   &lt;tr&gt;
     &lt;th style=&quot;text-align:left&quot;&gt;Variable Name&lt;/th&gt;
     &lt;th style=&quot;text-align:left&quot;&gt;Variable Type&lt;/th&gt;
   &lt;/tr&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <name>ttInputTableLegend</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Available for INPUT&lt;/p&gt;</text>
-    </textTemplates>
-    <variables>
-        <name>colInputs</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Flow_OneView__c</objectType>
-    </variables>
-    <variables>
-        <name>vFullFlowName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>vInputTable</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+  </textTemplates>
+  <textTemplates>
+    <name>ttInputTableLegend</name>
+    <isViewedAsPlainText>false</isViewedAsPlainText>
+    <text>&lt;p&gt;Available for INPUT&lt;/p&gt;</text>
+  </textTemplates>
+  <variables>
+    <name>vFullFlowName</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>vInputTable</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>

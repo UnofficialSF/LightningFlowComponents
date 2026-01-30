@@ -1,88 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
-    <assignments>
-        <name>Set_WaitingPeriodElapsed_to_True</name>
-        <label>Set WaitingPeriodElapsed to True</label>
-        <locationX>50</locationX>
-        <locationY>278</locationY>
-        <assignmentItems>
-            <assignToReference>booleanWaitingPeriodElapsed</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <environments>Default</environments>
-    <interviewLabel>Wait for User to Responsd {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Wait for User to Responsd</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <start>
+    <locationX>56</locationX>
+    <locationY>0</locationY>
+    <connector>
+      <targetReference>Wait_3_Days</targetReference>
+    </connector>
+  </start>
+  <apiVersion>55.0</apiVersion>
+  <environments>Default</environments>
+  <interviewLabel>Wait for User to Responsd {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Wait for User to Responsd</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>AutoLaunchedFlow</processType>
+  <status>Active</status>
+  <variables>
+    <name>booleanWaitingPeriodElapsed</name>
+    <dataType>Boolean</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>true</isOutput>
+  </variables>
+  <waits>
+    <name>Wait_3_Days</name>
+    <label>Wait 3 Days</label>
+    <locationX>182</locationX>
+    <locationY>158</locationY>
+    <defaultConnectorLabel>Unused Path</defaultConnectorLabel>
+    <waitEvents>
+      <name>configWait_3_Days</name>
+      <conditionLogic>and</conditionLogic>
+      <connector>
+        <targetReference>Set_WaitingPeriodElapsed_to_True</targetReference>
+      </connector>
+      <eventType>AlarmEvent</eventType>
+      <inputParameters>
+        <name>AlarmTime</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <elementReference>$Flow.InterviewStartTime</elementReference>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
+      </inputParameters>
+      <inputParameters>
+        <name>TimeOffset</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+          <numberValue>3.0</numberValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>TimeOffsetUnit</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <stringValue>Days</stringValue>
         </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>56</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Wait_3_Days</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <variables>
-        <name>booleanWaitingPeriodElapsed</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <waits>
-        <name>Wait_3_Days</name>
-        <label>Wait 3 Days</label>
-        <locationX>182</locationX>
-        <locationY>158</locationY>
-        <defaultConnectorLabel>Unused Path</defaultConnectorLabel>
-        <waitEvents>
-            <name>configWait_3_Days</name>
-            <conditionLogic>and</conditionLogic>
-            <connector>
-                <targetReference>Set_WaitingPeriodElapsed_to_True</targetReference>
-            </connector>
-            <eventType>AlarmEvent</eventType>
-            <inputParameters>
-                <name>AlarmTime</name>
-                <value>
-                    <elementReference>$Flow.InterviewStartTime</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>TimeOffset</name>
-                <value>
-                    <numberValue>3.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>TimeOffsetUnit</name>
-                <value>
-                    <stringValue>Days</stringValue>
-                </value>
-            </inputParameters>
-            <label>Wait 3 Days</label>
-        </waitEvents>
-    </waits>
+      </inputParameters>
+      <label>Wait 3 Days</label>
+    </waitEvents>
+  </waits>
 </Flow>

@@ -1,86 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Post_Update</name>
-        <label>Post Update</label>
-        <locationX>179</locationX>
-        <locationY>50</locationY>
-        <actionName>chatterPost</actionName>
-        <actionType>chatterPost</actionType>
-        <inputParameters>
-            <name>text</name>
-            <value>
-                <elementReference>textSummary</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>subjectNameOrId</name>
-            <value>
-                <elementReference>curUser</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>User</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <formulas>
-        <name>curUser</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Username}</expression>
-    </formulas>
-    <interviewLabel>Accept Flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Accept Flow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Post_Update</startElementReference>
-    <status>Active</status>
-    <textTemplates>
-        <name>textSummary</name>
-        <text>A running Flow did the following:
+  <actionCalls>
+    <name>Post_Update</name>
+    <label>Post Update</label>
+    <locationX>179</locationX>
+    <locationY>50</locationY>
+    <actionName>chatterPost</actionName>
+    <actionType>chatterPost</actionType>
+    <inputParameters>
+      <name>text</name>
+      <value>
+        <elementReference>textSummary</elementReference>
+      </value>
+    </inputParameters>
+    <inputParameters>
+      <name>subjectNameOrId</name>
+      <value>
+        <elementReference>curUser</elementReference>
+      </value>
+    </inputParameters>
+    <inputParameters>
+      <name>type</name>
+      <value>
+        <stringValue>User</stringValue>
+      </value>
+    </inputParameters>
+  </actionCalls>
+  <formulas>
+    <name>curUser</name>
+    <dataType>String</dataType>
+    <expression>{!$User.Username}</expression>
+  </formulas>
+  <interviewLabel>Accept Flow {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Accept Flow</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>AutoLaunchedFlow</processType>
+  <startElementReference>Post_Update</startElementReference>
+  <status>Active</status>
+  <textTemplates>
+    <name>textSummary</name>
+    <text>A running Flow did the following:
 1) executed the NBA Strategy {!strategyName}
-2)   &#39;approved&#39; the  Next Best Action recommendation {!recommendationName} 
+2)   &apos;approved&apos; the  Next Best Action recommendation {!recommendationName} 
 3) and launched its associated flow, which generated this message</text>
-    </textTemplates>
-    <variables>
-        <name>curRecommendationDescription</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>recommendationName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>recordId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>strategyName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+  </textTemplates>
+  <variables>
+    <name>recommendationName</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
+  <variables>
+    <name>strategyName</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>true</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>

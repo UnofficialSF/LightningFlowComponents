@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <interviewLabel>Get Cupcakes Process {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Get Cupcakes Process</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>screen1</name>
-        <label>screen1</label>
-        <locationX>235</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>dispCupcakes</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;&lt;img src=&quot;https://platform-customer-3841-dev-ed--c.documentforce.com/servlet/rtaImage?refid=0EM1k000000D6cE&quot;&gt;Get Cupcakes Process&lt;/b&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>screen1</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
+  <interviewLabel>Get Cupcakes Process {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Get Cupcakes Process</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>screen1</name>
+    <label>screen1</label>
+    <locationX>235</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>dispCupcakes</name>
+      <fieldText>&lt;p&gt;&lt;b&gt;&lt;img src=&quot;https://platform-customer-3841-dev-ed--c.documentforce.com/servlet/rtaImage?refid=0EM1k000000D6cE&quot;&gt;Get Cupcakes Process&lt;/b&gt;&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>true</showHeader>
+  </screens>
+  <start>
+    <locationX>50</locationX>
+    <locationY>50</locationY>
+    <connector>
+      <targetReference>screen1</targetReference>
+    </connector>
+  </start>
+  <status>Active</status>
 </Flow>

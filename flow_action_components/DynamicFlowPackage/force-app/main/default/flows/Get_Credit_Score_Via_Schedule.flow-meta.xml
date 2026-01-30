@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Get_Credit_Score_via_Async_Flow</name>
-        <label>Get Credit Score via Async Flow</label>
-        <locationX>176</locationX>
-        <locationY>309</locationY>
-        <actionName>LaunchFlowAsync</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <name>flowName</name>
-            <value>
-                <stringValue>foo</stringValue>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <interviewLabel>Get Credit Score Via Schedule {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Get Credit Score Via Schedule</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_Credit_Score_via_Async_Flow</targetReference>
-        </connector>
-        <schedule>
-            <frequency>Once</frequency>
-            <startDate>2020-04-26</startDate>
-            <startTime>09:22:00.000Z</startTime>
-        </schedule>
-        <triggerType>Scheduled</triggerType>
-    </start>
-    <status>Draft</status>
+  <actionCalls>
+    <name>Get_Credit_Score_via_Async_Flow</name>
+    <label>Get Credit Score via Async Flow</label>
+    <locationX>176</locationX>
+    <locationY>309</locationY>
+    <actionName>LaunchFlowAsync</actionName>
+    <actionType>apex</actionType>
+    <inputParameters>
+      <name>flowName</name>
+      <value>
+        <stringValue>foo</stringValue>
+      </value>
+    </inputParameters>
+    <storeOutputAutomatically>true</storeOutputAutomatically>
+  </actionCalls>
+  <interviewLabel>Get Credit Score Via Schedule {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Get Credit Score Via Schedule</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>AutoLaunchedFlow</processType>
+  <start>
+    <locationX>50</locationX>
+    <locationY>50</locationY>
+    <connector>
+      <targetReference>Get_Credit_Score_via_Async_Flow</targetReference>
+    </connector>
+    <schedule>
+      <frequency>Once</frequency>
+      <startDate>2020-04-26</startDate>
+      <startTime>09:22:00.000Z</startTime>
+    </schedule>
+    <triggerType>Scheduled</triggerType>
+  </start>
+  <status>Draft</status>
 </Flow>

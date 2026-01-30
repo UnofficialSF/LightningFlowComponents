@@ -1,85 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <interviewLabel>Flow Picker Demo {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Flow Picker Demo</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
+  <interviewLabel>Flow Picker Demo {!$Flow.CurrentDateTime}</interviewLabel>
+  <label>Flow Picker Demo</label>
+  <processMetadataValues>
+    <name>BuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>OriginBuilderType</name>
+    <value>
+      <stringValue>LightningFlowBuilder</stringValue>
+    </value>
+  </processMetadataValues>
+  <processMetadataValues>
+    <name>CanvasMode</name>
+    <value>
+      <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+    </value>
+  </processMetadataValues>
+  <processType>Flow</processType>
+  <screens>
+    <name>Flow_Picker</name>
+    <label>Flow Picker</label>
+    <locationX>199</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <connector>
+      <targetReference>Selected_flow_is2</targetReference>
+    </connector>
+    <fields>
+      <name>api_name</name>
+      <extensionName>c:flowPickerFSC</extensionName>
+      <fieldType>ComponentInstance</fieldType>
+      <inputParameters>
+        <name>required</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <booleanValue>true</booleanValue>
         </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
+      </inputParameters>
+      <inputParameters>
+        <name>showActiveFlowsOnly</name>
         <value>
-            <stringValue>LightningFlowBuilder</stringValue>
+          <booleanValue>false</booleanValue>
         </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <screens>
-        <name>Flow_Picker</name>
-        <label>Flow Picker</label>
-        <locationX>199</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Selected_flow_is2</targetReference>
-        </connector>
-        <fields>
-            <name>api_name</name>
-            <extensionName>c:flowPickerFSC</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>showActiveFlowsOnly</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Select flow:</stringValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>Selected_Flow</assignToReference>
-                <name>selectedFlowApiName</name>
-            </outputParameters>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Selected_flow_is2</name>
-        <label>Selected Flow Is</label>
-        <locationX>346</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>selected_flow_is</name>
-            <fieldText>&lt;p&gt;Selected flow is: {!Selected_Flow}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <startElementReference>Flow_Picker</startElementReference>
-    <status>Draft</status>
-    <variables>
-        <name>Selected_Flow</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+      </inputParameters>
+      <inputParameters>
+        <name>label</name>
+        <value>
+          <stringValue>Select flow:</stringValue>
+        </value>
+      </inputParameters>
+      <isRequired>true</isRequired>
+      <outputParameters>
+        <assignToReference>Selected_Flow</assignToReference>
+        <name>selectedFlowApiName</name>
+      </outputParameters>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>false</showHeader>
+  </screens>
+  <screens>
+    <name>Selected_flow_is2</name>
+    <label>Selected Flow Is</label>
+    <locationX>346</locationX>
+    <locationY>50</locationY>
+    <allowBack>true</allowBack>
+    <allowFinish>true</allowFinish>
+    <allowPause>true</allowPause>
+    <fields>
+      <name>selected_flow_is</name>
+      <fieldText>&lt;p&gt;Selected flow is: {!Selected_Flow}&lt;/p&gt;</fieldText>
+      <fieldType>DisplayText</fieldType>
+    </fields>
+    <showFooter>true</showFooter>
+    <showHeader>false</showHeader>
+  </screens>
+  <startElementReference>Flow_Picker</startElementReference>
+  <status>Draft</status>
+  <variables>
+    <name>Selected_Flow</name>
+    <dataType>String</dataType>
+    <isCollection>false</isCollection>
+    <isInput>false</isInput>
+    <isOutput>false</isOutput>
+  </variables>
 </Flow>
