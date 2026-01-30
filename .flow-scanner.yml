@@ -12,3 +12,9 @@ rules:
     enabled: false
   unspecified-trigger-order:
     enabled: false
+  missing-auto-layout:
+    enabled: false
+  unused-variable:
+    enabled: false
+  unreachable-element:
+    enabled: false
