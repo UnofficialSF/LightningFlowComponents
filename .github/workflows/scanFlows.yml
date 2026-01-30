@@ -23,9 +23,9 @@ jobs:
         id: flowscanner
         uses: Flow-Scanner/lightning-flow-scanner@action-v3.5.0
         with:
-          sarif-only: true
+          sarif-only: false
           
-      - name: Upload SARIF to Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.flowscanner.outputs.sarifPath }}
+      # - name: Upload SARIF to Code Scanning
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: ${{ steps.flowscanner.outputs.sarifPath }}
