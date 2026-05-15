@@ -9,8 +9,10 @@
 
   <!-- Display Text-->
   <template if:true={displayText}>
-    <lightning-formatted-rich-text value={textValue}>
-    </lightning-formatted-rich-text>
+    <div class={displayTextClass} style={displayTextStyle}>
+      <lightning-formatted-rich-text value={textValue}>
+      </lightning-formatted-rich-text>
+    </div>
   </template>
 
   <!-- Plain Text / TextArea Section -->

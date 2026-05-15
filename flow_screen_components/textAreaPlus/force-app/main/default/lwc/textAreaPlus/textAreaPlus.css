@@ -1,7 +1,37 @@
+/*:host {    
+    --slds-c-textarea-sizing-min-height:800px;
+}*/
+
 .warning {
    color:red;
 }
 
 .default {
     color:dimgray
+    
+}
+
+.display-text-container {
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    background-color: #f3f2f2;
+}
+
+.display-text-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.display-text-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.display-text-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.display-text-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }

@@ -81,6 +81,7 @@ export default class TextAreaPlus extends LightningElement {
   @api label;
   @api placeHolder;
   @api textAreaHeight;
+  @api displayTextHeight;
   @api textMode;
   @api slackOutput;
   @api fieldLevelHelp;
@@ -406,6 +407,25 @@ export default class TextAreaPlus extends LightningElement {
     return '--slds-c-textarea-sizing-min-height:' + this.textAreaHeight + 'px';
 
 
+  }
+
+  //set display text height and overflow
+  get displayTextStyle() {
+    // Only apply style when there's content and displayTextHeight is set
+    if (!this.textValue || this.textValue.trim() === '' || !this.displayTextHeight) {
+      return '';
+    }
+    const height = this.displayTextHeight + 'px';
+    return `height: ${height}; overflow-y: auto;`;
+  }
+
+  // Conditionally apply display text container class
+  get displayTextClass() {
+    // Only apply container styling when there's content and displayTextHeight is set
+    if (!this.textValue || this.textValue.trim() === '' || !this.displayTextHeight) {
+      return '';
+    }
+    return 'display-text-container';
   }
 
   // Dynamically calculate remaining characters

@@ -14,6 +14,10 @@
       label="Text Value" onvaluechanged={handleFlowComboboxValueChange} automatic-output-variables={automaticOutputVariables}></c-fsc_flow-combobox>
     <lightning-input-rich-text name="value" value={inputValues.value.value}
       onchange={handleRichTextChange}></lightning-input-rich-text>
+    <c-fsc_flow-combobox name="displayTextHeight" value={inputValues.displayTextHeight.value}
+      builder-context-filter-type="String" label={inputValues.displayTextHeight.label}
+      onvaluechanged={handleFlowComboboxValueChange}
+      field-level-help={inputValues.displayTextHeight.helpText} automatic-output-variables={automaticOutputVariables}></c-fsc_flow-combobox>
   </template>
   <template lwc:if={isPlainText}>
     <c-fsc_flow-banner banner-color="#1d4583" banner-label="Plain Text Options" banner-info={textBannerInfo}>
@@ -48,10 +52,10 @@
     <c-fsc_flow-combobox name="value" value={inputValues.value.value} 
       label={inputValues.value.label} onvaluechanged={handleFlowComboboxValueChange} automatic-output-variables={automaticOutputVariables}></c-fsc_flow-combobox>
 
-    <c-fsc_flow-checkbox name="required" label={inputValues.required.label}
-      field-level-help={inputValues.required.helpText} checked={inputValues.cb_required.value}
-      oncheckboxchanged={handleCheckboxChange}></c-fsc_flow-checkbox>
-  </template>
+   <c-fsc_flow-combobox name="required" value={inputValues.required.value}
+      builder-context-filter-type="String" label={inputValues.required.label}
+      onvaluechanged={handleFlowComboboxValueChange}
+      field-level-help={inputValues.required.helpText} automatic-output-variables={automaticOutputVariables}></c-fsc_flow-combobox>
 
   <template lwc:if={isTextInput}>
     <c-fsc_flow-banner banner-color="#1d4583" banner-label="Text Input Options" banner-info={textBannerInfo}>
