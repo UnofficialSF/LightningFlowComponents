@@ -782,6 +782,22 @@
                 automatic-output-variables={automaticOutputVariables}>
             </c-fsc_flow-combobox>
 
+            <!-- Picklist Field Map (Apex-Defined) -->
+            <c-fsc_flow-combobox
+                if:false={isSObjectInput}
+                name="select_apex_picklistFieldMap"
+                label={inputValues.apex_picklistFieldMap.label}
+                value={inputValues.apex_picklistFieldMap.value}
+                value-type={inputValues.apex_picklistFieldMap.valueDataType}
+                field-level-help={inputValues.apex_picklistFieldMap.helpText}
+                builder-context-filter-collection-boolean={inputValues.apex_picklistFieldMap.isCollection}
+                builder-context={_builderContext}
+                allow-hard-code-reference=true
+                placeholder-text="Manual entry allowed"
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}>
+            </c-fsc_flow-combobox>
+
             <!-- Special Column CellAttribs -->
             <c-fsc_flow-combobox 
                 name="select_columnCellAttribs" 
