@@ -445,7 +445,7 @@ public without sharing class SendBetterEmail {
 
                 if (templateID != null && templateID.length() > 0) {
                     try {
-                        mail.setTemplateID(templateID);
+                        mail.setHtmlBody(SendBetterEmailUtil.renderTemplate(templateID, mail.targetObjectId, mail.whatId));
                         mail.setTreatTargetObjectAsRecipient(setTreatTargetObjectAsRecipient);
                         thisResponse.templateUsed = templateID;
                     } catch (Exception e) {
