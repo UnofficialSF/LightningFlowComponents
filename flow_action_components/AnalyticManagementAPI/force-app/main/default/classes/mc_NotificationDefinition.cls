@@ -1,3 +1,12 @@
+/**
+ * Notification Definition wrapper class
+ * 
+ * Custom definition class for use in DataTable and Flow screens.
+ * Contains simplified subscription notification data including report name,
+ * action type, recipients, schedule, and threshold information.
+ * 
+ * @author Andy Haas
+ */
 public with sharing class mc_NotificationDefinition {
     // Custom Definitions for use in DataTable
     @AuraEnabled
