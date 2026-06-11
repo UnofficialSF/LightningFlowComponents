@@ -1,244 +1,342 @@
 <!-- sldsValidatorIgnore -->
 <template>
+    <lightning-radio-group
+        name="select_displayMode"
+        label={inputValues.displayMode.label}
+        options={displayChoicesAsOptions}
+        value={inputValues.displayMode.value}
+        type="radio"
+        onchange={handleValueChange}
+    ></lightning-radio-group>
+    <template if:true={isVisualCards}>
+        <lightning-combobox
+            name="select_numberOfColumns"
+            label={inputValues.numberOfColumns.label}
+            value={inputValues.numberOfColumns.value}
+            required={isVisualCards}
+            options={numberOfColumnOptions}
+            onchange={handleValueChange}
+        ></lightning-combobox>
+        <lightning-input
+            type="checkbox"
+            label={inputValues.includeIcons.label}
+            name="select_includeIcons"
+            checked={inputValues.includeIcons.value}
+            onchange={handleValueChange}
+        ></lightning-input>
+        <lightning-input
+            name="select_navOnSelect"
+            type="checkbox"
+            label={inputValues.navOnSelect.label}
+            checked={inputValues.navOnSelect.value}
+            onchange={handleValueChange}
+        ></lightning-input>
+        <lightning-input
+            name="select_richTextFlagString"
+            type="checkbox"
+            label={inputValues.richTextFlagString.label}
+            checked={isRichText}
+            onchange={handleValueChange}
+        ></lightning-input>
 
-        <lightning-radio-group name="select_displayMode" label={inputValues.displayMode.label}
-                options={displayChoicesAsOptions} value={inputValues.displayMode.value} type="radio"
-                onchange={handleValueChange}></lightning-radio-group>
-        <template if:true={isVisualCards}>
-                <lightning-combobox name="select_numberOfColumns" label={inputValues.numberOfColumns.label}
-                        value={inputValues.numberOfColumns.value} required={isVisualCards}
-                        options={numberOfColumnOptions} onchange={handleValueChange}></lightning-combobox>
-                <lightning-input type="checkbox" label={inputValues.includeIcons.label} name="select_includeIcons"
-                        checked={inputValues.includeIcons.value} onchange={handleValueChange}></lightning-input>
-                <lightning-input name="select_navOnSelect" type="checkbox" label={inputValues.navOnSelect.label}
-                        checked={inputValues.navOnSelect.value} onchange={handleValueChange}></lightning-input>
-                <template if:true={isSingleColumn}>
-                        <lightning-input name="select_isResponsive" type="checkbox"
-                                label={inputValues.isResponsive.label} checked={inputValues.isResponsive.value}
-                                onchange={handleValueChange}></lightning-input>
-                </template>
-                <template if:true={isDualColumn}>
-                        <lightning-input type="checkbox" label={inputValues.isSameHeight.label} name="select_isSameHeight"
-                                checked={inputValues.isSameHeight.value} onchange={handleValueChange}></lightning-input>
-                </template>
-                <lightning-input name="select_richTextFlagString" type="checkbox" label={inputValues.richTextFlagString.label}
-                        checked={isRichText} onchange={handleValueChange}></lightning-input>
-
-                <!-- </template> -->
-                <!-- <template if:true={inputValues.includeIcons.value}> -->
-                <c-fsc_flow-combobox name="select_choiceIcons" label={inputValues.choiceIcons.label}
-                        value={inputValues.choiceIcons.value} value-type={inputValues.choiceIcons.valueDataType}
-                        builder-context-filter-type="String"
-                        builder-context-filter-collection-boolean={inputValues.choiceIcons.isCollection}
-                        builder-context={_builderContext}
-                        onvaluechanged={handleFlowComboboxValueChange}
-                        automatic-output-variables={automaticOutputVariables}
-                ></c-fsc_flow-combobox>
-                <lightning-combobox
-                        name="select_iconSize"
-                        label={inputValues.iconSize.label}
-                        value={inputValues.iconSize.value}
-                        required={isVisualCards}
-                        options={iconSizeOptions}
-                        onchange={handleValueChange}
-                ></lightning-combobox>
-        </template>
-        <lightning-radio-group name="select_inputMode" label={inputValues.inputMode.label}
-                options={selectDataSourceOptions} value={inputValues.inputMode.value} type="radio"
-                onchange={handleValueChange}></lightning-radio-group>
-        <!-- disabled={isVisualCards} onchange={handleValueChange}></lightning-radio-group> -->
-        <template if:true={isDatasourcePicklist}>
-                <c-fsc_pick-object-and-field-3 field-label={inputValues.fieldName.label}
-                        object-label={inputValues.objectName.label} object-type={inputValues.objectName.value}
-                        field={inputValues.fieldName.value} onfieldselected={handlePickObjectAndFieldValueChange}
-                        field-type-filter={settings.availableFieldTypesPicklist}></c-fsc_pick-object-and-field-3>
-
-                <c-fsc_flow-combobox name="select_recordTypeId" label={inputValues.recordTypeId.label}
-                        value={inputValues.recordTypeId.value} value-type={inputValues.recordTypeId.valueDataType}
-                        builder-context-filter-type="String"
-                        builder-context-filter-collection-boolean={inputValues.recordTypeId.isCollection}
-                        builder-context={_builderContext}
-                        onvaluechanged={handleFlowComboboxValueChange}
-                        automatic-output-variables={automaticOutputVariables}
-                ></c-fsc_flow-combobox>
-                
-                <!-- Dependent Picklist Attributes -->
-                <c-fsc_flow-checkbox
-                        name="select_dependentPicklist"
-                        label={inputValues.dependentPicklist.label}
-                        checked={inputValues.cb_dependentPicklist.value}
-                        field-level-help={inputValues.dependentPicklist.helpText}
-                        oncheckboxchanged={handleCheckboxChange}
-                ></c-fsc_flow-checkbox>
-                <div lwc:if={showControllingValues}>
-                        <c-fsc_flow-combobox 
-                                name="select_controllingPicklistValue" 
-                                label={inputValues.controllingPicklistValue.label}
-                                value={inputValues.controllingPicklistValue.value} 
-                                value-type={inputValues.controllingPicklistValue.valueDataType}
-                                field-level-help="If the controlling field is a Picklist, reference the controlling value here."
-                                builder-context-filter-type="String"
-                                builder-context-filter-collection-boolean={inputValues.controllingPicklistValue.isCollection}
-                                builder-context={_builderContext}
-                                onvaluechanged={handleFlowComboboxValueChange}
-                                automatic-output-variables={automaticOutputVariables}
-                        ></c-fsc_flow-combobox>
-                        <c-fsc_flow-combobox 
-                                name="select_controllingCheckboxValue" 
-                                label={inputValues.controllingCheckboxValue.label}
-                                value={inputValues.controllingCheckboxValue.value} 
-                                value-type={inputValues.controllingCheckboxValue.valueDataType}
-                                field-level-help="If the controlling field is a Checkbox, reference the controlling value here."
-                                builder-context-filter-type="Boolean"
-                                builder-context-filter-collection-boolean={inputValues.controllingCheckboxValue.isCollection}
-                                builder-context={_builderContext}
-                                onvaluechanged={handleFlowComboboxValueChange}
-                                automatic-output-variables={automaticOutputVariables}
-                        ></c-fsc_flow-combobox>
-                </div>
-
-        </template>
-
-        <template if:true={isDatasourceDualCollection}>
-                <c-fsc_flow-combobox name="select_choiceLabels" label={inputValues.choiceLabels.label}
-                        value={inputValues.choiceLabels.value} value-type={inputValues.choiceLabels.valueDataType}
-                        builder-context-filter-type="String"
-                        builder-context-filter-collection-boolean={inputValues.choiceLabels.isCollection}
-                        builder-context={_builderContext}
-                        onvaluechanged={handleFlowComboboxValueChange}
-                        automatic-output-variables={automaticOutputVariables}
-                ></c-fsc_flow-combobox>
-        </template>
-        <template if:true={isDatasourceSingleOrDualCollection}>
-                <c-fsc_flow-combobox name="select_choiceValues" label={inputValues.choiceValues.label}
-                        value={inputValues.choiceValues.value} value-type={inputValues.choiceValues.valueDataType}
-                        builder-context-filter-type="String"
-                        builder-context-filter-collection-boolean={inputValues.choiceValues.isCollection}
-                        builder-context={_builderContext} onvaluechanged={handleFlowComboboxValueChange}
-                        automatic-output-variables={automaticOutputVariables}>  
-                </c-fsc_flow-combobox>
-        </template>
-        <template if:true={isDatasourceStaticChoices}>
-                <div class="slds-text-link pointer" onclick={handleStaticChoicesOpen}>View/edit choices</div>
-        </template>
-
-        <lightning-input class="slds-p-top_x-small" type="checkbox" label={inputValues.allowNoneToBeChosen.label}
-                name="select_allowNoneToBeChosen" checked={inputValues.allowNoneToBeChosen.value}
-                onchange={handleValueChange}></lightning-input>
-        <template if:true={isDatasourcePicklist}>
-                <lightning-input type="checkbox" label={inputValues.sortList.label} name="select_sortList"
-                        checked={inputValues.sortList.value} onchange={handleValueChange}></lightning-input>
-        </template>
-        <lightning-input type="checkbox" label={inputValues.required.label} name="select_required"
-                checked={inputValues.required.value} onchange={handleValueChange}></lightning-input>
-        <lightning-input type="text" label={inputValues.masterLabel.label} name="select_masterLabel"
-                value={inputValues.masterLabel.value} onchange={handleValueChange}></lightning-input>
-        <lightning-input type="text" label={inputValues.helpText.label} name="select_helpText"
-                value={inputValues.helpText.value} field-level-help={inputValues.helpText.helpText} onchange={handleValueChange}></lightning-input>
-        <!-- <template if:false={showControllingValues}> -->
-                <c-fsc_flow-combobox name="select_value" label={inputValues.value.label} value={inputValues.value.value}
-                        value-type={inputValues.value.valueDataType} builder-context-filter-type="String"
-                        builder-context-filter-collection-boolean={inputValues.value.isCollection}
-                        builder-context={_builderContext}
-                        onvaluechanged={handleFlowComboboxValueChange}
-                        automatic-output-variables={automaticOutputVariables}
-                ></c-fsc_flow-combobox>
         <!-- </template> -->
-        <lightning-input type="number" label={inputValues.style_width.label} name="select_style_width"
-                value={inputValues.style_width.value} onchange={handleValueChange}></lightning-input>
+        <!-- <template if:true={inputValues.includeIcons.value}> -->
+        <c-fsc_flow-combobox
+            name="select_choiceIcons"
+            label={inputValues.choiceIcons.label}
+            value={inputValues.choiceIcons.value}
+            value-type={inputValues.choiceIcons.valueDataType}
+            builder-context-filter-type="String"
+            builder-context-filter-collection-boolean={inputValues.choiceIcons.isCollection}
+            builder-context={_builderContext}
+            onvaluechanged={handleFlowComboboxValueChange}
+            automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
+        <lightning-combobox
+            name="select_iconSize"
+            label={inputValues.iconSize.label}
+            value={inputValues.iconSize.value}
+            required={isVisualCards}
+            options={iconSizeOptions}
+            onchange={handleValueChange}
+        ></lightning-combobox>
+    </template>
+    <lightning-radio-group
+        name="select_inputMode"
+        label={inputValues.inputMode.label}
+        options={selectDataSourceOptions}
+        value={inputValues.inputMode.value}
+        type="radio"
+        onchange={handleValueChange}
+    ></lightning-radio-group>
+    <!-- disabled={isVisualCards} onchange={handleValueChange}></lightning-radio-group> -->
+    <template if:true={isDatasourcePicklist}>
+        <c-fsc_pick-object-and-field-3
+            field-label={inputValues.fieldName.label}
+            object-label={inputValues.objectName.label}
+            object-type={inputValues.objectName.value}
+            field={inputValues.fieldName.value}
+            onfieldselected={handlePickObjectAndFieldValueChange}
+            field-type-filter={settings.availableFieldTypesPicklist}
+        ></c-fsc_pick-object-and-field-3>
 
-        <c-fsc_lwc-modal header="Edit Static Choices" confirm-button-label="Done" onconfirm={handleStaticChoicesSave}
-                validate-on-confirm=true class={staticChoicesModalClass}>
-                <div class="slds-grid slds-wrap">
-                        <div
-                                class="columnHeaders slds-col slds-size_1-of-1 slds-p-bottom_xxx-small slds-grid slds-text-title_bold">
-                                <div class="slds-col slds-size_5-of-12 slds-p-horizontal_small">Label</div>
-                                <div class="slds-col slds-p-horizontal_x-large">Value</div>
-                        </div>
+        <c-fsc_flow-combobox
+            name="select_recordTypeId"
+            label={inputValues.recordTypeId.label}
+            value={inputValues.recordTypeId.value}
+            value-type={inputValues.recordTypeId.valueDataType}
+            builder-context-filter-type="String"
+            builder-context-filter-collection-boolean={inputValues.recordTypeId.isCollection}
+            builder-context={_builderContext}
+            onvaluechanged={handleFlowComboboxValueChange}
+            automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
 
-                        <template iterator:choice={tempStaticChoices}>
-                                <!-- <c-dragndrop-dropzone index={index} key={choice.value} list={tempStaticChoices}
+        <!-- Dependent Picklist Attributes -->
+        <c-fsc_flow-checkbox
+            name="select_dependentPicklist"
+            label={inputValues.dependentPicklist.label}
+            checked={inputValues.cb_dependentPicklist.value}
+            field-level-help={inputValues.dependentPicklist.helpText}
+            oncheckboxchanged={handleCheckboxChange}
+        ></c-fsc_flow-checkbox>
+        <div lwc:if={showControllingValues}>
+            <c-fsc_flow-combobox
+                name="select_controllingPicklistValue"
+                label={inputValues.controllingPicklistValue.label}
+                value={inputValues.controllingPicklistValue.value}
+                value-type={inputValues.controllingPicklistValue.valueDataType}
+                field-level-help="If the controlling field is a Picklist, reference the controlling value here."
+                builder-context-filter-type="String"
+                builder-context-filter-collection-boolean={inputValues.controllingPicklistValue.isCollection}
+                builder-context={_builderContext}
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                name="select_controllingCheckboxValue"
+                label={inputValues.controllingCheckboxValue.label}
+                value={inputValues.controllingCheckboxValue.value}
+                value-type={inputValues.controllingCheckboxValue.valueDataType}
+                field-level-help="If the controlling field is a Checkbox, reference the controlling value here."
+                builder-context-filter-type="Boolean"
+                builder-context-filter-collection-boolean={inputValues.controllingCheckboxValue.isCollection}
+                builder-context={_builderContext}
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+        </div>
+    </template>
+
+    <template if:true={isDatasourceDualCollection}>
+        <c-fsc_flow-combobox
+            name="select_choiceLabels"
+            label={inputValues.choiceLabels.label}
+            value={inputValues.choiceLabels.value}
+            value-type={inputValues.choiceLabels.valueDataType}
+            builder-context-filter-type="String"
+            builder-context-filter-collection-boolean={inputValues.choiceLabels.isCollection}
+            builder-context={_builderContext}
+            onvaluechanged={handleFlowComboboxValueChange}
+            automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
+    </template>
+    <template if:true={isDatasourceSingleOrDualCollection}>
+        <c-fsc_flow-combobox
+            name="select_choiceValues"
+            label={inputValues.choiceValues.label}
+            value={inputValues.choiceValues.value}
+            value-type={inputValues.choiceValues.valueDataType}
+            builder-context-filter-type="String"
+            builder-context-filter-collection-boolean={inputValues.choiceValues.isCollection}
+            builder-context={_builderContext}
+            onvaluechanged={handleFlowComboboxValueChange}
+            automatic-output-variables={automaticOutputVariables}
+        >
+        </c-fsc_flow-combobox>
+    </template>
+    <template if:true={isDatasourceStaticChoices}>
+        <div class="slds-text-link pointer" onclick={handleStaticChoicesOpen}>View/edit choices</div>
+    </template>
+
+    <lightning-input
+        class="slds-p-top_x-small"
+        type="checkbox"
+        label={inputValues.allowNoneToBeChosen.label}
+        name="select_allowNoneToBeChosen"
+        checked={inputValues.allowNoneToBeChosen.value}
+        onchange={handleValueChange}
+    ></lightning-input>
+    <template if:true={isDatasourcePicklist}>
+        <lightning-input
+            type="checkbox"
+            label={inputValues.sortList.label}
+            name="select_sortList"
+            checked={inputValues.sortList.value}
+            onchange={handleValueChange}
+        ></lightning-input>
+    </template>
+    <lightning-input
+        type="checkbox"
+        label={inputValues.required.label}
+        name="select_required"
+        checked={inputValues.required.value}
+        onchange={handleValueChange}
+    ></lightning-input>
+    <lightning-input
+        type="text"
+        label={inputValues.masterLabel.label}
+        name="select_masterLabel"
+        value={inputValues.masterLabel.value}
+        onchange={handleValueChange}
+    ></lightning-input>
+    <lightning-input
+        type="text"
+        label={inputValues.helpText.label}
+        name="select_helpText"
+        value={inputValues.helpText.value}
+        field-level-help={inputValues.helpText.helpText}
+        onchange={handleValueChange}
+    ></lightning-input>
+    <!-- <template if:false={showControllingValues}> -->
+    <c-fsc_flow-combobox
+        name="select_value"
+        label={inputValues.value.label}
+        value={inputValues.value.value}
+        value-type={inputValues.value.valueDataType}
+        builder-context-filter-type="String"
+        builder-context-filter-collection-boolean={inputValues.value.isCollection}
+        builder-context={_builderContext}
+        onvaluechanged={handleFlowComboboxValueChange}
+        automatic-output-variables={automaticOutputVariables}
+    ></c-fsc_flow-combobox>
+    <!-- </template> -->
+    <lightning-input
+        type="number"
+        label={inputValues.style_width.label}
+        name="select_style_width"
+        value={inputValues.style_width.value}
+        onchange={handleValueChange}
+    ></lightning-input>
+
+    <c-fsc_lwc-modal
+        header="Edit Static Choices"
+        confirm-button-label="Done"
+        onconfirm={handleStaticChoicesSave}
+        validate-on-confirm="true"
+        class={staticChoicesModalClass}
+    >
+        <div class="slds-grid slds-wrap">
+            <div class="columnHeaders slds-col slds-size_1-of-1 slds-p-bottom_xxx-small slds-grid slds-text-title_bold">
+                <div class="slds-col slds-size_5-of-12 slds-p-horizontal_small">Label</div>
+                <div class="slds-col slds-p-horizontal_x-large">Value</div>
+            </div>
+
+            <template iterator:choice={tempStaticChoices}>
+                <!-- <c-dragndrop-dropzone index={index} key={choice.value} list={tempStaticChoices}
                                                 colour="#005fb2" ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone>
                                         <c-dragndrop-row index={index} key={choice}> -->
 
-                                <div class="staticChoiceRow slds-col slds-size_1-of-1 slds-grid slds-p-vertical_xx-small"
-                                        key={choice.value.value}>
-                                        <div class="slds-col">
-                                                <lightning-input variant="label-hidden" label="Label"
-                                                        placeholder="Label" value={choice.value.label}
-                                                        data-index={choice.index} data-property="label"
-                                                        oncommit={handleStaticChoiceChange}
-                                                        onfocus={handleStaticChoiceFocus} required>
-                                                </lightning-input>
-                                        </div>
+                <div
+                    class="staticChoiceRow slds-col slds-size_1-of-1 slds-grid slds-p-vertical_xx-small"
+                    key={choice.value.value}
+                >
+                    <div class="slds-col">
+                        <lightning-input
+                            variant="label-hidden"
+                            label="Label"
+                            placeholder="Label"
+                            value={choice.value.label}
+                            data-index={choice.index}
+                            data-property="label"
+                            oncommit={handleStaticChoiceChange}
+                            onfocus={handleStaticChoiceFocus}
+                            required
+                        >
+                        </lightning-input>
+                    </div>
 
-                                        <div class="slds-col">
-                                                <lightning-input variant="label-hidden" label="Value"
-                                                        placeholder="Value" value={choice.value.value}
-                                                        data-index={choice.index} data-property="value"
-                                                        oncommit={handleStaticChoiceChange}
-                                                        onfocus={handleStaticChoiceFocus} class="slds-p-left_small"
-                                                        required>
-                                                </lightning-input>
-                                        </div>
+                    <div class="slds-col">
+                        <lightning-input
+                            variant="label-hidden"
+                            label="Value"
+                            placeholder="Value"
+                            value={choice.value.value}
+                            data-index={choice.index}
+                            data-property="value"
+                            oncommit={handleStaticChoiceChange}
+                            onfocus={handleStaticChoiceFocus}
+                            class="slds-p-left_small"
+                            required
+                        >
+                        </lightning-input>
+                    </div>
 
-                                        <!-- lightning-button-icons that trigger row-level actions. Styling makes them mostly transparent until their row is hovered on-->
-                                        <div
-                                                class="actionColumn slds-grid slds-grid_vertical-align-center slds-p-left_xxx-small">
-                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_xxx-small">
-
-                                                        <lightning-button-icon icon-name="utility:delete"
-                                                                data-index={choice.index}
-                                                                onclick={handleStaticChoiceDelete} title="Delete"
-                                                                variant="bare">
-                                                        </lightning-button-icon>
-                                                </div>
-                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_xxx-small">
-                                                        <ul>
-                                                                <template if:false={choice.first}>
-                                                                        <li>
-                                                                                <lightning-button-icon
-                                                                                        icon-name="utility:up"
-                                                                                        data-index={choice.index}
-                                                                                        onclick={handleStaticChoiceMoveUp}
-                                                                                        title="Move up in list"
-                                                                                        variant="bare" size="small"
-                                                                                        class="slds-p-around_none slds-m-around_none">
-                                                                                </lightning-button-icon>
-                                                                        </li>
-                                                                </template>
-                                                                <template if:false={choice.last}>
-                                                                        <li>
-                                                                                <lightning-button-icon
-                                                                                        icon-name="utility:down"
-                                                                                        data-index={choice.index}
-                                                                                        onclick={handleStaticChoiceMoveDown}
-                                                                                        title="Move down in list"
-                                                                                        variant="bare" size="small"
-                                                                                        class="slds-p-around_none slds-m-around_none">
-                                                                                </lightning-button-icon>
-                                                                        </li>
-                                                                </template>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                </div>
-                                <!-- </c-dragndrop-row> -->
-                        </template>
-                        <!-- <c-dragndrop-dropzone index={tempStaticChoices.length} list={tempStaticChoices}
-                                        colour="#005fb2" ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone> -->
-                        <div class="listButtons slds-col slds-size_1-of-1 slds-p-top_small">
-                                <lightning-button label="Add new choice" icon-name="utility:add"
-                                        onmouseup={handleAddChoiceClick}>
-                                </lightning-button>
-                                <lightning-button label="Clear all" icon-name="utility:clear" class="slds-p-left_small"
-                                        variant="destructive-text" onmouseup={handleClearAllChoicesClick}>
-                                </lightning-button>
-
+                    <!-- lightning-button-icons that trigger row-level actions. Styling makes them mostly transparent until their row is hovered on-->
+                    <div class="actionColumn slds-grid slds-grid_vertical-align-center slds-p-left_xxx-small">
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_xxx-small">
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                data-index={choice.index}
+                                onclick={handleStaticChoiceDelete}
+                                title="Delete"
+                                variant="bare"
+                            >
+                            </lightning-button-icon>
                         </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_xxx-small">
+                            <ul>
+                                <template if:false={choice.first}>
+                                    <li>
+                                        <lightning-button-icon
+                                            icon-name="utility:up"
+                                            data-index={choice.index}
+                                            onclick={handleStaticChoiceMoveUp}
+                                            title="Move up in list"
+                                            variant="bare"
+                                            size="small"
+                                            class="slds-p-around_none slds-m-around_none"
+                                        >
+                                        </lightning-button-icon>
+                                    </li>
+                                </template>
+                                <template if:false={choice.last}>
+                                    <li>
+                                        <lightning-button-icon
+                                            icon-name="utility:down"
+                                            data-index={choice.index}
+                                            onclick={handleStaticChoiceMoveDown}
+                                            title="Move down in list"
+                                            variant="bare"
+                                            size="small"
+                                            class="slds-p-around_none slds-m-around_none"
+                                        >
+                                        </lightning-button-icon>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-        </c-fsc_lwc-modal>
-        <div class="slds-text-title slds-text-align_right slds-m-top_xx-small slds-p-bottom_small slds-text-color_success">
-                QuickChoice Version #: {versionNumber}
+                <!-- </c-dragndrop-row> -->
+            </template>
+            <!-- <c-dragndrop-dropzone index={tempStaticChoices.length} list={tempStaticChoices}
+                                        colour="#005fb2" ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone> -->
+            <div class="listButtons slds-col slds-size_1-of-1 slds-p-top_small">
+                <lightning-button label="Add new choice" icon-name="utility:add" onmouseup={handleAddChoiceClick}>
+                </lightning-button>
+                <lightning-button
+                    label="Clear all"
+                    icon-name="utility:clear"
+                    class="slds-p-left_small"
+                    variant="destructive-text"
+                    onmouseup={handleClearAllChoicesClick}
+                >
+                </lightning-button>
+            </div>
         </div>
+    </c-fsc_lwc-modal>
+    <div class="slds-text-title slds-text-align_right slds-m-top_xx-small slds-p-bottom_small slds-text-color_success">
+        QuickChoice Version #: {versionNumber}
+    </div>
 </template>

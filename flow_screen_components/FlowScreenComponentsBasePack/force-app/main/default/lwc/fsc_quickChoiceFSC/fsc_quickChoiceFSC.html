@@ -18,6 +18,12 @@ Additional components packaged with this LWC:
                                                 GetRecordTypeInfobyObjectTest
                                                 QuickChoiceMockHttpResponseGenerator
 
+08/08/25 - Tyler Raguseo - Version 2.47
+                            Fixed clipping issues with visual card displays on smaller form factors
+                            Force 1 column display for visual cards on mobile devices, even if user selects 2 columns
+                            Visual cards are now always responsive
+                            Dual column visual cards now always have the same height
+
 4/14/25 -   Eric Smith -    Version 2.46
                             Support a Picklist field for Visual Cards
 
@@ -108,11 +114,12 @@ Additional components packaged with this LWC:
     <template if:true={showPicklist}>
         <!-- Display Visual Card Pickers -->
         <template if:true={showVisual}>
-            <fieldset class="slds-form-element" style="margin-right:1rem;">
+            <fieldset class="slds-form-element" style="margin-right: 1rem">
                 <div class="slds-grid">
                     <div class="slds-col slds-grow-none">
                         <label class="slds-form-element__legend slds-form-element__label">
-                            <abbr class="slds-required" title="required">{requiredSymbol}</abbr>{masterLabel}</label>
+                            <abbr class="slds-required" title="required">{requiredSymbol}</abbr>{masterLabel}</label
+                        >
                     </div>
                     <div class={showHelpText}>
                         <div class="slds-col">
@@ -123,27 +130,46 @@ Additional components packaged with this LWC:
                 <div class={gridClass} style={gridStyle}>
                     <template for:each={items} for:item="item">
                         <div key={item.name} class={columnClass} style={responsiveSize}>
-                            <input type="radio" id={item.name} value={item.name} name={radioGroup} data-id={item.name} onclick={handleChange} />
-                            <label for={item.name}>
-
+                            <input
+                                type="radio"
+                                id={item.name}
+                                value={item.name}
+                                name={radioGroup}
+                                data-id={item.name}
+                                onclick={handleChange}
+                            />
+                            <label for={item.name} style="height: 100%">
                                 <!-- Display Visual Card Pickers with Icons-->
                                 <template if:true={includeIcons}>
                                     <span
                                         class="slds-visual-picker__figure slds-visual-picker__text slds-box slds-box_link slds-box_x-small slds-media"
-                                        style={cardSize}>
+                                        style={cardSize}
+                                    >
                                         <div
-                                            class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center slds-m-left_xx-small">
-                                            <lightning-avatar size={iconSize} src={item.icon} fallback-icon-name={item.icon}></lightning-avatar>
+                                            class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center slds-m-left_xx-small"
+                                        >
+                                            <lightning-avatar
+                                                size={iconSize}
+                                                src={item.icon}
+                                                fallback-icon-name={item.icon}
+                                            ></lightning-avatar>
                                             <!-- <span class="slds-icon_container">
                                                 <lightning-icon icon-name={item.icon} size={iconSize}>
                                                 </lightning-icon>
                                             </span> -->
                                         </div>
                                         <div
-                                            class="slds-media__body slds-border_left slds-p-left_small slds-p-top_xxx-small">
-                                            <span class="slds-text-heading_medium slds-m-bottom_x-small">{item.name}</span>
+                                            class="slds-media__body slds-border_left slds-p-left_small slds-p-top_xxx-small"
+                                        >
+                                            <span class="slds-text-heading_medium slds-m-bottom_x-small wrapped-content"
+                                                >{item.name}</span
+                                            >
                                             <template lwc:if={showAsRichText}>
-                                                <span class="slds-text-title"><lightning-formatted-rich-text value={item.description}></lightning-formatted-rich-text></span>
+                                                <span class="slds-text-title wrapped-content"
+                                                    ><lightning-formatted-rich-text
+                                                        value={item.description}
+                                                    ></lightning-formatted-rich-text
+                                                ></span>
                                             </template>
                                             <template lwc:else>
                                                 <span class="slds-text-title wrapped-content">{item.description}</span>
@@ -152,18 +178,22 @@ Additional components packaged with this LWC:
                                     </span>
                                 </template>
 
-                                <!-- Display Visual Card Pickers without Icons-->                            
+                                <!-- Display Visual Card Pickers without Icons-->
                                 <template if:false={includeIcons}>
-                                    <span
-                                        class="slds-visual-picker__figure slds-visual-picker__text"
-                                        style={cardSize}>
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text" style={cardSize}>
                                         <span>
-                                            <span class="slds-text-heading_medium slds-m-bottom_x-small">{item.name}</span>
+                                            <span class="slds-text-heading_medium slds-m-bottom_x-small wrapped-content"
+                                                >{item.name}</span
+                                            >
                                             <template lwc:if={showAsRichText}>
-                                                <span class="slds-text-title"><lightning-formatted-rich-text value={item.description}></lightning-formatted-rich-text></span>
+                                                <span class="slds-text-title wrapped-content"
+                                                    ><lightning-formatted-rich-text
+                                                        value={item.description}
+                                                    ></lightning-formatted-rich-text
+                                                ></span>
                                             </template>
                                             <template lwc:else>
-                                                <span class="slds-text-title">{item.description}</span>
+                                                <span class="slds-text-title wrapped-content">{item.description}</span>
                                             </template>
                                         </span>
                                     </span>
@@ -181,20 +211,20 @@ Additional components packaged with this LWC:
         </template>
 
         <template if:false={showVisual}>
-
             <!-- Display Radio Buttons -->
             <template if:true={showRadio}>
                 <div style={inputStyle} class={inputClass}>
                     <div class="slds-grid">
                         <div class="slds-col slds-grow-none">
-                            <lightning-radio-group 
-                                name={radioGroup} 
-                                label={masterLabel} 
+                            <lightning-radio-group
+                                name={radioGroup}
+                                label={masterLabel}
                                 value={selectedValue}
                                 options={options}
-                                required={required} 
-                                onchange={handleChange} 
-                                type="radio">
+                                required={required}
+                                onchange={handleChange}
+                                type="radio"
+                            >
                             </lightning-radio-group>
                         </div>
                         <div class={showHelpText}>
@@ -209,18 +239,18 @@ Additional components packaged with this LWC:
             <!-- Display Picklist -->
             <template if:false={showRadio}>
                 <div style={inputStyle} class={inputClass}>
-                    <lightning-combobox 
-                        name={masterLabel} 
-                        label={masterLabel} 
+                    <lightning-combobox
+                        name={masterLabel}
+                        label={masterLabel}
                         value={selectedValue}
                         options={options}
-                        required={required} 
+                        required={required}
                         field-level-help={helpText}
-                        onchange={handleChange}>
+                        onchange={handleChange}
+                    >
                     </lightning-combobox>
                 </div>
             </template>
-
         </template>
     </template>
 </template>

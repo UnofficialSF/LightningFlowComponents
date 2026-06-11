@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>57.0</apiVersion>
+    <apiVersion>64.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Quick Choice</masterLabel>
     <targets>
@@ -16,16 +16,16 @@
             <property name="choiceLabels" label="Choice Labels (String Collection)" type="String[]" description="The labels of your choices"/>
             <property name="choiceIcons" label="Card Mode - Choice Icons (String Collection)" type="String[]" description="Icon names or image names"/>
             <property name="includeIcons" label="Card Mode - Include Icons in Display Box?" type="Boolean" description="Display the provided icons in the visual card when set to True"/>
-            <property name="isSameHeight" label="Is Cards Same Height" type="Boolean" description="Display both cards the same height regardless of the content. This may cause unexpected issues"/>
-            <property name="navOnSelect" label="Button Mode" type="Boolean" role="inputonly" description="Navigate to next flow element on card selection"/>
+            <property name="isSameHeight" label="Is Cards Same Height (DEPRECATED v2.47)" type="Boolean" description="(DEPRECATED v2.47) Display both cards the same height regardless of the content. This may cause unexpected issues"/>
+            <property name="navOnSelect" label="Button Mode" type="Boolean" role="inputOnly" description="Navigate to next flow element on card selection"/>
             <property name="iconSize" label="Card Mode - Icon Size" type="String" description="Options include x-small, small, medium, or large. This value defaults to medium."/>
-            <property name="numberOfColumns" label="Card Mode - Number of Display Box Columns (1 or 2)" type="String" description="1 or blank (default) for a single column or 2 for dual columns"/>
+            <property name="numberOfColumns" label="Card Mode - Number of Display Box Columns (1 or 2)" type="String" description="1 or blank (default) for a single column or 2 for dual columns. Small form factors are always 1 column."/>
             <property name="inputMode" label="Input Mode" type="String" description="“Single String Collection”, “Dual String Collections”, “Picklist Field”, or ” Visual Text Box ” are currently supported"/>
             <property name="masterLabel" label="Master Label" type="String" description="The main label for the picklist or radio button group"/>
             <property name="helpText" label="Help Text" type="String" description="Optional help text to show with the Master Label"/>
             <property name="required" label="Required" type="Boolean" default="false" description="Will prevent transition if set to {!$GlobalConstant.True}"/>
             <property name="displayMode" label="Display Mode" type="String" description="Either “Visual”, “Picklist” or “Radio”, depending on which control you want"/>
-            <property name="isResponsive" label="Make Width Responsive?" type="Boolean" default="false" description="Set this to true to adjust the size of single column visual cards to fit the screen and the amount of text."/>
+            <property name="isResponsive" label="Make Width Responsive? (DEPRECATED v2.47)" type="Boolean" default="false" description="(DEPRECATED v2.47) Set this to true to adjust the size of single column visual cards to fit the screen and the amount of text."/>
             <property name="recordTypeId" label="Record Type Id" type="String" description="Record Type Id (for Picklist Field)"/>
             <property name="objectName" label="Object Name" type="String" description="Object Name (for Picklist Field)"/>
             <property name="fieldName" label="Field Name" type="String" description="Field Name (for Picklist Field)"/>
