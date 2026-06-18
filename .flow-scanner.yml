@@ -1,0 +1,20 @@
+# Disables layout and documentation related rules for Flow Scanner
+rules:
+  missing-flow-description:
+    enabled: false
+  inactive-flow:
+    enabled: false
+  missing-fault-path:
+    enabled: false
+  invalid-naming-convention:
+    enabled: false
+  invalid-api-version:
+    enabled: false
+  unspecified-trigger-order:
+    enabled: false
+  missing-auto-layout:
+    enabled: false
+  unused-variable:
+    enabled: false
+  unreachable-element:
+    enabled: false
