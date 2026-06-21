@@ -235,6 +235,8 @@ export default class lwcConvertCSVToRecords extends LightningElement {
 		this.skipEmptyLines = true;
 		
 		if(event.detail.files.length > 0){
+				this._isError = false;
+				this._errorMessage = null;
 				this._isLoading = true;
 				const file = event.detail.files[0];
 				this.loading = true;
