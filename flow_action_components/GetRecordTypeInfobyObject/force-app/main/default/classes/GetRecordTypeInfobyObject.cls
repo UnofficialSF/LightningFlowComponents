@@ -23,7 +23,7 @@ global with sharing class GetRecordTypeInfobyObject {
                 // Send the email you have created.
                 try {
                     
-                    Map<String, Schema.RecordTypeInfo> recTypeInfoMap = Schema.getGlobalDescribe().get(objectName).getDescribe().getRecordTypeInfosByName();
+                    Map<String, Schema.RecordTypeInfo> recTypeInfoMap = Schema.getGlobalDescribe().get(objectName).getDescribe().getRecordTypeInfosByDeveloperName();
                     List<Schema.RecordTypeInfo> recTypeInfoList = recTypeInfoMap.values();
                     
                     //extract the names and recordIds and return them as List<String> 
