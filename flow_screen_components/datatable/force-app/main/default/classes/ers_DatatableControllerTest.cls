@@ -88,7 +88,27 @@ private with sharing class ers_DatatableControllerTest {
 
     @IsTest
     private static void testGetIconName() {
-        System.assertEquals('standard:account', ers_DatatableController.getIconName('Account'));
-        System.assertEquals('standard:contact', ers_DatatableController.getIconName('Contact'));
+        List<SObject> apiOnlyPerms = [
+            SELECT Id 
+            FROM PermissionSetAssignment 
+            WHERE AssigneeId = :UserInfo.getUserId() 
+            AND PermissionSet.PermissionsApiUserOnly = true 
+            LIMIT 1
+        ];
+
+        Test.startTest();
+        String accountIcon = ers_DatatableController.getIconName('Account');
+        String contactIcon = ers_DatatableController.getIconName('Contact');
+        Test.stopTest();
+
+        if (apiOnlyPerms?.isEmpty()) {
+            Assert.areEqual('standard:account', accountIcon);
+            Assert.areEqual('standard:contact', contactIcon);
+        } else {
+            // API Only users don't have access to view tabs; this method will return null
+            // Necessary to prevent this test from failing when run by CICD/integrations
+            Assert.isNull(accountIcon);
+            Assert.isNull(contactIcon);
+        }
     }
 }
