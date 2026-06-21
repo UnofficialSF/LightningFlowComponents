@@ -1,6 +1,8 @@
 /************************************************************
 
-*** @description Invocable Action to convert CSV Records in a ContentDocument to SObject records. The CSV column names should match the SObject field api names. The records are returned to the Flow, they are not actually inserted.
+*** @description Invocable Action to convert CSV Records in a ContentDocument to SObject records. The CSV col            convertedFieldValue = String.isEmpty(fieldValue)
+              ? null
+              : Date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2)); names should match the SObject field api names. The records are returned to the Flow, they are not actually inserted.
 *** 
 **/
 public with sharing class ConvertCSVToRecords {
@@ -24,11 +26,22 @@ public with sharing class ConvertCSVToRecords {
           curInput.contentDocumentIdList.add(curInput.contentDocumentId);
         }
       }
+      try {
       SObjectType sObjType = ((SObject) Type.forName(curInput.objectApiName).newInstance()).getSObjectType();
       Map<String, SObjectField> fieldMap = sObjType.getDescribe().fields.getMap();
-      for (String curContentDocumentId : curInput.contentDocumentIdList) {
+      Map<String, String> labelToApiMap = new Map<String, String>();
+      for (SObjectField f : fieldMap.values()) {
+        if (f == null) continue;
+        try {
+          Schema.DescribeFieldResult dfr = f.getDescribe();
+          labelToApiMap.put(dfr.getLabel(), dfr.getName());
+        } catch (Exception e) {
+          // Skip fields that cause issues
+        }
+      }
+      for (String curId : curInput.contentDocumentIdList) {
         List<SObject> curFileConvertedCSVRows = new List<SObject>();
-        Blob csvBlobContent = getCsvContent(curContentDocumentId);
+        Blob csvBlobContent = getCsvContent(curId);
         String csvStringContent = blobToString(csvBlobContent, 'UTF-8');
         String fSepRepl = '~`~';
         String newlineRepl = '-`-';
@@ -40,13 +53,19 @@ public with sharing class ConvertCSVToRecords {
         Map<String, Schema.DisplayType> fieldToFieldTypeMap = new Map<String, Schema.DisplayType>();
         Map<String, String> fieldName = new Map<String, String>();
         for (String field : fields) {
-          String fieldApiName = field.trim(); //Since fieldnames will never contain spaces, we will always trim
-          if (fieldMap.get(fieldApiName) == null) {
+          String fieldApiName = field.replace('\uFEFF', '').trim(); // Remove BOM and trim
+          if (labelToApiMap.containsKey(fieldApiName)) {
+            fieldApiName = labelToApiMap.get(fieldApiName);
+          } else if (fieldMap.get(fieldApiName) == null) {
             fieldApiName = fieldApiName.replaceAll('/', '_');
             fieldApiName = fieldApiName.replaceAll(' ', '_').replaceAll('[^a-zA-Z0-9_]', ''); // Convert to alphanumeric and underscore
             fieldApiName = fieldApiName.replaceAll('__', '_') + '__c'; // Remove extra _s and add __c to end
           }
-          fieldToFieldTypeMap.put(field, getFieldType(fieldMap, fieldApiName));
+          try {
+            fieldToFieldTypeMap.put(field, getFieldType(fieldMap, fieldApiName));
+          } catch (Exception e) {
+            throw new FlowCustomException('Error getting field type for field: ' + String.valueOf(field) + ' API: ' + String.valueOf(fieldApiName) + ' Error: ' + e.getMessage());
+          }
           fieldName.put(field, fieldApiName);
         }
 
@@ -61,6 +80,9 @@ public with sharing class ConvertCSVToRecords {
               .replace('"' + curInput.Fsep, curInput.Fsep);
             fieldValue = replaceFSep(fieldValue, curInput.Fsep, fSepRepl);
             fieldValue = removeQuotes(fieldValue); // Remove " characters if they bracket the field value
+            if (fieldValue == null) {
+              fieldValue = '';
+            }
             String Tsep = curInput.Tsep;
             String Dsep = curInput.Dsep;
             String vCur = curInput.vCur;
@@ -69,44 +91,68 @@ public with sharing class ConvertCSVToRecords {
               fieldValue = fieldValue.trim();
             }
             Schema.DisplayType fieldType = fieldToFieldTypeMap.get(fields[i]);
+            if (fieldType == null) {
+              throw new FlowCustomException('Unknown field type for field: ' + fields[i]);
+            }
             try {
+              String fieldApiName = fieldName.get(fields[i]);
+              if (fieldApiName == null) {
+                throw new FlowCustomException('Field API name is null for field: ' + String.valueOf(fields[i]));
+              }
               obj.put(
-                fieldName.get(fields[i]),
+                fieldApiName,
                 getConvertedFieldValue(fieldType, fieldValue, Tsep, Dsep, vCur, dateFormat)
               );
             } catch (exception e) {
-              obj.put(fieldName.get(fields[i]), null);
+              String apiName = fieldName.get(fields[i]);
+              if (apiName != null) {
+                obj.put(apiName, null);
+              }
             }
           }
           curFileConvertedCSVRows.add(obj);
         }
         output.convertedCSVRows.addAll(curFileConvertedCSVRows);
       }
+      } catch (Exception e) {
+        throw new FlowCustomException('Error processing CSV: ' + e.getMessage() + ' Stack: ' + e.getStackTraceString());
+      }
       responseList.add(output);
     }
     return responseList;
   }
 
-  private static Blob getCsvContent(String contentDocumentId) {
-    ContentVersion csvFile = [
-      SELECT VersionData
-      FROM ContentVersion
-      WHERE ContentDocumentId = :contentDocumentId AND IsLatest = TRUE
-    ];
-    System.debug('contentDocumentId is: ' + contentDocumentId);
+  private static Blob getCsvContent(String id) {
+    ContentVersion csvFile;
+    if (id.startsWith('068')) {
+      csvFile = [SELECT VersionData FROM ContentVersion WHERE Id = :id];
+    } else {
+      csvFile = [SELECT VersionData FROM ContentVersion WHERE ContentDocumentId = :id ORDER BY CreatedDate DESC LIMIT 1];
+    }
+    if (csvFile == null || csvFile.VersionData == null) {
+      throw new FlowCustomException('No ContentVersion or VersionData found for ID: ' + id);
+    }
+    System.debug('ID is: ' + id);
     System.debug('csvFile is: ' + csvFile);
     return csvFile.VersionData;
   }
 
   /* Converting the CSV file input(BLOB format) to a string */
   private static String blobToString(Blob input, String inCharset) {
-    String hex = EncodingUtil.convertToHex(input);
-    System.assertEquals(0, hex.length() & 1);
-    final Integer bytesCount = hex.length() >> 1;
-    String[] bytes = new List<String>(bytesCount);
-    for (Integer i = 0; i < bytesCount; ++i)
-      bytes[i] = hex.mid(i << 1, 2);
-    return EncodingUtil.urlDecode('%' + String.join(bytes, '%'), inCharset);
+    if (input == null) {
+      return '';
+    }
+    try {
+      String hex = EncodingUtil.convertToHex(input);
+      System.assertEquals(0, hex.length() & 1);
+      final Integer bytesCount = hex.length() >> 1;
+      String[] bytes = new List<String>(bytesCount);
+      for (Integer i = 0; i < bytesCount; ++i)
+        bytes[i] = hex.mid(i << 1, 2);
+      return EncodingUtil.urlDecode('%' + String.join(bytes, '%'), inCharset);
+    } catch (Exception e) {
+      return '';
+    }
   }
 
   @TestVisible
@@ -120,6 +166,10 @@ public with sharing class ConvertCSVToRecords {
   ) {
     Object convertedFieldValue;
 
+    if (fieldValue == null) {
+      return null;
+    }
+
     switch on
       fieldType { //Setting Field value based on the field data type
       when BOOLEAN {
@@ -127,7 +177,7 @@ public with sharing class ConvertCSVToRecords {
           convertedFieldValue = false;
         } else {
           String strFieldValue = String.valueOf(fieldValue).toLowerCase();
-          convertedfieldValue = strFieldValue == '1' || strFieldValue == 'true';
+          convertedFieldValue = strFieldValue == '1' || strFieldValue == 'true';
         }
       }
       when DOUBLE, CURRENCY, PERCENT,INTEGER {
@@ -143,10 +193,10 @@ public with sharing class ConvertCSVToRecords {
           fValue = fValue.replace(Dsep, '.');
         }
         if(fieldType == DisplayType.INTEGER){
-          convertedfieldValue = String.isEmpty(fValue) ? null : Integer.valueOf(fValue);
+          convertedFieldValue = String.isEmpty(fValue) ? null : Integer.valueOf(fValue);
         }
         else {
-          convertedfieldValue = String.isEmpty(fValue) ? null : Decimal.valueOf(fValue);
+          convertedFieldValue = String.isEmpty(fValue) ? null : Decimal.valueOf(fValue);
         }
       }
       when DATE {
@@ -158,9 +208,9 @@ public with sharing class ConvertCSVToRecords {
           Integer Year = Integer.valueOf(lstSplit[0]);
           Integer Month = Integer.valueOf(lstSplit[1]);
           Integer Day = Integer.valueOf(lstSplit[2]);
-          convertedfieldValue = String.isEmpty(fieldValue)
+          convertedFieldValue = String.isEmpty(fieldValue)
             ? null
-            : date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
+            : Date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
         } else {
           /* Format found like dd-MM-yyyy, convert to yyyy-MM-dd */
           if (String.isBlank(dateFormat)) {
@@ -172,21 +222,21 @@ public with sharing class ConvertCSVToRecords {
             Integer Day = Integer.valueOf(lstSplit[0]);
             Integer Month = Integer.valueOf(lstSplit[1]);
             Integer Year = Integer.valueOf(lstSplit[2]);
-            convertedfieldValue = String.isEmpty(fieldValue)
+            convertedFieldValue = String.isEmpty(fieldValue)
               ? null
-              : date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
+              : Date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
           } else if (dateFormat.toLowerCase().startsWith('mm')) {
             Integer Month = Integer.valueOf(lstSplit[0]);
             Integer Day = Integer.valueOf(lstSplit[1]);
             Integer Year = Integer.valueOf(lstSplit[2]);
-            convertedfieldValue = String.isEmpty(fieldValue)
+            convertedFieldValue = String.isEmpty(fieldValue)
               ? null
-              : date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
+              : Date.valueOf(Year + '-' + ('0' + Month).Right(2) + '-' + ('0' + Day).Right(2));
           }
         }
       }
       when else {
-        convertedfieldValue = fieldValue;
+        convertedFieldValue = fieldValue;
       }
     }
 
