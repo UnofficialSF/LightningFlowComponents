@@ -17,5 +17,6 @@
     <design:attribute name="parentId" label="Parent ID" />
     <design:attribute name="whereClause" label="Where Clause" />
     <design:attribute name="svg" label="Icon" />
+    <design:attribute name="showScanner" label="I10_Show Scanner in Supported Devices?" />
 
 </design:component>

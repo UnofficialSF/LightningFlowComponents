@@ -23,6 +23,8 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:attribute name="validate" type="Aura.Action" />
 
+	<aura:attribute name="showScanner" type="Boolean" default="false" />
+
 	<!-- 99% of the awesomesauce in this component comes from this LightningLookup component, created by
 		John Pipkin and Opfocus https://opfocus.com/lightning-lookup-input-field-2/ -->
 
@@ -34,14 +36,22 @@
 					{!v.label}</label>
 			</lightning:layoutItem>
 
-			<lightning:layoutItem size="12">
-				<c:QuickLightningLookup sObjectName="{!v.objectName}" displayedFieldName="{!v.displayFieldName}" searchFieldName="{!v.searchFieldName}"
+			<lightning:layoutItem size="{!AND(v.showScanner,OR($Browser.isPhone,$Browser.isTablet)) ? 11 : 12}">
+				<c:QuickLightningLookup aura:id="QuickLightningLookup" sObjectName="{!v.objectName}" displayedFieldName="{!v.displayFieldName}" searchFieldName="{!v.searchFieldName}"
 					whereClause="{!v.whereClause}" valueFieldName="{!v.valueFieldName}" label="{!v.label}"
 					selectedValue="{!v.selectedValue}" selectedName="{!v.displayedValue}" filteredFieldName="{!v.filterFieldName}"
 					filterFieldValue="{!v.filterFieldValue}" parentChild="{!v.parentChild}" required="{!v.required}"
 					defaultValue="{!v.defaultValue}" parentId="{!v.parentId}" cmpId="{!v.cmpid}" performLookupOnFocus="true"
 					svg="{!v.svg}" />
 			</lightning:layoutItem>
+
+			<aura:renderIf isTrue="{!AND(v.showScanner,OR($Browser.isPhone,$Browser.isTablet))}">
+				<lightning:layoutItem size="1">
+				<c:fsc_barcodeScanner aura:id="barcodeScannerLWC" onscansuccess="{!c.handleScanSuccess}"
+						onscanerror="{!c.handleScanError}" />
+				</lightning:layoutItem>
+			</aura:renderIf>
+
 		</lightning:layout>
 	</div>
 </aura:component>
