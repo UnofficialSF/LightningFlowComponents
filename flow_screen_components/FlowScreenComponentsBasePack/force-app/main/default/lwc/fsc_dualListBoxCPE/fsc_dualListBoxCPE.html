@@ -1,196 +1,234 @@
 <template>
-    <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">
-        {inputValues.allOptionsStringFormat.label}
-    </div>
-    <lightning-radio-group
-            name="select_allOptionsStringFormat"
-            options={selectDataSourceOptions}
-            value={inputValues.allOptionsStringFormat.value}
-            type="radio"
-            onchange={handleValueChange}
-    ></lightning-radio-group>
-    <lightning-input
-            class="slds-p-top_small"
-            type="checkbox" label={inputValues.disableReordering.label} name="select_disableReordering"
-            checked={inputValues.disableReordering.value}
-            onblur={handleValueChange}
-    ></lightning-input>
-    <lightning-input
-            type="checkbox" label={inputValues.required.label} name="select_required"
-            checked={inputValues.required.value}
-            onblur={handleValueChange}
-    ></lightning-input>
-
-    <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">All Options</div>
-    <c-fsc_flow-combobox
-            if:true={isObject}
-            name="select_allOptionsFieldDescriptorList"
-            label={inputValues.allOptionsFieldDescriptorList.label}
-            value={inputValues.allOptionsFieldDescriptorList.value}
-            value-type={inputValues.allOptionsFieldDescriptorList.valueDataType}
-            builder-context-filter-collection-boolean={inputValues.allOptionsFieldDescriptorList.isCollection}
-            builder-context={_builderContext}
-            onvaluechanged={handleFlowComboboxValueChange}
-            automatic-output-variables={automaticOutputVariables}
-    ></c-fsc_flow-combobox>
-    <c-fsc_flow-combobox
-            if:true={isTwoLists}
-            name="select_allOptionsStringCollectionLabels"
-            label={inputValues.allOptionsStringCollectionLabels.label}
-            value={inputValues.allOptionsStringCollectionLabels.value}
-            value-type={inputValues.allOptionsStringCollectionLabels.valueDataType}
-            builder-context-filter-type="String"
-            builder-context-filter-collection-boolean={inputValues.allOptionsStringCollectionLabels.isCollection}
-            builder-context={_builderContext}
-            onvaluechanged={handleFlowComboboxValueChange}
-            automatic-output-variables={automaticOutputVariables}
-    ></c-fsc_flow-combobox>
-    <c-fsc_flow-combobox
-            if:true={isLists}
-            name="select_allOptionsStringCollection"
-            label={inputValues.allOptionsStringCollection.label}
-            value={inputValues.allOptionsStringCollection.value}
-            value-type={inputValues.allOptionsStringCollection.valueDataType}
-            builder-context-filter-type="String"
-            builder-context-filter-collection-boolean={inputValues.allOptionsStringCollection.isCollection}
-            builder-context={_builderContext}
-            onvaluechanged={handleFlowComboboxValueChange}
-            automatic-output-variables={automaticOutputVariables}
-    ></c-fsc_flow-combobox>
-    <c-fsc_flow-combobox
-            if:true={isCSV}
-            name="select_allOptionsCSV"
-            label={inputValues.allOptionsCSV.label}
-            value={inputValues.allOptionsCSV.value}
-            value-type={inputValues.allOptionsCSV.valueDataType}
-            builder-context-filter-type="String"
-            builder-context-filter-collection-boolean={inputValues.allOptionsCSV.isCollection}
-            builder-context={_builderContext}
-            onvaluechanged={handleFlowComboboxValueChange}
-            automatic-output-variables={automaticOutputVariables}
-    ></c-fsc_flow-combobox>
-
-    <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">Values</div>
-    <div class="border-bottom-2px slds-p-bottom_small">
+        <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">
+            {inputValues.allOptionsStringFormat.label}
+        </div>
+        <lightning-radio-group
+                name="select_allOptionsStringFormat"
+                options={selectDataSourceOptions}
+                value={inputValues.allOptionsStringFormat.value}
+                type="radio"
+                onchange={handleValueChange}
+        ></lightning-radio-group>
+        <lightning-input
+                class="slds-p-top_small"
+                type="checkbox" label={inputValues.disableReordering.label} name="select_disableReordering"
+                checked={inputValues.disableReordering.value}
+                onblur={handleValueChange}
+        ></lightning-input>
+        <lightning-input
+                type="checkbox" label={inputValues.required.label} name="select_required"
+                checked={inputValues.required.value}
+                onblur={handleValueChange}
+        ></lightning-input>
+    
+        <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">All Options</div>
+        <c-fsc_flow-combobox
+                if:true={isObject}
+                name="select_allOptionsFieldDescriptorList"
+                label={inputValues.allOptionsFieldDescriptorList.label}
+                value={inputValues.allOptionsFieldDescriptorList.value}
+                value-type={inputValues.allOptionsFieldDescriptorList.valueDataType}
+                builder-context-filter-collection-boolean={inputValues.allOptionsFieldDescriptorList.isCollection}
+                builder-context={_builderContext}
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
+        <c-fsc_flow-combobox
+                if:true={isTwoLists}
+                name="select_allOptionsStringCollectionLabels"
+                label={inputValues.allOptionsStringCollectionLabels.label}
+                value={inputValues.allOptionsStringCollectionLabels.value}
+                value-type={inputValues.allOptionsStringCollectionLabels.valueDataType}
+                builder-context-filter-type="String"
+                builder-context-filter-collection-boolean={inputValues.allOptionsStringCollectionLabels.isCollection}
+                builder-context={_builderContext}
+                onvaluechanged={handleFlowComboboxValueChange}
+                automatic-output-variables={automaticOutputVariables}
+        ></c-fsc_flow-combobox>
         <c-fsc_flow-combobox
                 if:true={isLists}
-                name="select_selectedOptionsStringList"
-                label={inputValues.selectedOptionsStringList.label}
-                value={inputValues.selectedOptionsStringList.value}
-                value-type={inputValues.selectedOptionsStringList.valueDataType}
+                name="select_allOptionsStringCollection"
+                label={inputValues.allOptionsStringCollection.label}
+                value={inputValues.allOptionsStringCollection.value}
+                value-type={inputValues.allOptionsStringCollection.valueDataType}
                 builder-context-filter-type="String"
-                builder-context-filter-collection-boolean={inputValues.selectedOptionsStringList.isCollection}
+                builder-context-filter-collection-boolean={inputValues.allOptionsStringCollection.isCollection}
                 builder-context={_builderContext}
                 onvaluechanged={handleFlowComboboxValueChange}
                 automatic-output-variables={automaticOutputVariables}
         ></c-fsc_flow-combobox>
         <c-fsc_flow-combobox
                 if:true={isCSV}
-                name="select_selectedOptionsCSV"
-                label={inputValues.selectedOptionsCSV.label}
-                value={inputValues.selectedOptionsCSV.value}
-                value-type={inputValues.selectedOptionsCSV.valueDataType}
+                name="select_allOptionsCSV"
+                label={inputValues.allOptionsCSV.label}
+                value={inputValues.allOptionsCSV.value}
+                value-type={inputValues.allOptionsCSV.valueDataType}
                 builder-context-filter-type="String"
-                builder-context-filter-collection-boolean={inputValues.selectedOptionsCSV.isCollection}
+                builder-context-filter-collection-boolean={inputValues.allOptionsCSV.isCollection}
                 builder-context={_builderContext}
                 onvaluechanged={handleFlowComboboxValueChange}
                 automatic-output-variables={automaticOutputVariables}
         ></c-fsc_flow-combobox>
-        <c-fsc_flow-combobox
-                if:true={isObject}
-                name="select_selectedOptionsFieldDescriptorList"
-                label={inputValues.selectedOptionsFieldDescriptorList.label}
-                value={inputValues.selectedOptionsFieldDescriptorList.value}
-                value-type={inputValues.selectedOptionsFieldDescriptorList.valueDataType}
-                builder-context-filter-collection-boolean={inputValues.selectedOptionsFieldDescriptorList.isCollection}
-                builder-context={_builderContext}
-                onvaluechanged={handleFlowComboboxValueChange}
-                automatic-output-variables={automaticOutputVariables}
-        ></c-fsc_flow-combobox>
-        <template if:true={isObject}>
-            <lightning-input
-                    type="text"
-                    label={inputValues.useWhichObjectKeyForLabel.label}
-                    name="select_useWhichObjectKeyForLabel"
-                    value={inputValues.useWhichObjectKeyForLabel.value}
-                    onblur={handleValueChange}
-            ></lightning-input>
-            <lightning-input
-                    type="text"
-                    label={inputValues.useWhichObjectKeyForData.label}
-                    name="select_useWhichObjectKeyForData"
-                    value={inputValues.useWhichObjectKeyForData.value}
-                    onblur={handleValueChange}
-            ></lightning-input>
-            <lightning-input
-                type="text"
-                label={inputValues.useWhichObjectKeyForSort.label}
-                name="select_useWhichObjectKeyForSort"
-                value={inputValues.useWhichObjectKeyForSort.value}
-                onblur={handleValueChange}
-            ></lightning-input>
+    
+        <!-- Picklist Configuration Section -->
+        <template if:true={isPicklist}>
+            <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">Picklist Configuration</div>
+            <c-fsc_pick-object-and-field-3
+                    name="objectApiName"
+                    object-label={inputValues.objectApiName.label}
+                    object-type={inputValues.objectApiName.value}
+                    hide-field-picklist=true
+                    builder-context={_builderContext}
+                    onfieldselected={handleObjectChange}>
+            </c-fsc_pick-object-and-field-3>
+            <template if:true={inputValues.objectApiName.value}>
+                <c-fsc_field-selector-3 
+                        name="fieldApiName" 
+                        label={inputValues.fieldApiName.label}
+                        object-name={inputValues.objectApiName.value}
+                        public-style="width:100%"
+                        onfieldupdate={handleValueChange} 
+                        selected-fields={inputValues.fieldApiName.value}
+                        field-type-filter="multipicklist"
+                        allow-multiselect=false
+                        required>
+                </c-fsc_field-selector-3>
+            </template>
         </template>
-    </div>
-    <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">Labels</div>
-    <div class="border-bottom-2px slds-p-bottom_small">
-        <c-fsc_flow-combobox
-                name="select_label"
-                label={inputValues.label.label}
-                value={inputValues.label.value}
-                value-type={inputValues.label.valueDataType}
-                builder-context-filter-type="String"
-                builder-context-filter-collection-boolean={inputValues.label.isCollection}
-                builder-context={_builderContext}
-                onvaluechanged={handleFlowComboboxValueChange}
-                automatic-output-variables={automaticOutputVariables}
-        ></c-fsc_flow-combobox>
-        <c-fsc_flow-combobox
-                name="select_sourceLabel"
-                label={inputValues.sourceLabel.label}
-                value={inputValues.sourceLabel.value}
-                value-type={inputValues.sourceLabel.valueDataType}
-                builder-context-filter-type="String"
-                builder-context-filter-collection-boolean={inputValues.sourceLabel.isCollection}
-                builder-context={_builderContext}
-                onvaluechanged={handleFlowComboboxValueChange}
-                automatic-output-variables={automaticOutputVariables}
-        ></c-fsc_flow-combobox>
-        <c-fsc_flow-combobox
-                name="select_selectedLabel"
-                label={inputValues.selectedLabel.label}
-                value={inputValues.selectedLabel.value}
-                value-type={inputValues.selectedLabel.valueDataType}
-                builder-context-filter-type="String"
-                builder-context-filter-collection-boolean={inputValues.selectedLabel.isCollection}
-                builder-context={_builderContext}
-                onvaluechanged={handleFlowComboboxValueChange}
-                automatic-output-variables={automaticOutputVariables}
-        ></c-fsc_flow-combobox>
-    </div>
-    <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size_1-of-1 slds-panel__header-title slds-text-heading_small slds-p-top_small">
-            Number of Selections
-        </div>
-        <div class="slds-col slds-size_1-of-2">
-            <lightning-input
-                    type="number" label={inputValues.min.label} name="select_min"
-                    value={inputValues.min.value}
+    
+        <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">Values</div>
+        <div class="border-bottom-2px slds-p-bottom_small">
+            <c-fsc_flow-combobox
+                    if:true={isLists}
+                    name="select_selectedOptionsStringList"
+                    label={inputValues.selectedOptionsStringList.label}
+                    value={inputValues.selectedOptionsStringList.value}
+                    value-type={inputValues.selectedOptionsStringList.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.selectedOptionsStringList.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                    if:true={isCSV}
+                    name="select_selectedOptionsCSV"
+                    label={inputValues.selectedOptionsCSV.label}
+                    value={inputValues.selectedOptionsCSV.value}
+                    value-type={inputValues.selectedOptionsCSV.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.selectedOptionsCSV.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                    if:true={isPicklist}
+                    name="select_selectedOptionsPicklist"
+                    label={inputValues.selectedOptionsPicklist.label}
+                    value={inputValues.selectedOptionsPicklist.value}
+                    value-type={inputValues.selectedOptionsPicklist.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.selectedOptionsPicklist.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                    if:true={isObject}
+                    name="select_selectedOptionsFieldDescriptorList"
+                    label={inputValues.selectedOptionsFieldDescriptorList.label}
+                    value={inputValues.selectedOptionsFieldDescriptorList.value}
+                    value-type={inputValues.selectedOptionsFieldDescriptorList.valueDataType}
+                    builder-context-filter-collection-boolean={inputValues.selectedOptionsFieldDescriptorList.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <template if:true={isObject}>
+                <lightning-input
+                        type="text"
+                        label={inputValues.useWhichObjectKeyForLabel.label}
+                        name="select_useWhichObjectKeyForLabel"
+                        value={inputValues.useWhichObjectKeyForLabel.value}
+                        onblur={handleValueChange}
+                ></lightning-input>
+                <lightning-input
+                        type="text"
+                        label={inputValues.useWhichObjectKeyForData.label}
+                        name="select_useWhichObjectKeyForData"
+                        value={inputValues.useWhichObjectKeyForData.value}
+                        onblur={handleValueChange}
+                ></lightning-input>
+                <lightning-input
+                    type="text"
+                    label={inputValues.useWhichObjectKeyForSort.label}
+                    name="select_useWhichObjectKeyForSort"
+                    value={inputValues.useWhichObjectKeyForSort.value}
                     onblur={handleValueChange}
-            ></lightning-input>
+                ></lightning-input>
+            </template>
         </div>
-        <div class="slds-col slds-size_1-of-2 slds-p-left_x-small">
-            <lightning-input
-                    type="number" label={inputValues.max.label} name="select_max"
-                    value={inputValues.max.value}
-                    onblur={handleValueChange}
-            ></lightning-input>
+        <div class="slds-panel__header-title slds-text-heading_small slds-p-top_small">Labels</div>
+        <div class="border-bottom-2px slds-p-bottom_small">
+            <c-fsc_flow-combobox
+                    name="select_label"
+                    label={inputValues.label.label}
+                    value={inputValues.label.value}
+                    value-type={inputValues.label.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.label.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                    name="select_sourceLabel"
+                    label={inputValues.sourceLabel.label}
+                    value={inputValues.sourceLabel.value}
+                    value-type={inputValues.sourceLabel.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.sourceLabel.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
+            <c-fsc_flow-combobox
+                    name="select_selectedLabel"
+                    label={inputValues.selectedLabel.label}
+                    value={inputValues.selectedLabel.value}
+                    value-type={inputValues.selectedLabel.valueDataType}
+                    builder-context-filter-type="String"
+                    builder-context-filter-collection-boolean={inputValues.selectedLabel.isCollection}
+                    builder-context={_builderContext}
+                    onvaluechanged={handleFlowComboboxValueChange}
+                    automatic-output-variables={automaticOutputVariables}
+            ></c-fsc_flow-combobox>
         </div>
-        <div class="slds-col slds-size_1-of-1">
-            <lightning-input
-                    type="number" label={inputValues.size.label} name="select_size"
-                    value={inputValues.size.value}
-                    onblur={handleValueChange}
-            ></lightning-input>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-panel__header-title slds-text-heading_small slds-p-top_small">
+                Number of Selections
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input
+                        type="number" label={inputValues.min.label} name="select_min"
+                        value={inputValues.min.value}
+                        onblur={handleValueChange}
+                ></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_x-small">
+                <lightning-input
+                        type="number" label={inputValues.max.label} name="select_max"
+                        value={inputValues.max.value}
+                        onblur={handleValueChange}
+                ></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <lightning-input
+                        type="number" label={inputValues.size.label} name="select_size"
+                        value={inputValues.size.value}
+                        onblur={handleValueChange}
+                ></lightning-input>
+            </div>
         </div>
-    </div>
 </template>

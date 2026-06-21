@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>47.0</apiVersion>
+    <apiVersion>64.0</apiVersion>
     <description>Dual List Box v3</description>
     <isExposed>true</isExposed>
     <masterLabel>Dual List Box v3</masterLabel>
@@ -8,29 +8,35 @@
         <target>lightning__FlowScreen</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__FlowScreen" configurationEditor="c-fsc_dual-list-box-c-p-e" category="Input">
-            <property name="label" type="String" role="inputOnly"/>
-            <property name="sourceLabel" type="String" role="inputOnly"/>
-            <property name="fieldLevelHelp" type="String" role="inputOnly"/>
-            <property name="selectedLabel" type="String" role="inputOnly"/>
-            <property name="min" type="Integer" role="inputOnly"/>
-            <property name="max" type="Integer" role="inputOnly"/>
-            <property name="disableReordering" type="Boolean" role="inputOnly"/>
-            <property name="size" type="Integer" role="inputOnly"/>
-            <property name="required" type="Boolean" role="inputOnly"/>
-            <property name="requiredOptions" type="String" role="inputOnly"/>
-            <property name="useObjectValueAsOutput" type="Boolean" role="inputOnly"/>
-            <property name="useWhichObjectKeyForData" type="String" role="inputOnly"/>
-            <property name="useWhichObjectKeyForLabel" type="String" role="inputOnly"/>
-            <property name="useWhichObjectKeyForSort" type="String" role="inputOnly"/>
-            <property name="allOptionsFieldDescriptorList" type="apex://usf3.FieldDescriptor[]" role="inputOnly"/>
-            <property name="allOptionsCSV" type="String" role="inputOnly"/>
-            <property name="allOptionsStringCollection" type="String[]" role="inputOnly"/>
-            <property name="allOptionsStringCollectionLabels" type="String[]" role="inputOnly"/>
-            <property name="allOptionsStringFormat" type="String" role="inputOnly"/>
-            <property name="selectedOptionsFieldDescriptorList" type="apex://usf3.FieldDescriptor[]"/>
-            <property name="selectedOptionsCSV" type="String"/>
-            <property name="selectedOptionsStringList" type="String[]"/>
+        <targetConfig targets="lightning__FlowScreen"
+            configurationEditor="c-fsc_dual-list-box-c-p-e" category="Input">
+            <property name="label" type="String" role="inputOnly" />
+            <property name="sourceLabel" type="String" role="inputOnly" />
+            <property name="fieldLevelHelp" type="String" role="inputOnly" />
+            <property name="selectedLabel" type="String" role="inputOnly" />
+            <property name="min" type="Integer" role="inputOnly" />
+            <property name="max" type="Integer" role="inputOnly" />
+            <property name="disableReordering" type="Boolean" role="inputOnly" />
+            <property name="size" type="Integer" role="inputOnly" />
+            <property name="required" type="Boolean" role="inputOnly" />
+            <property name="requiredOptions" type="String" role="inputOnly" />
+            <property name="useObjectValueAsOutput" type="Boolean" role="inputOnly" />
+            <property name="useWhichObjectKeyForData" type="String" role="inputOnly" />
+            <property name="useWhichObjectKeyForLabel" type="String" role="inputOnly" />
+            <property name="useWhichObjectKeyForSort" type="String" role="inputOnly" />
+            <property name="allOptionsFieldDescriptorList" type="apex://usf3.FieldDescriptor[]"
+                role="inputOnly" />
+            <property name="allOptionsCSV" type="String" role="inputOnly" />
+            <property name="allOptionsStringCollection" type="String[]" role="inputOnly" />
+            <property name="allOptionsStringCollectionLabels" type="String[]" role="inputOnly" />
+            <property name="allOptionsStringFormat" type="String" role="inputOnly" />
+            <property name="usePicklistValues" type="Boolean" role="inputOnly" />
+            <property name="objectApiName" type="String" role="inputOnly" />
+            <property name="fieldApiName" type="String" role="inputOnly" />
+            <property name="selectedOptionsFieldDescriptorList" type="apex://usf3.FieldDescriptor[]" />
+            <property name="selectedOptionsCSV" type="String" />
+            <property name="selectedOptionsStringList" type="String[]" />
+            <property name="selectedOptionsPicklist" type="String[]" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
