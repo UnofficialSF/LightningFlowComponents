@@ -1,2 +1,36 @@
 .THIS {
 }
+
+/* Responsive modal container */
+.THIS .slds-modal-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive modal sizing */
+.THIS .slds-modal__container--responsive {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    min-width: 20rem;
+}
+
+/* Ensure modal content is scrollable if needed */
+.THIS .slds-modal__content {
+    max-height: calc(90vh - 8rem);
+    overflow-y: auto;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 48rem) {
+    .THIS .slds-modal__container--responsive {
+        max-width: 95vw;
+        max-height: 95vh;
+        margin: 0.5rem;
+    }
+    
+    .THIS .slds-modal__content {
+        max-height: calc(95vh - 6rem);
+    }
+}

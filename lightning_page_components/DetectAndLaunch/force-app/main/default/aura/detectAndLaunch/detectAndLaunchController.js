@@ -1,4 +1,10 @@
 ({
+    /**
+     * Initializes the component by setting up the field list for recordData to watch
+     * @param {Component} component - The component instance
+     * @param {Object} event - The init event
+     * @param {Object} helper - The component helper
+     */
     doInit: function(component, event, helper) {
         // By Default set the Id field as this is required
         var tempFieldList = ['Id'];
@@ -13,16 +19,34 @@
         component.set("v.fieldNameList", tempFieldList);
     },
 
+    /**
+     * Opens the modal dialog for flow execution
+     * @param {Component} component - The component instance
+     * @param {Object} event - The event that triggered this action
+     * @param {Object} helper - The component helper
+     */
     openModal : function(component, event, helper) {
 		component.set('v.openModal',true);
 	},
  
+    /**
+     * Closes the modal dialog
+     * @param {Component} component - The component instance
+     * @param {Object} event - The event that triggered this action
+     * @param {Object} helper - The component helper
+     */
 	closeModal : function(component, event, helper) {
 		component.set('v.openModal',false);
 	},
  
 
 
+    /**
+     * Handles flow status change events and closes modal when flow finishes
+     * @param {Component} component - The component instance
+     * @param {Object} event - The flow status change event
+     * @param {Object} helper - The component helper
+     */
     flowStatusChange : function( component, event, helper ) {
         if ( event.getParam( "status" ).indexOf( "FINISHED" ) !== -1 ) {
             component.set( "v.openModal", false );
@@ -30,33 +54,44 @@
         }
     },
     
+    /**
+     * Handles record update events from force:recordData
+     * Determines which flow to launch based on change type and field conditions
+     * @param {Component} component - The component instance
+     * @param {Object} event - The record update event from force:recordData
+     * @param {Object} helper - The component helper
+     */
     recordUpdated: function(component, event, helper) {
-        console.log('entering recordUpdate');
+        helper.debugLog(component, 'entering recordUpdate');
         var eventParams = event.getParams();
 
-        // If both Field Change and Field Value are not null then set to isChangedRecord to true
-        // This will then populate the users field value within the fields list
-        if(component.get("v.fieldChange") != null && component.get("v.fieldValue") != null ){
-            component.set("v.isChangedRecord", true);
-            console.log('fieldChange',component.get("v.fieldChange"));
-            console.log('fieldValue',component.get("v.fieldValue"));
-            // Make sure there was an edited field and we just edited a record
-            if ( eventParams.changedFields && eventParams.changeType === "CHANGED") {
-                console.log('eventParams.changedFields', eventParams.changedFields);
-                var changed = JSON.parse(JSON.stringify(eventParams.changedFields));
-                //console.log('changed', changed);
-                //console.log('changed.dynamic', changed[component.get("v.fieldCompare")]);
-                if (changed[component.get("v.fieldCompare")]) {
-                    console.log('changed.dynamic.value', changed[component.get("v.fieldCompare")].value);
-                    if ( changed[component.get("v.fieldCompare")].value.toString() === component.get("v.fieldValue") ) {
-                        //console.log('hit');
-                        component.set("v.targetFlowName", component.get("v.editFlowName"));
-                        helper.processChangeEvent(component, eventParams);
-                    }
-                }
+        // Check if field conditions are configured
+        var fieldChange = component.get("v.fieldChange");
+        var fieldValue = component.get("v.fieldValue");
+        var fieldConditionsConfigured = (fieldChange !== null && fieldChange !== undefined && 
+                                         fieldValue !== null && fieldValue !== undefined);
+
+        // Field conditions only apply to CHANGED events
+        // For REMOVED and LOADED events, proceed with normal flow launching logic
+        if (fieldConditionsConfigured && eventParams.changeType === "CHANGED") {
+            // Field conditions are configured and this is a CHANGED event - check if value matches
+            if (helper.checkFieldValueMatch(component, eventParams)) {
+                component.set("v.isChangedRecord", true);
+                helper.debugLog(component, 'fieldChange', fieldChange);
+                helper.debugLog(component, 'fieldValue', fieldValue);
+                helper.debugLog(component, 'eventParams.changedFields', eventParams.changedFields);
+                
+                // Field value matches, launch the edit flow
+                component.set("v.targetFlowName", component.get("v.editFlowName"));
+                helper.processChangeEvent(component, eventParams);
+            } else {
+                // Field conditions are configured but value doesn't match - don't launch any flow
+                helper.debugLog(component, 'Field conditions configured but value does not match - skipping flow launch');
+                return;
             }
         } else {
-            console.log('changeType: ' + eventParams.changeType);
+            // No field conditions configured OR this is REMOVED/LOADED event - proceed with normal flow launching logic
+            helper.debugLog(component, `changeType: ${eventParams.changeType}`);
             // Get Flow To Use
             if(eventParams.changeType === "CHANGED") {
                 component.set("v.targetFlowName", component.get("v.editFlowName"));
@@ -66,15 +101,15 @@
                 component.set("v.targetFlowName", component.get("v.loadFlowName"));
             }
 
-
             // Launch Flow
             if(eventParams.changeType === "CHANGED" || eventParams.changeType === "REMOVED") {
                 helper.processChangeEvent(component, eventParams);
             } else if( eventParams.changeType === "LOADED")  {
                 helper.processChangeEvent(component, eventParams);
             } else if(eventParams.changeType === "ERROR") {
-                console.log(eventParams);
-                console.log('Update event received Error: ' + component.get("v.error"));
+                // Show error toast to user
+                var errorMessage = component.get("v.error") || component.get("v.recordError") || 'An error occurred while loading the record.';
+                helper.showErrorToast(component, 'Record Error', errorMessage);
             }
         }
     }

@@ -1,5 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes, force:hasRecordId,lightning:isUrlAddressable"> <!--inherit recordId attribute-->
     <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:notificationsLibrary aura:id="notifLib"/>
    
 
     <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
@@ -10,6 +11,7 @@
     <aura:attribute name="fieldValue" type="String" description="Launch this flow when the record is edited and this field equals this"/>
     <aura:attribute name="targetFlowName" type="String"  />
     <aura:attribute name="launchMode" type="String" default="Modeless" description="Launch this flow when the record changes"/>
+    <aura:attribute name="debugMode" type="Boolean" default="false" description="Enable debug logging to console. Disabled by default for performance."/>
 
     <force:recordData aura:id="recordLoader"
     fields="{!v.fieldNameList}"
@@ -28,9 +30,9 @@
     
     <!-- Here we wrapped our modal code inside aura:if. If it evaluates true, code inside it will be visible -->
     <aura:if isTrue="{!v.openModal}" >
-      <div class="demo-only" style="height: 600px;">
+      <div class="slds-modal-container">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container">
+            <div class="slds-modal__container slds-modal__container--responsive">
               <!-- Header of Modal -->
              <!--  <header class="slds-modal__header">
                   <lightning:buttonIcon iconName="utility:close" class="slds-modal__close" size="large" variant="bare" alternativeText="Close" onclick="{! c.closeModal }"/>
