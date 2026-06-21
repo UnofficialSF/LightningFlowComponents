@@ -1,0 +1,112 @@
+<template>
+    <lightning-card title="Timezone Converter Configuration" icon-name="utility:world">
+        <!-- DateTime Input -->
+        <div class="slds-m-around_small">
+            <c-fsc_flow-combobox 
+                label="Input DateTime (UTC)" 
+                builder-context={_builderContext} 
+                name="inputDateTime"  
+                onvaluechanged={handleFlowComboboxValueChange} 
+                value={inputDateTime} 
+                value-type={inputDateTimeType} 
+                builder-context-filter-type="DateTime"
+                required="true"
+                automatic-output-variables={automaticOutputVariables}>
+            </c-fsc_flow-combobox>
+        </div>
+        
+        <div class="slds-grid slds-gutters slds-m-around_small">
+            <!-- Timezone Selection Column -->
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        Target Timezone
+                    </label>
+                    <div class="slds-form-element__control">
+                        <lightning-combobox
+                            label="Timezone"
+                            value={selectedTimezone}
+                            options={timezoneOptions}
+                            onchange={handleTimezoneChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+                    <template if:true={showCustomTimezone}>
+                        <div class="slds-form-element slds-m-top_small">
+                            <label class="slds-form-element__label">Custom Timezone ID</label>
+                            <div class="slds-form-element__control">
+                                <lightning-input
+                                    type="text"
+                                    value={customTimezone}
+                                    onchange={handleCustomTimezoneChange}
+                                    placeholder="e.g., America/New_York"
+                                    message-when-pattern-mismatch={timezoneError}>
+                                </lightning-input>
+                            </div>
+                            <template if:true={timezoneError}>
+                                <div class="slds-form-element__help slds-text-color_error">
+                                    {timezoneError}
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <div class="slds-m-top_small">
+                        <div class="slds-text-body_small slds-text-color_weak">
+                            <strong>Preview:</strong> {previewText}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Format Selection Column -->
+            <div class="slds-col slds-size_1-of_2">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">
+                        Date Format (Optional)
+                    </label>
+                    <div class="slds-form-element__control">
+                        <lightning-combobox
+                            label="Format"
+                            value={selectedFormat}
+                            options={formatOptions}
+                            onchange={handleFormatChange}>
+                        </lightning-combobox>
+                    </div>
+                    <template if:true={showCustomFormat}>
+                        <div class="slds-form-element slds-m-top_small">
+                            <label class="slds-form-element__label">Custom Format String</label>
+                            <div class="slds-form-element__control">
+                                <lightning-input
+                                    type="text"
+                                    value={customFormat}
+                                    onchange={handleCustomFormatChange}
+                                    placeholder="e.g., MMM d, yyyy h:mm a"
+                                    message-when-pattern-mismatch={formatError}>
+                                </lightning-input>
+                            </div>
+                            <template if:true={formatError}>
+                                <div class="slds-form-element__help slds-text-color_error">
+                                    {formatError}
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <div class="slds-m-top_small">
+                        <div class="slds-text-body_small slds-text-color_weak">
+                            <strong>Preview:</strong> {formatPreviewText}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-m-around_small">
+            <div class="slds-text-body_small slds-text-color_weak">
+                <p><strong>Note:</strong> The timezone converter automatically handles Daylight Saving Time (DST) transitions. 
+                Leave format blank to use the default format: "Jan 15, 2025 2:30 PM"</p>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+
