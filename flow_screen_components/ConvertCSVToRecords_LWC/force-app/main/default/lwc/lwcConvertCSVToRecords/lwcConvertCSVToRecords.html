@@ -1,28 +1,50 @@
 <template>
-    <template if:true={isLoading}>
-        <lightning-spinner alternative-text="Loading"></lightning-spinner>
-    </template>
-    <template if:false={isLoading}>
-        <lightning-input
-            type="file"
-            label={inputLabel}
-            accept=".csv"
-            onchange={handleInputChange}
-        >
-        </lightning-input>
-        <lightning-layout-item class="slds-form-element__label" size="12">
-            <span class="slds-form-element__label">{uploadFileName}</span>
-            <span class="slds-form-element__label">{uploadFileStatus}</span>
-        </lightning-layout-item>
-        <template if:true={isError}>
-            <lightning-layout-item class="slds-form-element__label" size="12">
-                <div class="slds-box slds-theme_shade slds-theme_error">
-                    <p>
-                      <strong>{errorMessage}</strong>
-                    </p>
-                  </div>
-                <span class="slds-form-element__label is-error"></span>
-            </lightning-layout-item>
+    <div class="slds-form-element">
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-m-vertical_medium">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+            <template if:true={uploadFileName}>
+                <div class="slds-m-top_medium slds-text-align_center">
+                    <div class="slds-text-heading_small slds-m-bottom_x-small">
+                        <strong>{uploadFileName}</strong>
+                    </div>
+                    <div class="slds-text-body_regular slds-text-color_weak">
+                        {uploadFileStatus}
+                    </div>
+                </div>
+            </template>
         </template>
-    </template>
+        <template if:false={isLoading}>
+            <template if:false={isUploadSuccessful}>
+                <lightning-input
+                    type="file"
+                    label={inputLabel}
+                    accept=".csv"
+                    onchange={handleInputChange}
+                    class="slds-m-bottom_small"
+                >
+                </lightning-input>
+            </template>
+            <template if:true={uploadFileName}>
+                <div class="slds-m-top_small">
+                    <div class="slds-text-heading_small slds-m-bottom_x-small">
+                        <strong>{uploadFileName}</strong>
+                    </div>
+                    <div class="slds-text-body_regular slds-text-color_weak">
+                        {uploadFileStatus}
+                    </div>
+                </div>
+            </template>
+        </template>
+        <template if:true={isError}>
+            <div class="slds-m-top_medium">
+                <div class="slds-box slds-theme_error slds-p-around_medium">
+                    <div class="slds-text-body_regular" style="white-space: pre-line;">
+                        {errorMessage}
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 </template>
