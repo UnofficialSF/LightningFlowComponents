@@ -1,3 +1,3 @@
 .notToggle lightning-button + lightning-button {
-    padding-left: 0.25em;
+    margin-inline-start: var(--fbb-button-spacing, 0.25em);
 }
