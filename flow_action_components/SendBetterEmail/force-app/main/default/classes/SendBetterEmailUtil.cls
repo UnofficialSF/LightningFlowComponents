@@ -13,6 +13,7 @@
  * @since 2.00.05	02-17-2021	Jack Pond			Template Description empty causes error Fixes: #602
  * @since 2.03.11	06-22-2021	Jack Pond			Temporary fix for #786 - cached TemplateName Overflows
  * @since 2.03.11	2021-07-28	Jack Pond			Temporary fix for #829 - Sends all versions as attachment - should only send latest Version
+ * @since 2.5.0		2026-06-26	Keenan Langston		Filter null string addresses when building recipient lists
  *
  **/
 public inherited sharing class SendBetterEmailUtil {
@@ -40,7 +41,11 @@ public inherited sharing class SendBetterEmailUtil {
             'Send' + type + 'thisStringCollectionOfEmailAddresses'
         );
         if (stringAddresses != null) {
-            addressList.addAll(stringAddresses);
+            for (String address : stringAddresses) {
+                if (address != null) {
+                    addressList.add(address);
+                }
+            }
         }
         //handle inputs involving collections of Contacts
         List<Contact> curContacts = (List<Contact>) m.get(
