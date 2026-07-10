@@ -12,13 +12,15 @@ global with sharing class CountRecordsAndFields {
             try {
                 for (SObject record : records) {
                     if (!String.isBlank(fieldName) && !String.isBlank(fieldValue)) {
-                        if (record.get(fieldName) == fieldValue) {
+                        Object recValue = record.get(fieldName);
+                        if (recValue != null &&
+                        String.valueOf(recValue).equalsIgnoreCase(fieldValue)) {
                             response.matchedNumber++;
                         }
                     }
-    
                     response.totalNumber++;
                 }
+
             } catch (Exception ex) {
                 response.errors = ex.getMessage();
             }
